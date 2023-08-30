@@ -191,6 +191,7 @@ namespace Triangle_Scalene{
                                         }
                                         } catch {
                                             Console.WriteLine("Bad try!");
+                                            PlayerChoice = true;
                                         }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
@@ -209,7 +210,7 @@ namespace Triangle_Scalene{
                 /*Pour terminer la partie entière 
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
-                if (Tour == 4){ 
+                if (Tour == 20){ 
                     Console.WriteLine("Fin du programme");
                     Thread.Sleep(60*10);
                     System.Environment.Exit(0);
