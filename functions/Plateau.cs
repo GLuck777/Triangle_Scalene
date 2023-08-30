@@ -98,6 +98,7 @@ namespace Triangle_Scalene{
                             break;
                         case 1:
                             try{
+                                Console.Clear();
                                 PlayerChoice = false;
                                 if (!PlayerChoice ){
                                     // input = "";
@@ -198,6 +199,7 @@ namespace Triangle_Scalene{
                             }
                             break;
                         }
+                        interfaceUI.WaitKeys();
                     }
                 }
                 /*Pour terminer la partie entière 
