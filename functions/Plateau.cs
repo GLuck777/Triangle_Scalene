@@ -101,25 +101,18 @@ namespace Triangle_Scalene{
                                 PlayerChoice = false;
                                 if (!PlayerChoice ){
                                     // input = "";
-                                    
-                                    int incrementation = 0;
-                                    foreach(Triangle triangle in player.listPioche){
-                                            incrementation++;
-                                            Console.WriteLine("________________________________");
-                                            Console.Write("Taper ["+incrementation+ "]: \n");
+                                    Table t = new Table();
+                                    t.CreateCase(player.listPioche);
 
-                                            Console.Write(" Carte: "+triangle._Name+"\n");
-                                            Console.Write("\t  Number: " + triangle._Number+"\n");
-                                            if (triangle._Effect!=""){
-                                            Console.Write("\t  Effect: " + triangle._Effect+"\n");
-                                            Console.Write("\t  Description:\n" + triangle._Description+"\n");
-                                            } else {
-                                                Console.Write("\t  Effect: None\n");
-                                            }
-                                            
-                                            Console.WriteLine("________________________________\n");
-                                        // }
-                                    }
+                                    ConsoleKeyInfo key;
+                                    do{
+                                        key = Console.ReadKey();
+                                        t.DrawCase();
+                                        Console.WriteLine("Appuyez sur entrée pour valider");
+                                    } while (key.Key != ConsoleKey.Enter);
+
+                                    t.CreateCase(player.listPioche);
+                                    
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
                                         String Newinput = Console.ReadLine();
@@ -191,6 +184,7 @@ namespace Triangle_Scalene{
                                         }
                                         } catch {
                                             Console.WriteLine("Bad try!");
+                                            PlayerChoice = true;
                                         }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
