@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 // using Triangle_Scalene; // appel du package
 
@@ -60,20 +61,20 @@ namespace Triangle_Scalene
             //SetA Main Forte
             //Section Famille Royale
             //Roi KILL Prince
-            this.ListCards.Add(new Triangle(nom:"Roi Art", couleur:"jaune", effect:"Roi", description:ExplainEffect("Roi"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Roi Art", couleur:"jaune", effect:"Roi", description:ExplainEffect("Roi"), number:3, set:"A"));
             //Reine KILL Roi
-            this.ListCards.Add(new Triangle(nom:"Reine Gen", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Reine Gen", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:3, set:"A"));
             //Prince Kill Reine
-            this.ListCards.Add(new Triangle(nom:"Prince Port", couleur:"jaune",effect:"Prince", description:ExplainEffect("Prince"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Prince Port", couleur:"jaune",effect:"Prince", description:ExplainEffect("Prince"), number:3, set:"A"));
             //Section Chevalier
             //Chevalier #1
-            this.ListCards.Add(new Triangle(nom:"Chevalier Rev", couleur:"vert", effect:"", number:1, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Rev", couleur:"vert", effect:"", number:2, set:"A"));
             //Chevalier #2
-            this.ListCards.Add(new Triangle(nom:"Chevalier Norm", couleur:"vert", effect:"", number:1, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Norm", couleur:"vert", effect:"", number:2, set:"A"));
             //Section Assassin
-            this.ListCards.Add(new Triangle(nom:"Assassin J", couleur:"violet", number:0, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Assassin J", couleur:"violet", number:1, set:"A"));
             //Assassin
-            this.ListCards.Add(new Triangle(nom:"Assassin A", couleur:"violet", number:0, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Assassin A", couleur:"violet", number:1, set:"A"));
             //Section Paysan X3
             this.ListCards.Add(new Triangle(nom:"paysan Trol", couleur:"rouge", effect:"Exil", description:ExplainEffect("Exil"), number:0, set:"A"));
             this.ListCards.Add(new Triangle(nom:"paysan Rez", couleur:"rouge", effect:"Reinitialisation", description:ExplainEffect("Reinitialisation"), number:0, set:"A"));
@@ -82,17 +83,17 @@ namespace Triangle_Scalene
             //SetB Main Faible
             //Section Famille Royale
             //Roi KILL Prince
-            this.ListCards.Add(new Triangle(nom:"Roi Her", couleur:"jaune",effect:"Roi", description:ExplainEffect("Roi"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Roi Her", couleur:"jaune",effect:"Roi", description:ExplainEffect("Roi"), number:3, set:"B"));
             //Reine KILL Roi
-            this.ListCards.Add(new Triangle(nom:"Reine Tuil", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Reine Tuil", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:3, set:"B"));
             //Prince Kill Reine
-            this.ListCards.Add(new Triangle(nom:"Prince Or", couleur:"jaune", effect:"Prince", description:ExplainEffect("Prince"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Prince Or", couleur:"jaune", effect:"Prince", description:ExplainEffect("Prince"), number:3, set:"B"));
             //Section Chevalier
             //Chevalier #1
-            this.ListCards.Add(new Triangle(nom:"Chevalier Mul", couleur:"vert", effect:"", set:"B", number:1));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Mul", couleur:"vert", effect:"", set:"B", number:2));
             //Section Assassin
             //Assassin #1
-            this.ListCards.Add(new Triangle(nom:"Assassin T", couleur:"violet", number:0, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Assassin T", couleur:"violet", number:1, set:"B"));
             //Section Paysan X5
             this.ListCards.Add(new Triangle(nom:"paysan Gra", couleur:"rouge", effect:"Croissance Explosive", description:ExplainEffect("Croissance Explosive"), number:0, set:"B"));
             this.ListCards.Add(new Triangle(nom:"paysan Red", couleur:"rouge", effect:"Grande Revolution", description:ExplainEffect("Grande Revolution"), number:0, set:"B"));
@@ -152,49 +153,61 @@ namespace Triangle_Scalene
             return text;
         }
         public string ActiveEffect(string Name1, ushort Number1, string Name2, ushort Number2, string Effect1="", string Effect2="") {
+            EffectCard ec = new EffectCard();
+            //Recuperer ListePioche --> <Player>?
             /*
                 Permet d'activer les effets d'une carte
             */
             ushort ActiveCardA;
             ushort ActiveCardB;
-
+            if (Effect1 == "Hero_invincible") {
+                return Name1;
+            }
+            if (Effect2 == "Hero_invincible") {
+                return Name2;
+            }
             if (Number1 > Number2){
                 return Name1;
             } 
             if (Number1 < Number2){
                 return Name2;
             } 
-            if (Number1 == Number2) {
+            if ((Number1 == Number2) || (Number1 == 1 && Number2==0) || (Number1 == 0 && Number2 ==1)){
                 if (Effect1 == "" && Effect2 == ""){
-                    return null; //_Name1 + _Name2;
+                    return Name1 + Name2; //_Name1 + _Name2;
                 }
                 if (Effect1 != "" ) {
                     switch (Effect1) {
                     case "Croissance_Explosive":
+                    ec.Croissance_Explosive(Name1, Name2);
                     ActiveCardA = 1;
                     break;
-                    case "Grande_Revolution": 
+                    case "Grande_Revolution":
+                    ec.Grande_Revolution(Name1, Name2);
                     ActiveCardA = 2;
                     break;
                     case "Cheval_de_troie": 
+                    ec.Cheval_de_troie(Name1, Name2);
                     ActiveCardA = 3;
                     break;
                     case "Exil": 
+                    ec.Exil(Name1, Name2);
                     ActiveCardA = 4;
                     break;
                     case "Reinitialisation": 
+                    ec.Reinitialisation(Name1, Name2);
                     ActiveCardA = 5;
                     break;
-                    case "Hero_invincible": 
-                    ActiveCardA = 6;
-                    break;
                     case "Roi":
+                    ec.Roi(Name1, Name2);
                     ActiveCardA = 7;
                     break;
                     case "Reine":
+                    ec.Reine(Name1, Name2);
                     ActiveCardA = 8;
                     break;
                     case "Prince":
+                    ec.Prince(Name1, Name2);
                     ActiveCardA = 9;
                     break;
                     }
@@ -204,42 +217,42 @@ namespace Triangle_Scalene
                 if (Effect2 != "" ) {
                     switch (Effect2) {
                     case "Croissance_Explosive":
+                    ec.Croissance_Explosive(Name1, Name2);
                     ActiveCardB = 1;
                     break;
-                    case "Grande_Revolution": 
+                    case "Grande_Revolution":
+                    ec.Grande_Revolution(Name1, Name2);
                     ActiveCardB = 2;
                     break;
                     case "Cheval_de_troie": 
+                    ec.Cheval_de_troie(Name1, Name2);
                     ActiveCardB = 3;
                     break;
                     case "Exil": 
+                    ec.Exil(Name1, Name2);
                     ActiveCardB = 4;
                     break;
                     case "Reinitialisation": 
+                    ec.Reinitialisation(Name1, Name2);
                     ActiveCardB = 5;
                     break;
-                    case "Hero_invincible": 
-                    ActiveCardB = 6;
-                    break;
                     case "Roi":
+                    ec.Roi(Name1, Name2);
                     ActiveCardB = 7;
                     break;
                     case "Reine":
+                    ec.Reine(Name1, Name2);
                     ActiveCardB = 8;
                     break;
                     case "Prince":
+                    ec.Prince(Name1, Name2);
                     ActiveCardB = 9;
                     break;
                     }
                 } else {
                     ActiveCardB = 0;
                 }
-                if (Effect1 == "Hero_invincible") {
-                    return Name1;
-                }
-                if (Effect2 == "Hero_invincible") {
-                    return Name2;
-                }
+                
                
             }
             
