@@ -1,4 +1,4 @@
-// using Internal;
+
 using System.Data;
 // using Internal;
 using System;
@@ -91,6 +91,7 @@ namespace Triangle_Scalene{
                         }
                     /////////////////Fin de zone de texte ///////////////////////////////////////
                     // interfaceUI.WaitKeys();
+                        Console.WriteLine("selections: " + inputSelection);
                         switch (inputSelection){
                         case 0:
                             PlayerChoice = false;
@@ -106,11 +107,11 @@ namespace Triangle_Scalene{
                                     t.CreateCase(player.listPioche);
 
                                     ConsoleKeyInfo key;
-                                    do{
+                                     do{
                                         key = Console.ReadKey();
                                         t.DrawCase();
                                         Console.WriteLine("Appuyez sur entrée pour valider");
-                                    } while (key.Key != ConsoleKey.Enter);
+                                     } while (key.Key != ConsoleKey.Enter);
 
                                     t.CreateCase(player.listPioche);
                                     
@@ -131,20 +132,8 @@ namespace Triangle_Scalene{
                                                     if (!string.IsNullOrEmpty(Cardjoueurone._Name)){
                                                         Verifone = true;
                                                     }
-                                                
                                                     player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
-                                                    Console.WriteLine(Cardjoueurone._Name);
-                                                    //Aperçu de la carte choisie
-                                                    Console.WriteLine("________________________________");
-                                                    Console.Write(" Carte: "+Cardjoueurone._Name+"\n");
-                                                    Console.Write("\t  Number: " + Cardjoueurone._Number+"\n");
-                                                    if (Cardjoueurone._Effect!=""){
-                                                        Console.Write("\t  Effect: " + Cardjoueurone._Effect+"\n");
-                                                        Console.Write("\t  Description:\n" + Cardjoueurone._Description+"\n");
-                                                    } else {
-                                                        Console.Write("\t  Effect: None\n");
-                                                    }
-                                                    Console.WriteLine("________________________________\n");
+                                                    t.UpdateCard(Cardjoueurone); //NEW
                                                     //Fin d'aperçu
                                                     Console.WriteLine("Appuyez pour continuer");
                                                     interfaceUI.WaitKeys();
@@ -160,18 +149,7 @@ namespace Triangle_Scalene{
                                                     }
                                                     
                                                     player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
-                                                    Console.WriteLine(Cardjoueurtwo._Name);
-                                                    //Aperçu de la carte choisie
-                                                    Console.WriteLine("________________________________");
-                                                    Console.Write(" Carte: "+Cardjoueurtwo._Name+"\n");
-                                                    Console.Write("\t  Number: " + Cardjoueurtwo._Number+"\n");
-                                                    if (Cardjoueurtwo._Effect!=""){
-                                                        Console.Write("\t  Effect: " + Cardjoueurtwo._Effect+"\n");
-                                                        Console.Write("\t  Description:\n" + Cardjoueurtwo._Description+"\n");
-                                                    } else {
-                                                        Console.Write("\t  Effect: None\n");
-                                                    }
-                                                    Console.WriteLine("________________________________\n");
+                                                    t.UpdateCard(Cardjoueurtwo); //NEW
                                                     //Fin d'aperçu
                                                     Console.WriteLine("Appuyez pour continuer");
                                                     interfaceUI.WaitKeys();

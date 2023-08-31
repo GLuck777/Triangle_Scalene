@@ -96,5 +96,23 @@ namespace Triangle_Scalene{
             }*/
 
         }
+    
+        public void UpdateCard(Triangle cartejoueur){
+            
+        
+            
+            Console.WriteLine(cartejoueur._Name);
+            //Aperçu de la carte choisie
+            Console.WriteLine("________________________________");
+            Console.Write(" Carte: "+cartejoueur._Name+"\n");
+            Console.Write("\t  Number: " + cartejoueur._Number+"\n");
+            if (cartejoueur._Effect!=""){
+                Console.Write("\t  Effect: " + cartejoueur._Effect+"\n");
+                Console.Write("\t  Description:\n" + cartejoueur._Description+"\n");
+            } else {
+                Console.Write("\t  Effect: None\n");
+            }
+            Console.WriteLine("________________________________\n");
+        }
     }
 }
