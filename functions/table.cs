@@ -32,7 +32,7 @@ namespace Triangle_Scalene{
         public void DrawCase(){
             Console.Clear() ;
             Int32 indexHorizontal = 0;
-            Int32 maximumHorizontal = 6;
+            Int32 maximumHorizontal = 4; //attention valeur-2 à prendre en compte
             Int32 maximumWidth = 42;
             string line;
             //Faut faire en sorte que cette itération se fasse sur plusieurs étages,
