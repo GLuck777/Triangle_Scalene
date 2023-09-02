@@ -74,17 +74,26 @@ namespace Triangle_Scalene{
                     interfaceUI.CenterText("Taper sur un touche pour voir vos cartes disponibles et jouer");
                     //Zone d'essai
                     Int32 inputSelection = -1;
-                    Console.Clear();
+                    string strInputSelection;
                     while (inputSelection == -1){
+                        Console.Clear();
                         interfaceUI.CenterText(player.Name+" à vos cartes!");
                         Console.WriteLine();
                         interfaceUI.CenterText("[0]-Interrompre la partie",8);
                         Console.WriteLine();
                         interfaceUI.CenterText("[1]-Choisir une carte",8);
                         Console.WriteLine();
+                        strInputSelection = Console.ReadLine();
+                        try{
+                            inputSelection = Int32.Parse(strInputSelection);
+                        } catch {
+                            Console.WriteLine("Something went wrong");
+
                         }
-                    inputSelection = interfaceUI.Askinput(); 
+                        //inputSelection = interfaceUI.Askinput();
+                        }
                     /////////////////Fin de zone de texte ///////////////////////////////////////
+                    ///// Selection de la carte par tableau
                     // interfaceUI.WaitKeys();
                         Console.WriteLine("selections: " + inputSelection);
                         switch (inputSelection){
@@ -99,7 +108,11 @@ namespace Triangle_Scalene{
                                 if (!PlayerChoice ){
                                     Table t = new Table();
                                     t.CreateCase(player.listPioche);
-                                    
+                                    t.DrawCase(interfaceUI);
+
+                                    Console.WriteLine(player.listPioche.Count);
+
+
                                         /*
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
@@ -163,6 +176,7 @@ namespace Triangle_Scalene{
                             }
                             break;
                         }
+                        interfaceUI.CenterText("Appuyez sur une touche");
                         interfaceUI.WaitKeys();
                     }
                 }
