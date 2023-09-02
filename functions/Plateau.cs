@@ -59,6 +59,7 @@ namespace Triangle_Scalene{
             // Int16 PlayerChoice = -1;
             // const ushort LPosMessage = 15;
             Int16 Tour = 0;
+            Console.WriteLine("here");
             while (PlayerChoice == true){
                 Tour++;
                 
@@ -102,25 +103,16 @@ namespace Triangle_Scalene{
                                 Console.Clear();
                                 PlayerChoice = false;
                                 if (!PlayerChoice ){
-                                    // input = "";
                                     Table t = new Table();
                                     t.CreateCase(player.listPioche);
-
-                                    ConsoleKeyInfo key;
-                                     do{
-                                        key = Console.ReadKey();
-                                        t.DrawCase();
-                                        Console.WriteLine("Appuyez sur entrée pour valider");
-                                     } while (key.Key != ConsoleKey.Enter);
-
-                                    t.CreateCase(player.listPioche);
                                     
+                                        /*
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
+                                        
                                         String Newinput = Console.ReadLine();
                                         Console.Clear();
                                         try {
-                                        
                                             Int16 PlayerCard; 
                                             PlayerCard = Int16.Parse(Newinput);
                                             if (PlayerCard > 0 && PlayerCard <= 10){
@@ -164,7 +156,7 @@ namespace Triangle_Scalene{
                                         } catch {
                                             Console.WriteLine("Bad try!");
                                             PlayerChoice = true;
-                                        }
+                                        }*/
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
                                         Thread.Sleep(60*15);
