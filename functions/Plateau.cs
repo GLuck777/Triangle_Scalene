@@ -82,14 +82,8 @@ namespace Triangle_Scalene{
                         Console.WriteLine();
                         interfaceUI.CenterText("[1]-Choisir une carte",8);
                         Console.WriteLine();
-                        string inputString = Console.ReadLine();
-                        try{
-                            inputSelection = Int32.Parse(inputString);
-                        } catch {
-                            Console.WriteLine("Something went wrong!");
-                            interfaceUI.WaitKeys();
-                            break;
                         }
+                    inputSelection = interfaceUI.Askinput(); 
                     /////////////////Fin de zone de texte ///////////////////////////////////////
                     // interfaceUI.WaitKeys();
                         Console.WriteLine("selections: " + inputSelection);
@@ -186,5 +180,4 @@ namespace Triangle_Scalene{
             
         } //fin de fonction
        
-    } //Fin de class Plateau
 } // Fin de namespace
