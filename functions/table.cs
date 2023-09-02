@@ -28,73 +28,73 @@ namespace Triangle_Scalene{
             }
         }
 
+        private string GetLine(ushort fromCard, ushort maxCardsByLine = 3){
+            /*
+                Cette méthode permet de construire la ligne et de l'obtenir
+                à l'aide d'une string.
+                Durant l'itération des cartes, initialialement toutes les cartes
+                sont contenus dans l'itération cependant grâce à les arguments suivant:
+                    fromCard (ushort) indique à partir dequelle carte l'affichage commence
+                    endCard (ushort) indique à partir de quelle carte l'affichage prend fin
+            */
+            const ushort maxLines = 7;
+            const ushort maxSpacesBtwCard = 42;
+            Int32 toEnd = fromCard + maxCardsByLine;
+            ushort countCardByLine = 0;
+            string rows = "";
+            string line = "";
+            for(Int32 y = 0; y <= maxLines; y++){
+                countCardByLine = 0;
+                foreach(string card in this.listCards){
+                    if (countCardByLine >= fromCard && countCardByLine <= toEnd){
+                        rows = card.Split("\n")[y];
+                        line += rows;
+                        /*
+                        if (countCardByLine == maxCardsByLine){
+                            break;
+                        }*/
+                        while (rows.Length < maxSpacesBtwCard){
+                            rows += " ";
+                            line += " ";
+                        }
+                    } else if (countCardByLine > toEnd){
+                        break;
+                    }
+                    countCardByLine ++;
+                }
+                line += "\n";
+            }
 
-        public void DrawCase(){
-            Console.Clear() ;
-            Int32 indexHorizontal = 0;
-            Int32 maximumHorizontal = 4; //attention valeur-2 à prendre en compte
-            Int32 maximumWidth = 42;
+            return line;
+        }
+
+
+        public void DrawCase(InterfaceUI interfaceUI=null){
+            /*
+                Cette méthode est appelé pour dessiner le tableau de selection de carte.
+                
+                Pour afficher une carte (un élément de la liste), deux boucles for seront utilisé:
+                    Une première pour les colonnes; 
+                    Une seconde pour les cellules ou lignes,
+                        ATTENTION:Celle-ci affiche la ligne par lignes, c'est à dire qu'elle itère
+                        sur une hauteur données de la carte
+
+                Pour l'affichage d'une ligne (boucle finale) à la fin de l'itération:
+                    Les espaces pour séparer chacune des cartes sont mis   
+            */
+            Console.Clear();
+            ushort indexCard = 0;
             string line;
             //Faut faire en sorte que cette itération se fasse sur plusieurs étages,
             //Sans la première boucle les trois premières colonnes de la ligne 1 sont bien affiché
             //Peut-être que la division (10/7) est (10/5)
             for (int etage =0; etage <  10*7; etage+=7){
-                for (int i = 0; i <= 7; i++){
-                    indexHorizontal = 0;
-                    foreach(string c in this.listCards){
-                        line = c.Split("\n")[i+i];
-                        indexHorizontal += Convert.ToInt32(indexHorizontal <= maximumHorizontal);
-                        if (indexHorizontal == maximumHorizontal){
-                            break;
-                        }
-                        Console.Write(line);
-                        while(line.Length < maximumWidth){
-                            line += " ";
-                            Console.Write(" ");
-                        }
-                    }
-
-                    Console.WriteLine();
-                    
+                line = this.GetLine(indexCard);
+                indexCard += 3;
+                foreach(string l in line.Split("\n")){
+                    interfaceUI.CenterText(l);
                 }
-                Console.WriteLine();
             }
-            /*
-            for (int i=0; i <= 7; i++){
-                indexHorizontal = 0;
-                isLineEnough = false;
-                foreach(string c in this.listCards){
-//                    if (!isLineEnough)
-//                    {
-                        if (indexHorizontal == maximumHorizontal){
-                            break;
-                        }
-                        //isLineEnough = Convert.ToInt32(indexHorizontal <= maximumHorizontal);
-                        line = c.Split('\n')[i];
-                        Console.Write(line);
-                        while (line.Length < maximumWidth)
-                        {
-                            line += " ";
-                            Console.Write(" ");
-                        }
-
-//                    }
-                }
-                Console.WriteLine();
-            }*/
-            /*
-            foreach(string c in this.listCards){
-                for(int i = 0; i < 7; i++) {
-                    Console.Write(c.Split('\n')[i]);
-                }
-                indexHorizontal += Convert.ToInt32(indexHorizontal <= maximumHorizontal);
-                if (indexHorizontal == maximumHorizontal){
-                    indexHorizontal = 0;
-                    Console.WriteLine();
-                }
-                
-            }*/
-
         }
     
         public void UpdateCard(Triangle cartejoueur){
