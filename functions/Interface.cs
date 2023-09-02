@@ -264,7 +264,6 @@ namespace Triangle_Scalene
             int inputSelection = -1;
             string inputString = Console.ReadLine();
             try{
-                
                 inputSelection = Int32.Parse(inputString);
                 switch (inputSelection){
                     case 0:
