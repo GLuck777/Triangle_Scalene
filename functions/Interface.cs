@@ -260,10 +260,14 @@ namespace Triangle_Scalene
             Console.Clear();
         }
 
-        public int Askinput(){
+         public int Askinput(){
             int inputSelection = -1;
             string inputString = Console.ReadLine();
+            if (inputString == "") {
+                Askinput();
+            }
             try{
+                
                 inputSelection = Int32.Parse(inputString);
                 switch (inputSelection){
                     case 0:
@@ -273,6 +277,7 @@ namespace Triangle_Scalene
                     return inputSelection;
                     
                     default:
+                    Console.Clear();
                     Console.WriteLine("Wrong input");
                     return Askinput();
                 }
