@@ -259,5 +259,29 @@ namespace Triangle_Scalene
 
             Console.Clear();
         }
-    }   
+
+        public int Askinput(){
+            int inputSelection = -1;
+            string inputString = Console.ReadLine();
+            try{
+                
+                inputSelection = Int32.Parse(inputString);
+                switch (inputSelection){
+                    case 0:
+                    return inputSelection;
+                    
+                    case 1:
+                    return inputSelection;
+                    
+                    default:
+                    Console.WriteLine("Wrong input");
+                    return Askinput();
+                }
+            } catch {
+                Console.WriteLine("Something went wrong for Askinput!");
+                Askinput();
+            }
+            return inputSelection;
+        }
+    }
 }
