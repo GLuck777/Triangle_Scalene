@@ -46,7 +46,7 @@ namespace Triangle_Scalene{
             for(Int32 y = 0; y <= maxLines; y++){
                 countCardByLine = 0;
                 foreach(string card in this.listCards){
-                    if (countCardByLine >= fromCard && countCardByLine <= toEnd){
+                    if (countCardByLine >= fromCard && countCardByLine < toEnd){
                         rows = card.Split("\n")[y];
                         line += rows;
                         /*
@@ -62,7 +62,9 @@ namespace Triangle_Scalene{
                     }
                     countCardByLine ++;
                 }
-                line += "\n";
+                if (countCardByLine > fromCard){
+                    line += "\n";
+                }
             }
 
             return line;

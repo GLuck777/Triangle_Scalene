@@ -110,9 +110,6 @@ namespace Triangle_Scalene{
                                     t.CreateCase(player.listPioche);
                                     t.DrawCase(interfaceUI);
 
-                                    Console.WriteLine(player.listPioche.Count);
-
-
                                         /*
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
