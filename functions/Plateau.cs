@@ -1,3 +1,4 @@
+using Internal;
 
 using System.Data;
 // using Internal;
@@ -181,6 +182,37 @@ namespace Triangle_Scalene{
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
                 if (Cardjoueurone && Cardjoueurtwo){
+                    WinCard = p.ActiveEffect(Cardjoueurone, Cardjoueurtwo)
+                    switch (WinCard) {
+                        case P1:
+                        if (ListeGardeCarte.Count() > 0){
+                            foreach (Triangle p in ListeGardeCarte) {
+                                this.Listgagnejone.Add(p);
+                            }
+                        }
+                        this.Listgagnejone.Add(Cardjoueurone);
+                        this.Listgagnejone.Add(Cardjoueurtwo);
+                        Console.WriteLine("Le joueur1 a gagné contre " Cardjoueurtwo.Name + " grace à "+ Cardjoueurone.Name+" !");
+                        break;
+                        case P2:
+                        if (ListeGardeCarte.Count() > 0){
+                            foreach (Triangle p in ListeGardeCarte) {
+                                this.Listgagnejone.Add(p);
+                            }
+                        }
+                        this.Listgagnejtwo.Add(Cardjoueurone);
+                        this.Listgagnejtwo.Add(Cardjoueurtwo);
+                        break;
+                        Console.WriteLine("Le joueur2 a gagné contre " Cardjoueurone.Name + " grace à "+ Cardjoueurtwo.Name+" !");
+                        case P3:
+                        this.ListeGardeCarte.Add(Cardjoueurone);
+                        this.ListeGardeCarte.Add(Cardjoueurtwo);
+                        Console.WriteLine("Egalité entre les cartes");
+                        break;
+                    }
+                    
+                    
+                    
                     Cardjoueurone = null;
                     Cardjoueurtwo = null;
                 } else {

@@ -152,7 +152,7 @@ namespace Triangle_Scalene
             }
             return text;
         }
-        public string ActiveEffect(string Name1, ushort Number1, string Name2, ushort Number2, string Effect1="", string Effect2="") {
+        public string ActiveEffect(Triangle cardjoueurone, Triangle cardjoueurtwo) {
             EffectCard ec = new EffectCard();
             //Recuperer ListePioche --> <Player>?
             /*
@@ -160,54 +160,55 @@ namespace Triangle_Scalene
             */
             ushort ActiveCardA;
             ushort ActiveCardB;
-            if (Effect1 == "Hero_invincible") {
-                return Name1;
+            if (cardjoueurone._Effect == "Hero_invincible") {
+                return "P1";
             }
-            if (Effect2 == "Hero_invincible") {
-                return Name2;
+            if (cardjoueurone._Effect == "Hero_invincible") {
+                return "P2";
             }
-            if (Number1 > Number2){
-                return Name1;
+            if (cardjoueurone._Number > Cardjoueurtwo._Number){
+                return "P1";
             } 
-            if (Number1 < Number2){
-                return Name2;
+            if (cardjoueurone._Number < cardjoueurtwo._Number){
+                return "P2";
             } 
-            if ((Number1 == Number2) || (Number1 == 1 && Number2==0) || (Number1 == 0 && Number2 ==1)){
+            if ((cardjoueurone._Number == cardjoueurtwo._Number) || (cardjoueurone._Number == 1 && cardjoueurtwo._Number==0) || (cardjoueurone._Number == 0 && cardjoueurtwo._Number ==1)){
                 if (Effect1 == "" && Effect2 == ""){
-                    return Name1 + Name2; //_Name1 + _Name2;
+                    return "P3"; //_Name1 + _Name2;
                 }
-                if (Effect1 != "" ) {
-                    switch (Effect1) {
+                if (cardjoueurone._Effect != "" ) {
+                    switch (cardjoueurone._Effect) {
                     case "Croissance_Explosive":
-                    ec.Croissance_Explosive(Name1, Name2);
+                    ec.Croissance_Explosive(cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 1;
                     break;
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(Name1, Name2);
+                    ec.Grande_Revolution(Cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 2;
                     break;
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(Name1, Name2);
+                    ec.Cheval_de_troie(Cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 3;
                     break;
                     case "Exil": 
-                    ec.Exil(Name1, Name2);
+                    ec.Exil(Cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 4;
                     break;
                     case "Reinitialisation": 
-                    ec.Reinitialisation(Name1, Name2);
+                    ec.Reinitialisation(cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 5;
                     break;
                     case "Roi":
-                    ec.Roi(Name1, Name2);
+                    ec.Roi(cardjoueurone._Name, cardjoueurtwo._Name);
+
                     ActiveCardA = 7;
                     break;
                     case "Reine":
-                    ec.Reine(Name1, Name2);
+                    ec.Reine(cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 8;
                     break;
                     case "Prince":
-                    ec.Prince(Name1, Name2);
+                    ec.Prince(cardjoueurone._Name, cardjoueurtwo._Name);
                     ActiveCardA = 9;
                     break;
                     }
@@ -217,35 +218,35 @@ namespace Triangle_Scalene
                 if (Effect2 != "" ) {
                     switch (Effect2) {
                     case "Croissance_Explosive":
-                    ec.Croissance_Explosive(Name1, Name2);
+                    ec.Croissance_Explosive(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 1;
                     break;
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(Name1, Name2);
+                    ec.Grande_Revolution(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 2;
                     break;
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(Name1, Name2);
+                    ec.Cheval_de_troie(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 3;
                     break;
                     case "Exil": 
-                    ec.Exil(Name1, Name2);
+                    ec.Exil(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 4;
                     break;
                     case "Reinitialisation": 
-                    ec.Reinitialisation(Name1, Name2);
+                    ec.Reinitialisation(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 5;
                     break;
                     case "Roi":
-                    ec.Roi(Name1, Name2);
+                    ec.Roi(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 7;
                     break;
                     case "Reine":
-                    ec.Reine(Name1, Name2);
+                    ec.Reine(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 8;
                     break;
                     case "Prince":
-                    ec.Prince(Name1, Name2);
+                    ec.Prince(cardjoueurtwo._Name, cardjoueurone._Name);
                     ActiveCardB = 9;
                     break;
                     }
@@ -256,7 +257,7 @@ namespace Triangle_Scalene
                
             }
             
-            return "si contre Reine, gagne.";
+            return "P0";
         }
         public Triangle GetCard(string name){
             /*

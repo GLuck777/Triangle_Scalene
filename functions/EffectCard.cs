@@ -11,8 +11,17 @@ namespace Triangle_Scalene{
         public void Exil(string card1,string card2){}
         public void Reinitialisation(string card1,string card2){}
         public void Hero_invincible(string card1,string card2){}
-        public void Roi(string card1,string card2){}
-        public void Reine(string card1,string card2){}
-        public void Prince(string card1,string card2){}
+        public void Roi(string card1,string card2){
+            if (card2)
+            //Roi KILL Prince
+            
+            
+        }
+        public void Reine(string card1,string card2){
+            //Reine KILL Roi
+        }
+        public void Prince(string card1,string card2){
+            //Prince Kill Reine
+        }
     }
 }
