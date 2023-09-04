@@ -11,17 +11,59 @@ namespace Triangle_Scalene{
         public void Exil(string card1,string card2){}
         public void Reinitialisation(string card1,string card2){}
         public void Hero_invincible(string card1,string card2){}
-        public void Roi(string card1,string card2){
-            if (card2)
-            //Roi KILL Prince
+        public bool Roi(string card1,string card2){
+            String str = card2;
+            Int32 count = 2;
+            String[] strlist = str.Split(" ", count,
+               StringSplitOptions.RemoveEmptyEntries);
+            foreach(String s in strlist)
+            {
+            Console.WriteLine(s);
             
+                if (s == "Prince"){
+                //Roi KILL Prince
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;    
+        }
+        public bool Reine(string card1,string card2){
+            String str = card2;
+            Int32 count = 2;
+            String[] strlist = str.Split(" ", count,
+               StringSplitOptions.RemoveEmptyEntries);
+            foreach(String s in strlist)
+            {
+            Console.WriteLine(s);
             
+                if (s == "Roi"){
+                //Reine KILL Roi
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
-        public void Reine(string card1,string card2){
-            //Reine KILL Roi
-        }
-        public void Prince(string card1,string card2){
-            //Prince Kill Reine
+        public bool Prince(string card1,string card2){
+            String str = card2;
+            Int32 count = 2;
+            String[] strlist = str.Split(" ", count,
+               StringSplitOptions.RemoveEmptyEntries);
+            foreach(String s in strlist)
+            {
+                Console.WriteLine(s);
+            
+                if (s == "Reine"){
+                //Prince Kill Reine
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

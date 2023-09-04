@@ -14,13 +14,15 @@ namespace Triangle_Scalene
         public string _Effect;
         public string _Description;
         public ushort _Number;
-		public Triangle(string nom, string couleur, string effect = "",string description = "", ushort number=0, string set="default") //ushort de 0 à 65 535
+        public bool Utilise;
+		public Triangle(string nom, string couleur, string effect = "",string description = "", ushort number=0, bool utilise=false,string set="default") //ushort de 0 à 65 535
         {
             this._Name = nom;
             //this.SetColor(couleur);
             this._Effect = effect;
             this._Description = description;
             this._Number = number;
+            this.Utilise = utilise;
 
         }
         /*
