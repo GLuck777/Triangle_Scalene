@@ -84,14 +84,14 @@ namespace Triangle_Scalene{
                         interfaceUI.CenterText("[1]-Choisir une carte",8);
                         Console.WriteLine();
                         strInputSelection = Console.ReadLine();
-                        try{
+                    try{
                             inputSelection = Int32.Parse(strInputSelection);
-                        } catch {
+                    } catch {
                             Console.WriteLine("Something went wrong");
 
-                        }
-                        //inputSelection = interfaceUI.Askinput();
-                        }
+                    }
+                    }
+                       //inputSelection = interfaceUI.Askinput();
                     /////////////////Fin de zone de texte ///////////////////////////////////////
                     ///// Selection de la carte par tableau
                     // interfaceUI.WaitKeys();
@@ -110,7 +110,7 @@ namespace Triangle_Scalene{
                                     t.CreateCase(player.listPioche);
                                     t.DrawCase(interfaceUI);
 
-                                        /*
+                                        
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
                                         
@@ -160,7 +160,7 @@ namespace Triangle_Scalene{
                                         } catch {
                                             Console.WriteLine("Bad try!");
                                             PlayerChoice = true;
-                                        }*/
+                                        }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
                                         Thread.Sleep(60*15);
@@ -173,20 +173,26 @@ namespace Triangle_Scalene{
                             }
                             break;
                         }
-                        interfaceUI.CenterText("Appuyez sur une touche");
-                        interfaceUI.WaitKeys();
+                        //interfaceUI.CenterText("Appuyez sur une touche");
+                        //interfaceUI.WaitKeys();
                     }
                 }
                 /*Pour terminer la partie entière 
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
-                if (Tour == 4){ 
-                    Console.WriteLine("Fin du programme");
-                    Thread.Sleep(60*10);
-                    System.Environment.Exit(0);
+                if (Cardjoueurone && Cardjoueurtwo){
+                    Cardjoueurone = null;
+                    Cardjoueurtwo = null;
                 } else {
-                    PlayerChoice = true;
+                    PlayerChoice = true
                 }
+                // if (Tour == 4){ 
+                //     Console.WriteLine("Fin du programme");
+                //     Thread.Sleep(60*10);
+                //     System.Environment.Exit(0);
+                // } else {
+                //     PlayerChoice = true;
+                // }
             }
             
         } //fin de fonction
