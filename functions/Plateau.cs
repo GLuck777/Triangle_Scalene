@@ -46,7 +46,8 @@ namespace Triangle_Scalene{
             Triangle CarteJoueurDeux;
             CarteJoueurUn = null;
             CarteJoueurDeux = null;
-            string result="resultat";
+            //string result="resultat";
+
            
             //Listgagne<Triangle>
             Triangle Bonus = p.cardBonus;
@@ -59,13 +60,16 @@ namespace Triangle_Scalene{
             // bool Verifone = false;
             // bool Veriftwo = false;
             Int16 Tour = 0;
+            string infoTour = "Gameplay::" + Tour.ToString();
             Console.WriteLine("here");
             while (PlayerChoice == true){
+                interfaceUI.WriteLog("Partie démarrée"); ////ici 1
                 Tour++;
                 
                 //interfaceUI.ShowGameLog(); // met joueur ne sert plus
                 foreach (Player player in dicoPlayers.Keys){
                     // Console.WriteLine(player._Player);
+                    interfaceUI.WriteLog("Gameplay::Début de tour"); ////ici 2
                     Console.WriteLine("Tour du "+player.Name+"...");
                     String temp = player.Name;
                     
@@ -115,11 +119,12 @@ namespace Triangle_Scalene{
                                         
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
-                                        
                                         if (player.Name == "Player 1") {
                                             CarteJoueurUn = interfaceUI.SelectionCard(player);
+                                            interfaceUI.WriteLog("Joueur1 choisit sa carte : "+CarteJoueurUn._Name, infoTour); //ici 3
                                         } else {
                                             CarteJoueurDeux = interfaceUI.SelectionCard(player);
+                                            interfaceUI.WriteLog("Joueur1 choisit sa carte : "+CarteJoueurDeux._Name, infoTour);  //ici 3
                                         }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
@@ -141,7 +146,8 @@ namespace Triangle_Scalene{
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
                 // Console.WriteLine("card1 "+CarteJoueurUn.Utilise+"card2 "+CarteJoueurDeux.Utilise);
-                if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){                  
+                if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
+                    interfaceUI.WriteLog("Début de la phase confrontation", infoTour); // ici 4             
                     string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux);
                         if (WinCard == "P1"){
                             if (ListeGardeCarte.Count() > 0){
@@ -155,6 +161,7 @@ namespace Triangle_Scalene{
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: " + Listgagnejone.Count());
                             interfaceUI.CenterText("La liste du joueur 2: " + Listgagnejtwo.Count());
+                            interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+Listgagnejone.Count()+"\njoueur 2: " + Listgagnejtwo.Count(), infoTour); // ici 5
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
                             if (ListeGardeCarte.Count() > 0){
@@ -167,6 +174,7 @@ namespace Triangle_Scalene{
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
                             interfaceUI.CenterText("La nouvelle liste du joueur 2: " + Listgagnejtwo.Count());
                             interfaceUI.CenterText("La liste du joueur 1: " + Listgagnejone.Count());
+                            interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+Listgagnejone.Count()+"\njoueur 2: " + Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             interfaceUI.WaitKeys();
                         } else {
                             ListeGardeCarte.Add(CarteJoueurUn);
@@ -175,9 +183,11 @@ namespace Triangle_Scalene{
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             interfaceUI.CenterText("Liste du joueur 1: " + Listgagnejone.Count());
                             interfaceUI.CenterText("Liste du joueur 2: " + Listgagnejtwo.Count());
+                            interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+Listgagnejone.Count()+"\njoueur 2: " + Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             interfaceUI.WaitKeys();
                         }
-                    Console.WriteLine("le jeu continue...");
+                    // Console.WriteLine("le jeu continue...");
+                    interfaceUI.WriteLog("fin de confrontation", infoTour); // ici 6
                     CarteJoueurUn = null;
                     CarteJoueurDeux = null;
                 } else {
@@ -189,13 +199,16 @@ namespace Triangle_Scalene{
                     Int32 ResultPlayer1 = Listgagnejone.Count();
                     Int32 ResultPlayer2 = Listgagnejtwo.Count();
                     interfaceUI.EndGame(ResultPlayer1, ResultPlayer2);
-                    Console.WriteLine("Fin du programme");
+                    interfaceUI.WriteLog("Fin de partie",infoTour); // ici 8
+                    //Console.WriteLine("Fin du programme");
                     interfaceUI.WaitKeys();
                     // Thread.Sleep(60*10);
+                    interfaceUI.WriteLog("fermeture du logiciel",infoTour); // ici 9
                     Thread.Sleep(60*60);
                     System.Environment.Exit(0);
                 } else {
-                    Console.WriteLine("Continue le programme");
+                    // Console.WriteLine("Continue le programme");
+                    interfaceUI.WriteLog("Fin du tour", infoTour); // ici 7
                     PlayerChoice = true;
                 }
             }
