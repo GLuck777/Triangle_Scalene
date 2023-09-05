@@ -1,5 +1,4 @@
-using Internal;
-// using Internal;
+
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
@@ -294,5 +293,56 @@ namespace Triangle_Scalene
             }
             return inputSelection;
         }
-    }
-}
+        public Triangle SelectionCard(Player player){
+            Table t = new Table();
+            InterfaceUI interfaceUI = new InterfaceUI();
+            Triangle CarteJoueurUn;
+            Triangle CarteJoueurDeux;
+            String Newinput = Console.ReadLine();
+            Console.Clear();
+            try {
+                Int32 PlayerCard; 
+                PlayerCard = Int16.Parse(Newinput);
+                if (PlayerCard > 0 && PlayerCard < 10){
+                    if (player.Name == "Player 1") { //Player 1
+                    Console.WriteLine("Cher "+player.Name);
+                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                    CarteJoueurUn = player.listPioche[PlayerCard-1];
+                    CarteJoueurUn.Utilise = true;
+                    // if (!string.IsNullOrEmpty(CarteJoueurUn._Name)){
+                    //     Verifone = true;
+                    // }
+                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    t.UpdateCard(CarteJoueurUn); //NEW
+                    //Fin d'aperçu
+                    Console.WriteLine("Appuyez pour continuer");
+                    interfaceUI.WaitKeys();
+                    Console.Clear(); //test
+                    return CarteJoueurUn;
+                    } else { //Player 2
+
+                    Console.WriteLine("Cher "+player.Name);
+                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                    CarteJoueurDeux = player.listPioche[PlayerCard-1];
+                    CarteJoueurDeux.Utilise = true;
+
+                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    t.UpdateCard(CarteJoueurDeux); //NEW
+                    //Fin d'aperçu
+                    Console.WriteLine("Appuyez pour continuer");
+                    interfaceUI.WaitKeys();
+                    Console.Clear(); //test
+                    return CarteJoueurDeux;
+                    }
+                } else {
+                    return SelectionCard(player);
+                }
+            } catch {
+                Console.WriteLine("Bad try!");
+            }
+            return SelectionCard(player);
+        } //fin de fonction selectionCard
+    } //fin de classe
+} //fin du namespace

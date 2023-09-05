@@ -42,10 +42,10 @@ namespace Triangle_Scalene{
             bool PlayerChoice = true;
             Program p = new Program();
             InterfaceUI interfaceUI = new InterfaceUI();
-            Triangle Cardjoueurone;
-            Triangle Cardjoueurtwo;
-            Cardjoueurone = null;
-            Cardjoueurtwo = null;
+            Triangle CarteJoueurUn;
+            Triangle CarteJoueurDeux;
+            CarteJoueurUn = null;
+            CarteJoueurDeux = null;
             string result="resultat";
            
             //Listgagne<Triangle>
@@ -115,49 +115,10 @@ namespace Triangle_Scalene{
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
                                         
-                                        String Newinput = Console.ReadLine();
-                                        Console.Clear();
-                                        try {
-                                            Int16 PlayerCard; 
-                                            PlayerCard = Int16.Parse(Newinput);
-                                            if (PlayerCard > 0 && PlayerCard <= 10){
-                                                if (player.Name == "Player 1") {
-                                                    Console.WriteLine("Cher "+temp);
-                                                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
-
-                                                    Cardjoueurone = player.listPioche[PlayerCard-1];
-                                                    Cardjoueurone.Utilise = true;
-                                                    // if (!string.IsNullOrEmpty(Cardjoueurone._Name)){
-                                                    //     Verifone = true;
-                                                    // }
-                                                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
-                                                    t.UpdateCard(Cardjoueurone); //NEW
-                                                    //Fin d'aperçu
-                                                    Console.WriteLine("Appuyez pour continuer");
-                                                    interfaceUI.WaitKeys();
-                                                    Console.Clear(); //test
-                                                } else {
-                                                    
-                                                    Console.WriteLine("Cher "+temp);
-                                                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
-
-                                                    Cardjoueurtwo = player.listPioche[PlayerCard-1];
-                                                    Cardjoueurtwo.Utilise = true;
-                                                    // if (!string.IsNullOrEmpty(Cardjoueurtwo._Name)){
-                                                    //     Veriftwo = true;
-                                                    // }
-                                                    
-                                                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
-                                                    t.UpdateCard(Cardjoueurtwo); //NEW
-                                                    //Fin d'aperçu
-                                                    Console.WriteLine("Appuyez pour continuer");
-                                                    interfaceUI.WaitKeys();
-                                                    Console.Clear(); //test
-                                                }
-                                            }
-                                        } catch {
-                                            Console.WriteLine("Bad try!");
-                                            PlayerChoice = true;
+                                        if (player.Name == "Player 1") {
+                                            CarteJoueurUn = interfaceUI.SelectionCard(player);
+                                        } else {
+                                            CarteJoueurDeux = interfaceUI.SelectionCard(player);
                                         }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
@@ -178,18 +139,18 @@ namespace Triangle_Scalene{
                 /*Pour terminer la partie entière 
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
-                // Console.WriteLine("card1 "+Cardjoueurone.Utilise+"card2 "+Cardjoueurtwo.Utilise);
-                if (Cardjoueurone.Utilise && Cardjoueurtwo.Utilise){                  
-                    string WinCard = p.ActiveEffect(Cardjoueurone, Cardjoueurtwo);
+                // Console.WriteLine("card1 "+CarteJoueurUn.Utilise+"card2 "+CarteJoueurDeux.Utilise);
+                if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){                  
+                    string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux);
                         if (WinCard == "P1"){
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejone.Add(garde);
                                 }
                             }
-                            Listgagnejone.Add(Cardjoueurone);
-                            Listgagnejone.Add(Cardjoueurtwo);
-                            Console.WriteLine("Le joueur1 a gagné contre " +Cardjoueurtwo._Name + " grace à "+ Cardjoueurone._Name+" !");
+                            Listgagnejone.Add(CarteJoueurUn);
+                            Listgagnejone.Add(CarteJoueurDeux);
+                            Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
                             if (ListeGardeCarte.Count() > 0){
@@ -197,19 +158,19 @@ namespace Triangle_Scalene{
                                     Listgagnejtwo.Add(garde);
                                 }
                             }
-                            Listgagnejtwo.Add(Cardjoueurone);
-                            Listgagnejtwo.Add(Cardjoueurtwo);
-                            Console.WriteLine("Le joueur2 a gagné contre " +Cardjoueurone._Name + " grace à "+ Cardjoueurtwo._Name+" !");
+                            Listgagnejtwo.Add(CarteJoueurUn);
+                            Listgagnejtwo.Add(CarteJoueurDeux);
+                            Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
                             interfaceUI.WaitKeys();
                         } else {
-                            ListeGardeCarte.Add(Cardjoueurone);
-                            ListeGardeCarte.Add(Cardjoueurtwo);
+                            ListeGardeCarte.Add(CarteJoueurUn);
+                            ListeGardeCarte.Add(CarteJoueurDeux);
                             Console.WriteLine("Egalité entre les cartes");
                             interfaceUI.WaitKeys();
                         }
                     Console.WriteLine("le jeu continue...");
-                    Cardjoueurone = null;
-                    Cardjoueurtwo = null;
+                    CarteJoueurUn = null;
+                    CarteJoueurDeux = null;
                 } else {
                     PlayerChoice = true;
                 }

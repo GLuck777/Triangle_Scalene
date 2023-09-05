@@ -18,7 +18,7 @@ namespace Triangle_Scalene{
                StringSplitOptions.RemoveEmptyEntries);
             foreach(String s in strlist)
             {
-            Console.WriteLine(s);
+            //Console.WriteLine(s);
             
                 if (s == "Prince"){
                 //Roi KILL Prince
@@ -36,7 +36,7 @@ namespace Triangle_Scalene{
                StringSplitOptions.RemoveEmptyEntries);
             foreach(String s in strlist)
             {
-            Console.WriteLine(s);
+            //Console.WriteLine(s);
             
                 if (s == "Roi"){
                 //Reine KILL Roi
@@ -54,7 +54,7 @@ namespace Triangle_Scalene{
                StringSplitOptions.RemoveEmptyEntries);
             foreach(String s in strlist)
             {
-                Console.WriteLine(s);
+                //Console.WriteLine(s);
             
                 if (s == "Reine"){
                 //Prince Kill Reine
