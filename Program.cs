@@ -33,6 +33,7 @@ namespace Triangle_Scalene
         // Avec cette fonction on obtient le 2 pour générer les personnages 
         void Run(Program p){
             this.interfaceUI.IntroMessage();
+            this.interfaceUI.WriteLog("Logiciel démarré");
             programObject = p;
             programObject.LoadGameData();
             programObject.PlayGame(p.players);

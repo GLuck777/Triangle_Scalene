@@ -151,6 +151,7 @@ namespace Triangle_Scalene{
                             }
                             Listgagnejone.Add(CarteJoueurUn);
                             Listgagnejone.Add(CarteJoueurDeux);
+                            //Log (fin de confrontation)
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: " + Listgagnejone.Count());
                             interfaceUI.CenterText("La liste du joueur 2: " + Listgagnejtwo.Count());

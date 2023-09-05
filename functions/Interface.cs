@@ -344,5 +344,38 @@ namespace Triangle_Scalene
             }
             return SelectionCard(player);
         } //fin de fonction selectionCard
+
+        private string GetFileName(){
+            Random random = new Random();
+            string path = GetPath();
+            bool fileExist = true;
+            int indexFile = 9999;
+            string[] listFiles = new string[0];
+            while (fileExist){
+                indexFile = random.Next(10000, 99999);
+                listFiles = Directory.GetFiles(path);
+                fileExist = listFiles.Contains(indexFile.ToString()+"_"+listFiles.Count().ToString());
+            }
+            return indexFile.ToString()+"_"+listFiles.Count().ToString();                        
+        }
+
+        private string GetPath(){
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath)+"/logs";
+            return strWorkPath;
+        }
+
+        public void WriteLog(string msg){
+            // Create a string array with the lines of text
+            string strPath = GetPath();
+            string fileName = this.GetFileName()+".log";
+
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath, fileName)))
+            {
+                var d = DateTime.Now;
+                outputFile.WriteLine(d.ToString()+">>"+msg);
+            }
+        }
     } //fin de classe
 } //fin du namespace
