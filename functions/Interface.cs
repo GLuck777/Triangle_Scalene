@@ -1,3 +1,4 @@
+using Internal;
 // using Internal;
 using System;
 using System.Reflection.Metadata;
@@ -72,10 +73,16 @@ namespace Triangle_Scalene
             Console.Clear();
             if (player1 > player2){
                 this.CenterText("Le joueur 1 gagne");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             } else if (player1 < player2){
                 this.CenterText("Le joueur 2 gagne");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             } else {
                 this.CenterText("Tout les joueurs ont perdues...");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             }
             this.WaitKeys();
         }
@@ -263,6 +270,10 @@ namespace Triangle_Scalene
         public int Askinput(){
             int inputSelection = -1;
             string inputString = Console.ReadLine();
+            if (inputString == null){
+                Console.WriteLine("réessai");
+                Askinput();
+            }
             try{
                 inputSelection = Int32.Parse(inputString);
                 switch (inputSelection){
@@ -273,6 +284,7 @@ namespace Triangle_Scalene
                     return inputSelection;
                     
                     default:
+                    Console.Clear();
                     Console.WriteLine("Wrong input");
                     return Askinput();
                 }
