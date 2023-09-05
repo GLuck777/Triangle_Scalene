@@ -1,4 +1,5 @@
 
+
 using System.Data;
 // using Internal;
 using System;
@@ -44,6 +45,8 @@ namespace Triangle_Scalene{
             InterfaceUI interfaceUI = new InterfaceUI();
             Triangle Cardjoueurone;
             Triangle Cardjoueurtwo;
+            Cardjoueurone = null;
+            Cardjoueurtwo = null;
             string result="resultat";
            
             //Listgagne<Triangle>
@@ -84,14 +87,14 @@ namespace Triangle_Scalene{
                         interfaceUI.CenterText("[1]-Choisir une carte",8);
                         Console.WriteLine();
                         strInputSelection = Console.ReadLine();
-                        try{
+                    try{
                             inputSelection = Int32.Parse(strInputSelection);
-                        } catch {
+                    } catch {
                             Console.WriteLine("Something went wrong");
 
-                        }
-                        //inputSelection = interfaceUI.Askinput();
-                        }
+                    }
+                    }
+                       //inputSelection = interfaceUI.Askinput();
                     /////////////////Fin de zone de texte ///////////////////////////////////////
                     ///// Selection de la carte par tableau
                     // interfaceUI.WaitKeys();
@@ -110,7 +113,7 @@ namespace Triangle_Scalene{
                                     t.CreateCase(player.listPioche);
                                     t.DrawCase(interfaceUI);
 
-                                        /*
+                                        
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
                                         
@@ -125,6 +128,7 @@ namespace Triangle_Scalene{
                                                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
 
                                                     Cardjoueurone = player.listPioche[PlayerCard-1];
+                                                    Cardjoueurone.Utilise = true;
                                                     if (!string.IsNullOrEmpty(Cardjoueurone._Name)){
                                                         Verifone = true;
                                                     }
@@ -140,6 +144,7 @@ namespace Triangle_Scalene{
                                                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
 
                                                     Cardjoueurtwo = player.listPioche[PlayerCard-1];
+                                                    Cardjoueurtwo.Utilise = true;
                                                     if (!string.IsNullOrEmpty(Cardjoueurtwo._Name)){
                                                         Veriftwo = true;
                                                     }
@@ -160,7 +165,7 @@ namespace Triangle_Scalene{
                                         } catch {
                                             Console.WriteLine("Bad try!");
                                             PlayerChoice = true;
-                                        }*/
+                                        }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
                                         Thread.Sleep(60*15);
@@ -173,16 +178,61 @@ namespace Triangle_Scalene{
                             }
                             break;
                         }
-                        interfaceUI.CenterText("Appuyez sur une touche");
-                        interfaceUI.WaitKeys();
+                        //interfaceUI.CenterText("Appuyez sur une touche");
+                        //interfaceUI.WaitKeys();
                     }
                 }
                 /*Pour terminer la partie entière 
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
                 Mis par defaul a 20 pour le moment*/
-                if (Tour == 4){ 
+                // Console.WriteLine("card1 "+Cardjoueurone.Utilise+"card2 "+Cardjoueurtwo.Utilise);
+                if (Cardjoueurone.Utilise && Cardjoueurtwo.Utilise){
+                //if (Verifone && Veriftwo){
+                    //Verifone = false;
+                    //Veriftwo = false;
+                    
+                    string WinCard = p.ActiveEffect(Cardjoueurone, Cardjoueurtwo);
+                    switch (WinCard) {
+                        case "P1":
+                        if (ListeGardeCarte.Count() > 0){
+                            foreach (Triangle garde in ListeGardeCarte) {
+                                Listgagnejone.Add(garde);
+                            }
+                        }
+                        Listgagnejone.Add(Cardjoueurone);
+                        Listgagnejone.Add(Cardjoueurtwo);
+                        Console.WriteLine("Le joueur1 a gagné contre " +Cardjoueurtwo._Name + " grace à "+ Cardjoueurone._Name+" !");
+                        break;
+                        case "P2":
+                        if (ListeGardeCarte.Count() > 0){
+                            foreach (Triangle garde in ListeGardeCarte) {
+                                Listgagnejtwo.Add(garde);
+                            }
+                        }
+                        Listgagnejtwo.Add(Cardjoueurone);
+                        Listgagnejtwo.Add(Cardjoueurtwo);
+                        break;
+                        Console.WriteLine("Le joueur2 a gagné contre " +Cardjoueurone._Name + " grace à "+ Cardjoueurtwo._Name+" !");
+                        case "P3":
+                        ListeGardeCarte.Add(Cardjoueurone);
+                        ListeGardeCarte.Add(Cardjoueurtwo);
+                        Console.WriteLine("Egalité entre les cartes");
+                        break;
+                    }
+                    
+                    Cardjoueurone = null;
+                    Cardjoueurtwo = null;
+                } else {
+                    PlayerChoice = true;
+                }
+                if (Listgagnejone.Count()+Listgagnejtwo.Count() > 19){ 
+                    Int32 ResultPlayer1 = Listgagnejone.Count();
+                    Int32 ResultPlayer2 = Listgagnejtwo.Count();
+                    interfaceUI.EndGame(ResultPlayer1, ResultPlayer2);
                     Console.WriteLine("Fin du programme");
-                    Thread.Sleep(60*10);
+                    interfaceUI.WaitKeys();
+                    // Thread.Sleep(60*10);
+                    Thread.Sleep(60*60);
                     System.Environment.Exit(0);
                 } else {
                     PlayerChoice = true;

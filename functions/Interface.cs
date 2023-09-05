@@ -68,11 +68,11 @@ namespace Triangle_Scalene
         public void ShowGameLog(){
            
         }
-        private void EndGame(string playersWon){
+        public void EndGame(Int32 player1, Int32 player2){
             Console.Clear();
-            if (playersWon == "player1"){
+            if (player1 > player2){
                 this.CenterText("Le joueur 1 gagne");
-            } else if (playersWon == "player2"){
+            } else if (player1 < player2){
                 this.CenterText("Le joueur 2 gagne");
             } else {
                 this.CenterText("Tout les joueurs ont perdues...");
