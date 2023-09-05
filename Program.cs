@@ -298,8 +298,8 @@ namespace Triangle_Scalene
                 
                
             }
-            Console.WriteLine("P0");
-            return "P0";
+            // Console.WriteLine("P0");
+            return "P3";
         }
         public Triangle GetCard(string name){
             /*

@@ -101,6 +101,7 @@ namespace Triangle_Scalene{
                         case 0:
                             PlayerChoice = false;
                             interfaceUI.CenterText("La partie à été interrompue");
+                            System.Environment.Exit(0);
                             break;
                         case 1:
                             try{
@@ -151,6 +152,8 @@ namespace Triangle_Scalene{
                             Listgagnejone.Add(CarteJoueurUn);
                             Listgagnejone.Add(CarteJoueurDeux);
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
+                            interfaceUI.CenterText("La nouvelle liste du joueur 1: " + Listgagnejone.Count());
+                            interfaceUI.CenterText("La liste du joueur 2: " + Listgagnejtwo.Count());
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
                             if (ListeGardeCarte.Count() > 0){
@@ -161,11 +164,16 @@ namespace Triangle_Scalene{
                             Listgagnejtwo.Add(CarteJoueurUn);
                             Listgagnejtwo.Add(CarteJoueurDeux);
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
+                            interfaceUI.CenterText("La nouvelle liste du joueur 2: " + Listgagnejtwo.Count());
+                            interfaceUI.CenterText("La liste du joueur 1: " + Listgagnejone.Count());
                             interfaceUI.WaitKeys();
                         } else {
                             ListeGardeCarte.Add(CarteJoueurUn);
                             ListeGardeCarte.Add(CarteJoueurDeux);
                             Console.WriteLine("Egalité entre les cartes");
+                            interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
+                            interfaceUI.CenterText("Liste du joueur 1: " + Listgagnejone.Count());
+                            interfaceUI.CenterText("Liste du joueur 2: " + Listgagnejtwo.Count());
                             interfaceUI.WaitKeys();
                         }
                     Console.WriteLine("le jeu continue...");
