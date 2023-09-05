@@ -365,16 +365,24 @@ namespace Triangle_Scalene
             return strWorkPath;
         }
 
-        public void WriteLog(string msg){
+        public void WriteLog(string msg, string type=""){
             // Create a string array with the lines of text
             string strPath = GetPath();
+            if (!Directory.Exists(strPath)){
+                Directory.CreateDirectory(strPath);
+            }
             string fileName = this.GetFileName()+".log";
+            var d = DateTime.Now;
+
 
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath, fileName)))
             {
-                var d = DateTime.Now;
-                outputFile.WriteLine(d.ToString()+">>"+msg);
+                if (type != ""){
+                    outputFile.WriteLine(d.ToString()+">>"+type+">>"+msg);
+                } else {
+                    outputFile.WriteLine(d.ToString()+">>"+msg);
+                }
             }
         }
     } //fin de classe
