@@ -174,14 +174,14 @@ namespace Triangle_Scalene
             if (CarteJoueurUn._Number == 3 && CarteJoueurDeux._Number == 1){
                 return "P2"; 
             }
-            if (CarteJoueurUn._Number > CarteJoueurDeux._Number){
+            if ((CarteJoueurUn._Number > CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
                 return "P1";
             } 
-            if (CarteJoueurUn._Number < CarteJoueurDeux._Number){
+            if ((CarteJoueurUn._Number < CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
                 return "P2";
             } 
             
-            if ((CarteJoueurUn._Number == CarteJoueurDeux._Number) || (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number ==1)){
+            if ((CarteJoueurUn._Number == CarteJoueurDeux._Number) || (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1)){
                 if (CarteJoueurUn._Effect == "" && CarteJoueurDeux._Effect == ""){
                     return "P3"; //_Name1 + _Name2;
                 }
