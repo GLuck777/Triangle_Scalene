@@ -1,0 +1,19 @@
+date/heure>>Logiciel démarré
+date/heure>>Partie démarrée
+date/heure>>gameplay::début de tour
+date/heure>>gameplay:tourx>>Joueur1 choisit sa carte : (voir en dessous)
+                    carte infos
+date/heure>>gampelay::tourx>>Jouuer2 choisit sa carte : (voir en dessous))
+                    carte infos
+
+date/heure>>gameplay::début de la phase confrontation
+
+date/heure>>gameplay::détail sur les cartes de joueurs
+
+date/heure>>gameplay::fin de confrontation
+
+date/heure>>gameplay::tourx>>fin de tour
+
+date/heure>>Fin de la partie
+
+date/heure>>fermeture du logiciel

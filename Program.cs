@@ -33,6 +33,7 @@ namespace Triangle_Scalene
         // Avec cette fonction on obtient le 2 pour générer les personnages 
         void Run(Program p){
             this.interfaceUI.IntroMessage();
+            this.interfaceUI.WriteLog("Logiciel démarré");
             programObject = p;
             programObject.LoadGameData();
             programObject.PlayGame(p.players);
@@ -153,7 +154,7 @@ namespace Triangle_Scalene
             }
             return text;
         }
-        public string ActiveEffect(Triangle cardjoueurone, Triangle cardjoueurtwo) {
+        public string ActiveEffect(Triangle CarteJoueurUn, Triangle CarteJoueurDeux) {
             EffectCard ec = new EffectCard();
             bool result;
             //Recuperer cartechoisie par les deux joueurs --> <Triangle>?
@@ -162,70 +163,77 @@ namespace Triangle_Scalene
             */
             ushort ActiveCardA;
             ushort ActiveCardB;
-            if (cardjoueurone._Effect == "Hero_invincible") {
+            if (CarteJoueurUn._Effect == "Hero_invincible") {
                 return "P1";
             }
-            if (cardjoueurone._Effect == "Hero_invincible") {
+            if (CarteJoueurUn._Effect == "Hero_invincible") {
                 return "P2";
             }
-            if (cardjoueurone._Number > cardjoueurtwo._Number){
+            if (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number == 3){
+                return "P1";
+            }
+            if (CarteJoueurUn._Number == 3 && CarteJoueurDeux._Number == 1){
+                return "P2"; 
+            }
+            if ((CarteJoueurUn._Number > CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
                 return "P1";
             } 
-            if (cardjoueurone._Number < cardjoueurtwo._Number){
+            if ((CarteJoueurUn._Number < CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
                 return "P2";
             } 
-            if ((cardjoueurone._Number == cardjoueurtwo._Number) || (cardjoueurone._Number == 1 && cardjoueurtwo._Number==0) || (cardjoueurone._Number == 0 && cardjoueurtwo._Number ==1)){
-                if (cardjoueurone._Effect == "" && cardjoueurtwo._Effect == ""){
+            
+            if ((CarteJoueurUn._Number == CarteJoueurDeux._Number) || (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1)){
+                if (CarteJoueurUn._Effect == "" && CarteJoueurDeux._Effect == ""){
                     return "P3"; //_Name1 + _Name2;
                 }
-                if (cardjoueurone._Effect != "" ) {
-                    switch (cardjoueurone._Effect) {
+                if (CarteJoueurUn._Effect != "" ) {
+                    switch (CarteJoueurUn._Effect) {
                     case "Croissance_Explosive":
-                    ec.Croissance_Explosive(cardjoueurone._Name, cardjoueurtwo._Name);
+                    ec.Croissance_Explosive(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     ActiveCardA = 1;
                     Console.WriteLine(ActiveCardA);
                     break;
 
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(cardjoueurone._Name, cardjoueurtwo._Name);
+                    ec.Grande_Revolution(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     ActiveCardA = 2;
                     Console.WriteLine(ActiveCardA);
                     break;
 
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(cardjoueurone._Name, cardjoueurtwo._Name);
+                    ec.Cheval_de_troie(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     ActiveCardA = 3;
                     Console.WriteLine(ActiveCardA);
                     break;
 
                     case "Exil": 
-                    ec.Exil(cardjoueurone._Name, cardjoueurtwo._Name);
+                    ec.Exil(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     ActiveCardA = 4;
                     Console.WriteLine(ActiveCardA);
                     break;
 
                     case "Reinitialisation": 
-                    ec.Reinitialisation(cardjoueurone._Name, cardjoueurtwo._Name);
+                    ec.Reinitialisation(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     ActiveCardA = 5;
                     Console.WriteLine(ActiveCardA);
                     break;
 
                     case "Roi":
-                    result = ec.Roi(cardjoueurone._Name, cardjoueurtwo._Name);
+                    result = ec.Roi(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     if (result){
                         return "P1";
                     }
                     //ActiveCardA = 7;
                     break;
                     case "Reine":
-                    result = ec.Reine(cardjoueurone._Name, cardjoueurtwo._Name);
+                    result = ec.Reine(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     if (result){
                         return "P1";
                     }
                     // ActiveCardA = 8;
                     break;
                     case "Prince":
-                    result = ec.Prince(cardjoueurone._Name, cardjoueurtwo._Name);
+                    result = ec.Prince(CarteJoueurUn._Name, CarteJoueurDeux._Name);
                     if (result){
                         return "P1";
                     }
@@ -235,49 +243,49 @@ namespace Triangle_Scalene
                 } else {
                     ActiveCardA = 0;
                 }
-                if (cardjoueurtwo._Effect != "" ) {
-                    switch (cardjoueurtwo._Effect) {
+                if (CarteJoueurDeux._Effect != "" ) {
+                    switch (CarteJoueurDeux._Effect) {
                     case "Croissance_Explosive":
-                    ec.Croissance_Explosive(cardjoueurtwo._Name, cardjoueurone._Name);
+                    ec.Croissance_Explosive(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 1;
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(cardjoueurtwo._Name, cardjoueurone._Name);
+                    ec.Grande_Revolution(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 2;
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(cardjoueurtwo._Name, cardjoueurone._Name);
+                    ec.Cheval_de_troie(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 3;
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Exil": 
-                    ec.Exil(cardjoueurtwo._Name, cardjoueurone._Name);
+                    ec.Exil(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 4;
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Reinitialisation": 
-                    ec.Reinitialisation(cardjoueurtwo._Name, cardjoueurone._Name);
+                    ec.Reinitialisation(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 5;
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Roi":
-                    result = ec.Roi(cardjoueurtwo._Name, cardjoueurone._Name);
+                    result = ec.Roi(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     if (result){
                         return "P2";
                     }
                     // ActiveCardB = 7;
                     break;
                     case "Reine":
-                    result = ec.Reine(cardjoueurtwo._Name, cardjoueurone._Name);
+                    result = ec.Reine(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     if (result){
                         return "P2";
                     }
                     //ActiveCardB = 8;
                     break;
                     case "Prince":
-                    result = ec.Prince(cardjoueurtwo._Name, cardjoueurone._Name);
+                    result = ec.Prince(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     if (result){
                         return "P2";
                     }
@@ -291,8 +299,8 @@ namespace Triangle_Scalene
                 
                
             }
-            Console.WriteLine("P0");
-            return "P0";
+            // Console.WriteLine("P0");
+            return "P3";
         }
         public Triangle GetCard(string name){
             /*

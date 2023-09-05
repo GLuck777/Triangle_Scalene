@@ -1,4 +1,4 @@
-// using Internal;
+
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
@@ -72,10 +72,16 @@ namespace Triangle_Scalene
             Console.Clear();
             if (player1 > player2){
                 this.CenterText("Le joueur 1 gagne");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             } else if (player1 < player2){
                 this.CenterText("Le joueur 2 gagne");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             } else {
                 this.CenterText("Tout les joueurs ont perdues...");
+                this.CenterText("Resultat du Joueur 1 : " + player1);
+                this.CenterText("Resultat du Joueur 2 : " + player2);
             }
             this.WaitKeys();
         }
@@ -263,7 +269,12 @@ namespace Triangle_Scalene
          public int Askinput(){
             int inputSelection = -1;
             string inputString = Console.ReadLine();
+<<<<<<< HEAD
             if (inputString == "") {
+=======
+            if (inputString == null){
+                Console.WriteLine("réessai");
+>>>>>>> 2ca9ca489181460ef60279c1c91f9a49fe97bb72
                 Askinput();
             }
             try{
@@ -287,5 +298,97 @@ namespace Triangle_Scalene
             }
             return inputSelection;
         }
-    }
-}
+        public Triangle SelectionCard(Player player){
+            Table t = new Table();
+            InterfaceUI interfaceUI = new InterfaceUI();
+            Triangle CarteJoueurUn;
+            Triangle CarteJoueurDeux;
+            String Newinput = Console.ReadLine();
+            Console.Clear();
+            try {
+                Int32 PlayerCard; 
+                PlayerCard = Int16.Parse(Newinput);
+                if (PlayerCard > 0 && PlayerCard < 10){
+                    if (player.Name == "Player 1") { //Player 1
+                    Console.WriteLine("Cher "+player.Name);
+                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                    CarteJoueurUn = player.listPioche[PlayerCard-1];
+                    CarteJoueurUn.Utilise = true;
+                    // if (!string.IsNullOrEmpty(CarteJoueurUn._Name)){
+                    //     Verifone = true;
+                    // }
+                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    t.UpdateCard(CarteJoueurUn); //NEW
+                    //Fin d'aperçu
+                    Console.WriteLine("Appuyez pour continuer");
+                    interfaceUI.WaitKeys();
+                    Console.Clear(); //test
+                    return CarteJoueurUn;
+                    } else { //Player 2
+
+                    Console.WriteLine("Cher "+player.Name);
+                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                    CarteJoueurDeux = player.listPioche[PlayerCard-1];
+                    CarteJoueurDeux.Utilise = true;
+
+                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    t.UpdateCard(CarteJoueurDeux); //NEW
+                    //Fin d'aperçu
+                    Console.WriteLine("Appuyez pour continuer");
+                    interfaceUI.WaitKeys();
+                    Console.Clear(); //test
+                    return CarteJoueurDeux;
+                    }
+                } else {
+                    return SelectionCard(player);
+                }
+            } catch {
+                Console.WriteLine("Bad try!");
+            }
+            return SelectionCard(player);
+        } //fin de fonction selectionCard
+
+        private string GetFileName(){
+            Random random = new Random();
+            string path = GetPath();
+            bool fileExist = true;
+            int indexFile = 9999;
+            string[] listFiles = new string[0];
+            while (fileExist){
+                indexFile = random.Next(10000, 99999);
+                listFiles = Directory.GetFiles(path);
+                fileExist = listFiles.Contains(indexFile.ToString()+"_"+listFiles.Count().ToString());
+            }
+            return indexFile.ToString()+"_"+listFiles.Count().ToString();                        
+        }
+
+        private string GetPath(){
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath)+"/logs";
+            return strWorkPath;
+        }
+
+        public void WriteLog(string msg, string type=""){
+            // Create a string array with the lines of text
+            string strPath = GetPath();
+            if (!Directory.Exists(strPath)){
+                Directory.CreateDirectory(strPath);
+            }
+            string fileName = this.GetFileName()+".log";
+            var d = DateTime.Now;
+
+
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath, fileName)))
+            {
+                if (type != ""){
+                    outputFile.WriteLine(d.ToString()+">>"+type+">>"+msg);
+                } else {
+                    outputFile.WriteLine(d.ToString()+">>"+msg);
+                }
+            }
+        }
+    } //fin de classe
+} //fin du namespace
