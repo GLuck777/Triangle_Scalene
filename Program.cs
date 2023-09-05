@@ -51,7 +51,7 @@ namespace Triangle_Scalene
         il comporte une fonction ayant pour objectif de montrer les cartes que chaque possède, 
         c'est un moyen de verifier le bon fonctionnement du code jusqu'à present*/
         private void PlayGame(Players players){
-            Plateau plateau = new Plateau();
+            Plateau plateau = new Plateau(this.interfaceUI);
             plateau.LoadPlayers(players.ListPlayers); 
         }
 
