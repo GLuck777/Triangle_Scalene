@@ -360,7 +360,6 @@ namespace Triangle_Scalene
                 fileExist = listFiles.Contains(indexFile.ToString()+"_"+listFiles.Count().ToString());
             }
             string fn = indexFile.ToString()+"_"+listFiles.Count().ToString();
-            Console.WriteLine("fn:"+fn);
             return fn;
         }
 
@@ -379,7 +378,6 @@ namespace Triangle_Scalene
             if (this.fName == ""){
                 this.fName = this.GetFileName()+".log";
             }
-            this.WaitKeys();
             var d = DateTime.Now;
 
             // Write the string array to a new file named "WriteLines.txt".
