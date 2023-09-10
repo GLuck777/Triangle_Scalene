@@ -4,6 +4,7 @@ using System.Reflection.Metadata;
 using System.Threading;
 using System.Collections;
 using System.IO.Enumeration;
+using Microsoft.VisualBasic;
 
 
 /*
@@ -146,11 +147,21 @@ namespace Triangle_Scalene
             return p.listPioche[indexCardSelected];
         }
 
-        public void ShowGameScore(List<Player> listPlayers){
-            Console.Clear();
+        public (string, string) ShowPlayer(List<Player> listPlayers){
+            // Console.Clear();
+            int index = 0;
+            string un = "Player 1";
+            string deux = "Player 2";
             foreach(Player p in listPlayers){
-
+                if (index == 0) {
+                    un = p.Name;
+                    index++;
+                } else {
+                    deux = p.Name;
+                }
+                
             }
+            return (un, deux);
         }
 
         private void ShowRules(){
@@ -333,6 +344,7 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
+                Console.WriteLine(ListPlayers.Count());
                 Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
                 if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
                     if (player.Name == "Player 1") { //Player 1
