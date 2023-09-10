@@ -34,9 +34,15 @@ namespace Triangle_Scalene
                 this.CenterText("[2]-Démarrer une partie (2 joueurs obliger)", LeftPosMessage);
                 Console.WriteLine();
                 this.CenterText("[0]-Quitter", LeftPosMessage);
-                String input = Console.ReadLine();
+                // String input = Console.ReadLine();
+                string input;
+                do {
+                    input = Console.ReadLine();
+                } while (input == null);
                 try{
-                    PlayerNumber = Int16.Parse(input);
+                    
+                        PlayerNumber = Int16.Parse(input);
+                    
                     switch (PlayerNumber){
                         case 0:
                             this.ExitMessage();
@@ -95,7 +101,7 @@ namespace Triangle_Scalene
             */
             Int32 indexCardSelected = 0;
             ushort indexCardInventory = 0;
-            string input = "";
+            // string input = "";
             const ushort LimitSelection = 3;
             const ushort LimitShowCards = 3;
             ConsoleKeyInfo key;
@@ -208,7 +214,7 @@ namespace Triangle_Scalene
             if (forcePosition != -1){
                 StartPosition = (Console.WindowWidth/2)-forcePosition;
             }
-            string result = "";
+            // string result = "";
             for (ushort indexChar = 0; indexChar <= StartPosition; indexChar++){
                 if (indexChar < StartPosition){
                     Console.Write(" ");
@@ -223,7 +229,10 @@ namespace Triangle_Scalene
         public string NomJoueur(){
             
             Console.Write("Choisissez votre nom: ");
-            string NamePlayer = Console.ReadLine();
+            string NamePlayer;
+            do {
+                NamePlayer = Console.ReadLine();
+            } while (NamePlayer == null);
             if ((NamePlayer == null) || (NamePlayer.Count() < 3))  {
                 Console.WriteLine("Vous devez inserer au moins 3 Caracteres");
                 Thread.Sleep(60*10);
@@ -301,7 +310,10 @@ namespace Triangle_Scalene
             this.CenterText("[1]-Choisir une carte",8);
             Console.WriteLine();
             int inputSelection = -1;
-            string inputString = Console.ReadLine();
+            string inputString;
+            do {
+                inputString = Console.ReadLine();
+            } while (inputString == null);
  
             // if (inputString == "") {
 
@@ -339,7 +351,11 @@ namespace Triangle_Scalene
             InterfaceUI interfaceUI = new InterfaceUI();
             Triangle CarteJoueurUn;
             Triangle CarteJoueurDeux;
-            String Newinput = Console.ReadLine();
+            String Newinput;
+            do {
+               Newinput = Console.ReadLine();
+            } while (Newinput == null);
+            
             Console.Clear();
             try {
                 Int32 PlayerCard; 

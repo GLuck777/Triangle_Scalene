@@ -67,8 +67,8 @@ namespace Triangle_Scalene{
             Int16 Tour = 0;
             string infoTour = "Gameplay::" + Tour.ToString();
             Console.WriteLine("here");
-            while (PlayerChoice == true){
                 this.interfaceUI.WriteLog("Partie démarrée"); ////ici 1
+            while (PlayerChoice == true){
                 Tour++;
                 
                 //interfaceUI.ShowGameLog(); // met joueur ne sert plus
@@ -154,6 +154,9 @@ namespace Triangle_Scalene{
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejone.Add(garde);
                                 }
+                                // foreach (Triangle garde in ListeGardeCarte) {
+                                //     ListeGardeCarte.Remove(garde);
+                                // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
                             }
                             
                             Listgagnejone.Add(CarteJoueurUn);
@@ -172,6 +175,9 @@ namespace Triangle_Scalene{
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejtwo.Add(garde);
                                 }
+                                // foreach (Triangle garde in ListeGardeCarte) {
+                                //     ListeGardeCarte.Remove(garde);
+                                // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
                             }
                             Listgagnejtwo.Add(CarteJoueurUn);
                             Listgagnejtwo.Add(CarteJoueurDeux);
@@ -187,13 +193,13 @@ namespace Triangle_Scalene{
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
                                 Listgagnejone.Add(Bonus); //p.cardBonus = Bonus
                                 //
-                                this.interfaceUI.WriteLog(" Joueur 1 "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
+                                this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             if (CarteJoueurDeux._Effect == "Grande Revolution"){
                                 Listgagnejtwo.Add(Bonus); //p.cardBonus = Bonus
                                 //LOG//
-                                this.interfaceUI.WriteLog(" Joueur 2 "+ deux +"a obtenu la carte Bonus !", infoTour); // ici 6
+                                this.interfaceUI.WriteLog(" Joueur 2: "+ deux +"a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             ListeGardeCarte.Add(CarteJoueurUn);
@@ -203,7 +209,7 @@ namespace Triangle_Scalene{
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejone.Count());
                             interfaceUI.CenterText("Liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
                             //LOG//
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejone.Count()+
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1: "+ un+" "+Listgagnejone.Count()+
                             "\njoueur 2: " + deux+" "+ Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
@@ -215,7 +221,7 @@ namespace Triangle_Scalene{
                 } else {
                     PlayerChoice = true;
                 }
-                if (Listgagnejone.Count()+Listgagnejtwo.Count() > 19){ 
+                if (Listgagnejone.Count()+Listgagnejtwo.Count() > 19 && ListeGardeCarte.Count() == 0){ 
                     Console.WriteLine("Attention Le jeu s'arrete !!!");
                     PlayerChoice = false;
                     Int32 ResultPlayer1 = Listgagnejone.Count();
