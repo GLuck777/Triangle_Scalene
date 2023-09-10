@@ -3,6 +3,7 @@ using System;
 using System.Reflection.Metadata;
 using System.Threading;
 using System.Collections;
+using System.IO.Enumeration;
 
 
 /*
@@ -13,9 +14,11 @@ namespace Triangle_Scalene
 {
     class InterfaceUI{
 
+        private string fName = "";
+
         const ushort MAX_PLAYER = 2;
 
-        public Plateau plateau = new Plateau();
+        public Plateau plateau;
 
         public Int16 GetPlayerNumber(){
             Int16 PlayerNumber = -1;
@@ -361,7 +364,8 @@ namespace Triangle_Scalene
                 listFiles = Directory.GetFiles(path);
                 fileExist = listFiles.Contains(indexFile.ToString()+"_"+listFiles.Count().ToString());
             }
-            return indexFile.ToString()+"_"+listFiles.Count().ToString();                        
+            string fn = indexFile.ToString()+"_"+listFiles.Count().ToString();
+            return fn;
         }
 
         private string GetPath(){
@@ -376,12 +380,13 @@ namespace Triangle_Scalene
             if (!Directory.Exists(strPath)){
                 Directory.CreateDirectory(strPath);
             }
-            string fileName = this.GetFileName()+".log";
+            if (this.fName == ""){
+                this.fName = this.GetFileName()+".log";
+            }
             var d = DateTime.Now;
 
-
             // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath, fileName)))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath,fName), true))
             {
                 if (type != ""){
                     outputFile.WriteLine(d.ToString()+">>"+type+">>"+msg);

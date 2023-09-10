@@ -10,9 +10,15 @@ namespace Triangle_Scalene{
 
         Dictionary<Player, bool> DictPlayers = new Dictionary<Player, bool>(){};
 
+        private InterfaceUI interfaceUI;
+
         public bool Verifone { get; private set; }
 
         // Dictionary<Player, List<Triangle>> DictPlayers = new Dictionary<Player, List<Triangle>>(){};
+
+        public Plateau(InterfaceUI iUI){
+            this.interfaceUI = iUI;
+        }
 
         public void LoadPlayers(List<Player> listPlayers){
             foreach(Player p in listPlayers){
@@ -21,8 +27,7 @@ namespace Triangle_Scalene{
                 this.DictPlayers.Add(p, false);
             }
             Console.WriteLine("Demarrage GameField !");
-            InterfaceUI interfaceUI = new InterfaceUI();
-            interfaceUI.WaitKeys();
+            this.interfaceUI.WaitKeys();
             Console.Clear();
             this.GameCenter(DictPlayers);
             // this.NewGameCenter(DictPlayers); 
@@ -63,34 +68,34 @@ namespace Triangle_Scalene{
             string infoTour = "Gameplay::" + Tour.ToString();
             Console.WriteLine("here");
             while (PlayerChoice == true){
-                interfaceUI.WriteLog("Partie démarrée"); ////ici 1
+                this.interfaceUI.WriteLog("Partie démarrée"); ////ici 1
                 Tour++;
                 
                 //interfaceUI.ShowGameLog(); // met joueur ne sert plus
                 foreach (Player player in dicoPlayers.Keys){
                     // Console.WriteLine(player._Player);
-                    interfaceUI.WriteLog("Gameplay::Début de tour"); ////ici 2
+                    this.interfaceUI.WriteLog("Gameplay::Début de tour"); ////ici 2
                     Console.WriteLine("Tour du "+player.Name+"...");
                     String temp = player.Name;
                     
                 
                     
-                    interfaceUI.CenterText("Taper sur un touche pour voir vos cartes disponibles et jouer");
+                    this.interfaceUI.CenterText("Taper sur un touche pour voir vos cartes disponibles et jouer");
                     //Zone d'essai
                     Int32 inputSelection = -1;
                     // string strInputSelection;
                     while (inputSelection == -1){
                         Console.Clear();
-                        interfaceUI.CenterText(player.Name+" à vos cartes!");
+                        this.interfaceUI.CenterText(player.Name+" à vos cartes!");
                         Console.WriteLine();
-                        interfaceUI.CenterText("[0]-Interrompre la partie",8);
+                        this.interfaceUI.CenterText("[0]-Interrompre la partie",8);
                         Console.WriteLine();
-                        interfaceUI.CenterText("[1]-Choisir une carte",8);
+                        this.interfaceUI.CenterText("[1]-Choisir une carte",8);
                         Console.WriteLine();
                         // strInputSelection = Console.ReadLine();
                         try{
                                 // inputSelection = Int32.Parse(strInputSelection);
-                                inputSelection = interfaceUI.Askinput();
+                                inputSelection = this.interfaceUI.Askinput();
                         }catch {
                                 Console.WriteLine("Something went wrong");
 
