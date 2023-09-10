@@ -163,10 +163,10 @@ namespace Triangle_Scalene
             */
             ushort ActiveCardA;
             ushort ActiveCardB;
-            if (CarteJoueurUn._Effect == "Hero_invincible") {
+            if (CarteJoueurUn._Effect == "Hero invincible") {
                 return "P1";
             }
-            if (CarteJoueurUn._Effect == "Hero_invincible") {
+            if (CarteJoueurUn._Effect == "Hero invincible") {
                 return "P2";
             }
             if (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number == 3){
@@ -195,10 +195,11 @@ namespace Triangle_Scalene
                     break;
 
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    // ec.Grande_Revolution();
                     ActiveCardA = 2;
-                    Console.WriteLine(ActiveCardA);
-                    break;
+                    Console.WriteLine("Activation Grande Revolution "+ActiveCardA);
+                    return "P3";
+                    // break;
 
                     case "Cheval_de_troie": 
                     ec.Cheval_de_troie(CarteJoueurUn._Name, CarteJoueurDeux._Name);
@@ -251,10 +252,11 @@ namespace Triangle_Scalene
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Grande_Revolution":
-                    ec.Grande_Revolution(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    // ec.Grande_Revolution(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 2;
-                    Console.WriteLine(ActiveCardB);
-                    break;
+                    Console.WriteLine("Activation Grande Revolution "+ActiveCardB);
+                    return "P3";
+                    // break;
                     case "Cheval_de_troie": 
                     ec.Cheval_de_troie(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 3;

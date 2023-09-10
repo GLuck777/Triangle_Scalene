@@ -3,11 +3,17 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace Triangle_Scalene{
     class EffectCard{
+        Program p = new Program();
+
         public void Cheval_de_troie(string card1,string card2){
 
         }
-        public void Croissance_Explosive(string card1,string card2){}
-        public void Grande_Revolution(string card1,string card2){}
+        public void Croissance_Explosive(string card1,string card2){
+           
+        }
+        // public void Grande_Revolution(string card){
+        //     card.Add(p.cardBonus);
+        // }
         public void Exil(string card1,string card2){}
         public void Reinitialisation(string card1,string card2){}
         public void Hero_invincible(string card1,string card2){}

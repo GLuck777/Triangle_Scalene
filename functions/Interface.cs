@@ -18,8 +18,7 @@ namespace Triangle_Scalene
 
         const ushort MAX_PLAYER = 2;
 
-        public Plateau plateau;
-
+        public Plateau plateau; 
         public Int16 GetPlayerNumber(){
             Int16 PlayerNumber = -1;
             const ushort LeftPosMessage = 15;
@@ -192,6 +191,7 @@ namespace Triangle_Scalene
             Console.Clear();
         }
 
+        //Permet de centrer un texte dans le terminal
         public void CenterText(string message, int forcePosition=-1){
             int StartPosition = (Console.WindowWidth/2) - (message.Length/2);
             if (forcePosition != -1){
@@ -208,9 +208,20 @@ namespace Triangle_Scalene
             Console.WriteLine();
         }
 
-
-        void ShowPlayerCard(){
-
+        /*Parametrer le nom du Player*/
+        public string NomJoueur(){
+            
+            Console.Write("Choisissez votre nom: ");
+            string NamePlayer = Console.ReadLine();
+            if ((NamePlayer == null) || (NamePlayer.Count() < 3))  {
+                Console.WriteLine("Vous devez inserer au moins 3 Caracteres");
+                Thread.Sleep(60*10);
+                Console.Clear();
+                NomJoueur();
+            }else {
+                return NamePlayer;
+            }
+            return NomJoueur();
         }
 
         public void IntroMessage(){
@@ -268,17 +279,25 @@ namespace Triangle_Scalene
 
             Console.Clear();
         }
-
-         public int Askinput(){
+        /*Demande input mis dans une fonction pour etre répetable 
+        en cas de mauvaise manipulation de l'input*/
+         public int Askinput(string player){
+            Console.Clear();
+            this.CenterText(player+" à vos cartes!");
+            Console.WriteLine();
+            this.CenterText("[0]-Interrompre la partie",8);
+            Console.WriteLine();
+            this.CenterText("[1]-Choisir une carte",8);
+            Console.WriteLine();
             int inputSelection = -1;
             string inputString = Console.ReadLine();
-<<<<<<< HEAD
-            if (inputString == "") {
-=======
+ 
+            // if (inputString == "") {
+
             if (inputString == null){
                 Console.WriteLine("réessai");
->>>>>>> 2ca9ca489181460ef60279c1c91f9a49fe97bb72
-                Askinput();
+                Thread.Sleep(60*10);
+                Askinput(player);
             }
             try{
                 
@@ -292,15 +311,18 @@ namespace Triangle_Scalene
                     
                     default:
                     Console.Clear();
-                    Console.WriteLine("Wrong input");
-                    return Askinput();
+                    Console.WriteLine("Vous ne pouvez choisir que 0 ou 1...");
+                    Thread.Sleep(60*15);
+                    return Askinput(player);
                 }
             } catch {
                 Console.WriteLine("Something went wrong for Askinput!");
-                Askinput();
+                Askinput(player);
             }
             return inputSelection;
         }
+        /*Une fois la carte choisie cette fonction permet 
+        de l'afficher dans le terminal*/
         public Triangle SelectionCard(Player player){
             Table t = new Table();
             InterfaceUI interfaceUI = new InterfaceUI();
@@ -311,7 +333,7 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
-                if (PlayerCard > 0 && PlayerCard < 10){
+                if (PlayerCard > 0 && PlayerCard < player.listPioche.Count()){
                     if (player.Name == "Player 1") { //Player 1
                     Console.WriteLine("Cher "+player.Name);
                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
@@ -353,6 +375,9 @@ namespace Triangle_Scalene
             return SelectionCard(player);
         } //fin de fonction selectionCard
 
+        /*Fonction qui sert a créer un nom de fichier log 
+        dans le chemin indiquer par GetPath()*/
+
         private string GetFileName(){
             Random random = new Random();
             string path = GetPath();
@@ -368,12 +393,14 @@ namespace Triangle_Scalene
             return fn;
         }
 
+        //Permet de récuperer le chemin pour enregistrer le fichier log
         private string GetPath(){
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath)+"/logs";
             return strWorkPath;
         }
 
+    //écrit le fichier log
         public void WriteLog(string msg, string type=""){
             // Create a string array with the lines of text
             string strPath = GetPath();

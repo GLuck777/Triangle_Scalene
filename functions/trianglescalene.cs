@@ -46,7 +46,7 @@ namespace Triangle_Scalene
 
         public List<Triangle> listPioche = new List<Triangle>();
 
-        Triangle cardBonus;
+        // Triangle cardBonus;
 
 
         public Player(string name, string set)
