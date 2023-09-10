@@ -121,7 +121,7 @@ namespace Triangle_Scalene{
                                             this.interfaceUI.WriteLog("Joueur1: "+ player.Name+" choisit sa carte : "+CarteJoueurUn._Name, infoTour); //ici 3
                                         } else {
                                             CarteJoueurDeux = interfaceUI.SelectionCard(player);
-                                            this.interfaceUI.WriteLog("Joueur1: "+ player.Name+" choisit sa carte : "+CarteJoueurDeux._Name, infoTour);  //ici 3
+                                            this.interfaceUI.WriteLog("Joueur2: "+ player.Name+" choisit sa carte : "+CarteJoueurDeux._Name, infoTour);  //ici 3
                                         }
                                 } else {
                                         Console.WriteLine("Entrée invalide...");
