@@ -49,8 +49,9 @@ namespace Triangle_Scalene
         // Triangle cardBonus;
 
 
-        public Player(string name, string set)
+        public Player(string numplayer, string name, string set)
         {
+            _Player = numplayer;
             Name = name;
             Set = set;
             //this.GeneratePioche(ListCards);

@@ -33,7 +33,7 @@ namespace Triangle_Scalene{
                     NamePlayer = "Player "+i.ToString();
                 }
                 // Player player = new Player("Player "+i.ToString(), type);
-                Player player = new Player(NamePlayer, type);
+                Player player = new Player("Player "+i.ToString(), NamePlayer, type);
                 player.GeneratePioche(listCards);
                 this.ListPlayers.Add(player);
             }

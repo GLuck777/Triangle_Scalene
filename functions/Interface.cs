@@ -19,7 +19,7 @@ namespace Triangle_Scalene
 
         const ushort MAX_PLAYER = 2;
 
-        public Plateau plateau; 
+        // public Plateau plateau; 
         public Int16 GetPlayerNumber(){
             Int16 PlayerNumber = -1;
             const ushort LeftPosMessage = 15;
@@ -346,7 +346,7 @@ namespace Triangle_Scalene
                 PlayerCard = Int16.Parse(Newinput);
                 Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
                 if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
-                    if (player.Name == "Player 1") { //Player 1
+                    if (player._Player == "Player 1") { //Player 1
                     Console.WriteLine("Cher "+player.Name);
                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
 
@@ -380,7 +380,7 @@ namespace Triangle_Scalene
                     return CarteJoueurDeux;
                     }
                 } else {
-                    return SelectionCard(player);
+                    SelectionCard(player);
                 }
             } catch {
                 Console.WriteLine("Bad try!");

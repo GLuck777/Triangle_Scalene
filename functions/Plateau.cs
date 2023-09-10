@@ -1,6 +1,6 @@
 
 using System.Data;
-
+using System.Collections.Generic;
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
@@ -116,7 +116,7 @@ namespace Triangle_Scalene{
                                         
                                         interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
                                         interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
-                                        if (player.Name == "Player 1") {
+                                        if (player._Player == "Player 1") {
                                             CarteJoueurUn = interfaceUI.SelectionCard(player);
                                             this.interfaceUI.WriteLog("Joueur1: "+ player.Name+" choisit sa carte : "+CarteJoueurUn._Name, infoTour); //ici 3
                                         } else {
