@@ -176,8 +176,8 @@ namespace Triangle_Scalene{
                             Listgagnejtwo.Add(CarteJoueurUn);
                             Listgagnejtwo.Add(CarteJoueurDeux);
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
-                            interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
                             interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejone.Count());
+                            interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
                             //
                             this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejone.Count()+
                             "\njoueur 2: "+ deux+" "+ Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
