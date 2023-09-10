@@ -333,7 +333,8 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
-                if (PlayerCard > 0 && PlayerCard < player.listPioche.Count()){
+                Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
+                if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
                     if (player.Name == "Player 1") { //Player 1
                     Console.WriteLine("Cher "+player.Name);
                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
@@ -343,7 +344,7 @@ namespace Triangle_Scalene
                     // if (!string.IsNullOrEmpty(CarteJoueurUn._Name)){
                     //     Verifone = true;
                     // }
-                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    player.listPioche.Remove(CarteJoueurUn); // Fonctionne ?
                     t.UpdateCard(CarteJoueurUn); //NEW
                     //Fin d'aperçu
                     Console.WriteLine("Appuyez pour continuer");
@@ -358,7 +359,8 @@ namespace Triangle_Scalene
                     CarteJoueurDeux = player.listPioche[PlayerCard-1];
                     CarteJoueurDeux.Utilise = true;
 
-                    player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    // player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                    player.listPioche.Remove(CarteJoueurDeux);
                     t.UpdateCard(CarteJoueurDeux); //NEW
                     //Fin d'aperçu
                     Console.WriteLine("Appuyez pour continuer");
