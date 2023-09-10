@@ -344,7 +344,6 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
-                Console.WriteLine(ListPlayers.Count());
                 Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
                 if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
                     if (player.Name == "Player 1") { //Player 1
