@@ -445,9 +445,9 @@ namespace Triangle_Scalene
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(strPath,fName), true))
             {
                 if (type != ""){
-                    outputFile.Write("\033[38;2;255;0;0m");
+                    // outputFile.Write("\033[38;2;255;0;0m");
                     outputFile.WriteLine(d.ToString()+">>"+type+">>"+msg);
-                    outputFile.Write("\033m");
+                    // outputFile.Write("\033m");
                 } else {
                     outputFile.WriteLine(d.ToString()+">>"+msg);
                 }
