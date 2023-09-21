@@ -15,6 +15,7 @@ namespace Triangle_Scalene
         public string _Description;
         public ushort _Number;
         public bool Utilise;
+        public string Set;
 		public Triangle(string nom, string couleur, string effect = "",string description = "", ushort number=0, bool utilise=false,string set="default") //ushort de 0 à 65 535
         {
             this._Name = nom;
@@ -23,6 +24,7 @@ namespace Triangle_Scalene
             this._Description = description;
             this._Number = number;
             this.Utilise = utilise;
+            this.Set = set;
 
         }
         /*
@@ -48,6 +50,9 @@ namespace Triangle_Scalene
 
         // Triangle cardBonus;
 
+        public  String GetSet(){
+            return this.Set;
+        }
 
         public Player(string numplayer, string name, string set)
         {
