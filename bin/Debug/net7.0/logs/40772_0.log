@@ -1,0 +1,101 @@
+21/09/2023 16:30:10>>Logiciel démarré
+21/09/2023 16:30:24>>Partie démarrée
+21/09/2023 16:30:24>>Gameplay::Début de tour
+21/09/2023 16:30:40>>Gameplay::0>>Joueur1: Reset choisit sa carte : Prince Or
+21/09/2023 16:30:40>>Gameplay::Début de tour
+21/09/2023 16:30:46>>Gameplay::0>>Joueur2: Non choisit sa carte : Reine Gen
+21/09/2023 16:30:46>>Gameplay::0>>Début de la phase confrontation
+21/09/2023 16:30:46>>Le joueur 1Reset a gagné cette manche!
+21/09/2023 16:30:46>>Gameplay::0>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 2
+					joueur 2: Non 0
+					La liste qui garde les cartes: 0
+21/09/2023 16:30:47>>Gameplay::0>>fin de confrontation
+21/09/2023 16:30:47>>Gameplay::0>>Fin du tour
+21/09/2023 16:30:47>>Gameplay::Début de tour
+21/09/2023 16:30:52>>Gameplay::1>>Joueur1: Reset choisit sa carte : Chevalier Mul
+21/09/2023 16:30:52>>Gameplay::Début de tour
+21/09/2023 16:30:59>>Gameplay::1>>Joueur2: Non choisit sa carte : paysan Ult
+21/09/2023 16:30:59>>Gameplay::1>>Début de la phase confrontation
+21/09/2023 16:30:59>>Le joueur 2 Non a gagné cette manche!
+21/09/2023 16:30:59>>Gameplay::1>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 2
+					joueur 2: Non 2
+					La liste qui garde les cartes: 0
+21/09/2023 16:31:02>>Gameplay::1>>fin de confrontation
+21/09/2023 16:31:02>>Gameplay::1>>Fin du tour
+21/09/2023 16:31:02>>Gameplay::Début de tour
+21/09/2023 16:31:07>>Gameplay::2>>Joueur1: Reset choisit sa carte : paysan Gra
+21/09/2023 16:31:07>>Gameplay::Début de tour
+21/09/2023 16:31:11>>Gameplay::2>>Joueur2: Non choisit sa carte : Assassin J
+21/09/2023 16:31:11>>Gameplay::2>>Début de la phase confrontation
+21/09/2023 16:31:11>>Aucun joueur n'a remporté cette manche!
+21/09/2023 16:31:11>>Gameplay::2>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 2
+					joueur 2: Non 2
+					La liste qui garde les cartes: 2
+21/09/2023 16:32:17>>Gameplay::2>>fin de confrontation
+21/09/2023 16:32:17>>Gameplay::2>>Fin du tour
+21/09/2023 16:32:17>>Gameplay::Début de tour
+21/09/2023 16:32:27>>Gameplay::3>>Joueur1: Reset choisit sa carte : Reine Tuil
+21/09/2023 16:32:27>>Gameplay::Début de tour
+21/09/2023 16:32:31>>Gameplay::3>>Joueur2: Non choisit sa carte : paysan Trol
+21/09/2023 16:32:31>>Gameplay::3>>Début de la phase confrontation
+21/09/2023 16:32:31>>Le joueur 1 Reset a gagné cette manche!
+21/09/2023 16:32:31>>Gameplay::3>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 6
+					joueur 2: Non 2
+					La liste qui garde les cartes: 0
+21/09/2023 16:32:35>>Gameplay::3>>fin de confrontation
+21/09/2023 16:32:35>>Gameplay::3>>Fin du tour
+21/09/2023 16:32:35>>Gameplay::Début de tour
+21/09/2023 16:32:45>>Gameplay::4>>Joueur1: Reset choisit sa carte : paysan nul
+21/09/2023 16:32:45>>Gameplay::Début de tour
+21/09/2023 16:32:53>>Gameplay::4>>Joueur2: Non choisit sa carte : Chevalier Norm
+21/09/2023 16:32:53>>Gameplay::4>>Début de la phase confrontation
+21/09/2023 16:32:53>>Le joueur 2 Reset a gagné cette manche!
+21/09/2023 16:32:53>>Gameplay::4>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 6
+					joueur 2: Non 4
+					La liste qui garde les cartes: 0
+21/09/2023 16:32:56>>Gameplay::4>>fin de confrontation
+21/09/2023 16:32:56>>Gameplay::4>>Fin du tour
+21/09/2023 16:32:56>>Gameplay::Début de tour
+21/09/2023 16:33:15>>Gameplay::5>>Joueur1: Reset choisit sa carte : paysan Red
+21/09/2023 16:33:15>>Gameplay::Début de tour
+21/09/2023 16:33:20>>Gameplay::5>>Joueur2: Non choisit sa carte : Prince Port
+21/09/2023 16:33:20>>Gameplay::5>>Début de la phase confrontation
+21/09/2023 16:33:20>>Le joueur 2Reset a gagné cette manche!
+21/09/2023 16:33:20>>Gameplay::5>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 6
+					joueur 2: Non 6
+					La liste qui garde les cartes: 0
+21/09/2023 16:33:21>>Gameplay::5>>fin de confrontation
+21/09/2023 16:33:21>>Gameplay::5>>Fin du tour
+21/09/2023 16:33:21>>Gameplay::Début de tour
+21/09/2023 16:33:26>>Gameplay::6>>Joueur1: Reset choisit sa carte : paysan Rot
+21/09/2023 16:33:26>>Gameplay::Début de tour
+21/09/2023 16:33:30>>Gameplay::6>>Joueur2: Non choisit sa carte : Chevalier Rev
+21/09/2023 16:33:30>>Gameplay::6>>Début de la phase confrontation
+21/09/2023 16:33:30>>Le joueur 2Reset a gagné cette manche!
+21/09/2023 16:33:30>>Gameplay::6>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 6
+					joueur 2: Non 8
+					La liste qui garde les cartes: 0
+21/09/2023 16:33:37>>Gameplay::6>>fin de confrontation
+21/09/2023 16:33:37>>Gameplay::6>>Fin du tour
+21/09/2023 16:33:37>>Gameplay::Début de tour
+21/09/2023 16:33:41>>Gameplay::7>>Joueur1: Reset choisit sa carte : Assassin T
+21/09/2023 16:33:41>>Gameplay::Début de tour
+21/09/2023 16:33:44>>Gameplay::7>>Joueur2: Non choisit sa carte : Roi Art
+21/09/2023 16:33:44>>Gameplay::7>>Début de la phase confrontation
+21/09/2023 16:33:44>>Le joueur 1Reset a gagné cette manche!
+21/09/2023 16:33:44>>Gameplay::7>>Détail sur les cartes de joueurs : 
+					Joueur 1: Reset 8
+					joueur 2: Non 8
+					La liste qui garde les cartes: 0
+21/09/2023 16:33:45>>Gameplay::7>>fin de confrontation
+21/09/2023 16:33:45>>Gameplay::7>>Fin du tour
+21/09/2023 16:33:45>>Gameplay::Début de tour
+21/09/2023 16:33:48>>Gameplay::8>>Joueur1: Reset choisit sa carte : paysan lat
+21/09/2023 16:33:48>>Gameplay::Début de tour

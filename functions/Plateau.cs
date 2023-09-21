@@ -148,7 +148,7 @@ namespace Triangle_Scalene{
                     this.interfaceUI.WriteLog("Début de la phase confrontation", infoTour); // ici 4             
                     string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux, listPlayer[0], listPlayer[1], Listgagnejun, Listgagnejdeux);
                         if (WinCard == "P1"){
-                            this.interfaceUI.WriteLog("Le joueur 1"+ un+" a gagné cette manche!");
+                            this.interfaceUI.WriteLog("Le joueur 1 "+ un+" a gagné cette manche!");
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejun.Add(garde);
@@ -171,7 +171,7 @@ namespace Triangle_Scalene{
                             //
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
-                            this.interfaceUI.WriteLog("Le joueur 2"+ un+" a gagné cette manche!");
+                            this.interfaceUI.WriteLog("Le joueur 2 "+ deux+" a gagné cette manche!");
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejdeux.Add(garde);
@@ -203,7 +203,7 @@ namespace Triangle_Scalene{
                             if (CarteJoueurDeux._Effect == "Grande Revolution"){
                                 Listgagnejdeux.Add(Bonus); //p.cardBonus = Bonus
                                 //LOG//
-                                this.interfaceUI.WriteLog(" Joueur 2: "+ deux +"a obtenu la carte Bonus !", infoTour); // ici 6
+                                this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             ListeGardeCarte.Add(CarteJoueurUn);
@@ -242,7 +242,7 @@ namespace Triangle_Scalene{
                     System.Environment.Exit(0);
                 } else {
                     // Console.WriteLine("Continue le programme");
-                    this.interfaceUI.WriteLog("Fin du tour", infoTour); // ici 7
+                    this.interfaceUI.WriteLog("Fin du tour\n", infoTour); // ici 7
                     PlayerChoice = true;
                 }
             }
