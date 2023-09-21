@@ -47,7 +47,7 @@ namespace Triangle_Scalene
             players.AddPlayer(PLayerNumber, ListCards);
         }
 
-        /*la où fini actuellement notre code (ne comprte pas encore l'appel du Plateau car non-fonctionnel)
+        /*la où fini actuellement notre code (ne comporte pas encore l'appel du Plateau car non-fonctionnel)
         il comporte une fonction ayant pour objectif de montrer les cartes que chaque possède, 
         c'est un moyen de verifier le bon fonctionnement du code jusqu'à present*/
         private void PlayGame(Players players){
@@ -154,7 +154,7 @@ namespace Triangle_Scalene
             }
             return text;
         }
-        public string ActiveEffect(Triangle CarteJoueurUn, Triangle CarteJoueurDeux) {
+        public string ActiveEffect(Triangle CarteJoueurUn, Triangle CarteJoueurDeux, Player joueur1, Player joueur2, List<Triangle> list1, List<Triangle> list2) {
             EffectCard ec = new EffectCard();
             bool result;
             //Recuperer cartechoisie par les deux joueurs --> <Triangle>?
@@ -202,7 +202,7 @@ namespace Triangle_Scalene
                     // break;
 
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    ec.Cheval_de_troie(joueur1, joueur2);
                     ActiveCardA = 3;
                     Console.WriteLine(ActiveCardA);
                     break;
@@ -214,7 +214,7 @@ namespace Triangle_Scalene
                     break;
 
                     case "Reinitialisation": 
-                    ec.Reinitialisation(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    ec.Reinitialisation(joueur1, joueur2, list1, list2);
                     ActiveCardA = 5;
                     Console.WriteLine(ActiveCardA);
                     break;
@@ -258,7 +258,7 @@ namespace Triangle_Scalene
                     return "P3";
                     // break;
                     case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    ec.Cheval_de_troie(joueur1, joueur2);
                     ActiveCardB = 3;
                     Console.WriteLine(ActiveCardB);
                     break;
@@ -268,7 +268,7 @@ namespace Triangle_Scalene
                     Console.WriteLine(ActiveCardB);
                     break;
                     case "Reinitialisation": 
-                    ec.Reinitialisation(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    ec.Reinitialisation(joueur1, joueur2, list1, list2);
                     ActiveCardB = 5;
                     Console.WriteLine(ActiveCardB);
                     break;

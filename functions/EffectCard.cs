@@ -4,8 +4,13 @@ using System.Reflection.Metadata.Ecma335;
 namespace Triangle_Scalene{
     class EffectCard{
         Program p = new Program();
+        // Plateau plateau = new Plateau();
 
-        public void Cheval_de_troie(string card1,string card2){
+        // EffectCard(Plateau p){
+        //     this.plateau = p;
+        // }
+
+        public void Cheval_de_troie(Player joueur1, Player joueur2){
             /*
                 La personne qui remporte cette carte perd la moitié de sa liste carte gagné et
                 les cartes perdus sont transferée vers l'autre joueur (si cdt appartient au
@@ -25,7 +30,7 @@ namespace Triangle_Scalene{
             carte adverse est transférée vers le graveyards cependant la carte exil fait égalité
             */
         }
-        public void Reinitialisation(string card1,string card2){
+        public void Reinitialisation(Player joueur1, Player joueur2, List<Triangle> list1, List<Triangle> list2){
             /*
             une fois la carte activé dans la zone de confrontation les deux zones de carte gagnées
             se réinitialisent (toutes les cartes retourne dans la main du propriétaire de la carte)

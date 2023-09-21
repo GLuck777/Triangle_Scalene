@@ -57,8 +57,8 @@ namespace Triangle_Scalene{
             //Listgagne<Triangle>
             Triangle Bonus = p.cardBonus;
             Console.WriteLine("test2: "+ Bonus);
-            List<Triangle> Listgagnejone = new List<Triangle>() {};
-            List<Triangle> Listgagnejtwo = new List<Triangle>() {};
+            List<Triangle> Listgagnejun = new List<Triangle>() {};
+            List<Triangle> Listgagnejdeux = new List<Triangle>() {};
             List<Triangle> ListeGardeCarte = new List<Triangle>() {};
             List<Player> listPlayer = new List<Player>(dicoPlayers.Keys){};
 
@@ -148,56 +148,56 @@ namespace Triangle_Scalene{
                     string deux;
                     (un, deux) = interfaceUI.ShowPlayer(listPlayer);
                     this.interfaceUI.WriteLog("Début de la phase confrontation", infoTour); // ici 4             
-                    string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux);
+                    string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux, listPlayer[0], listPlayer[1], Listgagnejun, Listgagnejdeux);
                         if (WinCard == "P1"){
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
-                                    Listgagnejone.Add(garde);
+                                    Listgagnejun.Add(garde);
                                 }
                                 // foreach (Triangle garde in ListeGardeCarte) {
                                 //     ListeGardeCarte.Remove(garde);
                                 // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
                             }
                             
-                            Listgagnejone.Add(CarteJoueurUn);
-                            Listgagnejone.Add(CarteJoueurDeux);
+                            Listgagnejun.Add(CarteJoueurUn);
+                            Listgagnejun.Add(CarteJoueurDeux);
                             //Log (fin de confrontation)
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
-                            interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejone.Count());
-                            interfaceUI.CenterText("La liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
+                            interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejun.Count());
+                            interfaceUI.CenterText("La liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
                             //
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejone.Count()+
-                            "\njoueur 2: "+ deux +""+ Listgagnejtwo.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejun.Count()+
+                            "\njoueur 2: "+ deux +""+ Listgagnejdeux.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
-                                    Listgagnejtwo.Add(garde);
+                                    Listgagnejdeux.Add(garde);
                                 }
                                 // foreach (Triangle garde in ListeGardeCarte) {
                                 //     ListeGardeCarte.Remove(garde);
                                 // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
                             }
-                            Listgagnejtwo.Add(CarteJoueurUn);
-                            Listgagnejtwo.Add(CarteJoueurDeux);
+                            Listgagnejdeux.Add(CarteJoueurUn);
+                            Listgagnejdeux.Add(CarteJoueurDeux);
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
-                            interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejone.Count());
-                            interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
+                            interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejun.Count());
+                            interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
                             //
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejone.Count()+
-                            "\njoueur 2: "+ deux+" "+ Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejun.Count()+
+                            "\njoueur 2: "+ deux+" "+ Listgagnejdeux.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else {
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
-                                Listgagnejone.Add(Bonus); //p.cardBonus = Bonus
+                                Listgagnejun.Add(Bonus); //p.cardBonus = Bonus
                                 //
                                 this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             if (CarteJoueurDeux._Effect == "Grande Revolution"){
-                                Listgagnejtwo.Add(Bonus); //p.cardBonus = Bonus
+                                Listgagnejdeux.Add(Bonus); //p.cardBonus = Bonus
                                 //LOG//
                                 this.interfaceUI.WriteLog(" Joueur 2: "+ deux +"a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
@@ -206,11 +206,11 @@ namespace Triangle_Scalene{
                             ListeGardeCarte.Add(CarteJoueurDeux);
                             Console.WriteLine("Egalité entre les cartes");
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
-                            interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejone.Count());
-                            interfaceUI.CenterText("Liste du joueur 2: "+ deux+" " + Listgagnejtwo.Count());
+                            interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());
+                            interfaceUI.CenterText("Liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
                             //LOG//
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1: "+ un+" "+Listgagnejone.Count()+
-                            "\njoueur 2: " + deux+" "+ Listgagnejtwo.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1: "+ un+" "+Listgagnejun.Count()+
+                            "\njoueur 2: " + deux+" "+ Listgagnejdeux.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         }
@@ -221,11 +221,11 @@ namespace Triangle_Scalene{
                 } else {
                     PlayerChoice = true;
                 }
-                if (Listgagnejone.Count()+Listgagnejtwo.Count() > 19 && ListeGardeCarte.Count() == 0){ 
+                if (Listgagnejun.Count()+Listgagnejdeux.Count() > 19 && ListeGardeCarte.Count() == 0){ 
                     Console.WriteLine("Attention Le jeu s'arrete !!!");
                     PlayerChoice = false;
-                    Int32 ResultPlayer1 = Listgagnejone.Count();
-                    Int32 ResultPlayer2 = Listgagnejtwo.Count();
+                    Int32 ResultPlayer1 = Listgagnejun.Count();
+                    Int32 ResultPlayer2 = Listgagnejdeux.Count();
                     interfaceUI.EndGame(ResultPlayer1, ResultPlayer2);
                     this.interfaceUI.WriteLog("Fin de partie",infoTour); // ici 8
                     //Console.WriteLine("Fin du programme");
