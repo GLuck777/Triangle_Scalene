@@ -148,6 +148,7 @@ namespace Triangle_Scalene{
                     this.interfaceUI.WriteLog("Début de la phase confrontation", infoTour); // ici 4             
                     string WinCard = p.ActiveEffect(CarteJoueurUn, CarteJoueurDeux, listPlayer[0], listPlayer[1], Listgagnejun, Listgagnejdeux);
                         if (WinCard == "P1"){
+                            this.interfaceUI.WriteLog("Le joueur 1"+ un+" a gagné cette manche!");
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejun.Add(garde);
@@ -164,12 +165,13 @@ namespace Triangle_Scalene{
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             //
                             this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+
-                            "\n\t\t\t\t\tJoueur 1"+ un+" "+Listgagnejun.Count()+
-                            "\n\t\t\t\t\tjoueur 2: "+ deux +""+ Listgagnejdeux.Count() +
+                            "\n\t\t\t\t\tJoueur 1: "+ un+" "+Listgagnejun.Count()+
+                            "\n\t\t\t\t\tjoueur 2: "+ deux +" "+ Listgagnejdeux.Count() +
                             "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
+                            this.interfaceUI.WriteLog("Le joueur 2"+ un+" a gagné cette manche!");
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejdeux.Add(garde);
@@ -185,12 +187,13 @@ namespace Triangle_Scalene{
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             //
                             this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+
-                            "\n\t\t\t\t\tJoueur 1"+ un+" "+Listgagnejun.Count()+
+                            "\n\t\t\t\t\tJoueur 1: "+ un+" "+Listgagnejun.Count()+
                             "\n\t\t\t\t\tjoueur 2: "+ deux+" "+ Listgagnejdeux.Count()+
                             "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else {
+                            this.interfaceUI.WriteLog("Aucun joueur n'a remporté cette manche!");
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
                                 Listgagnejun.Add(Bonus); //p.cardBonus = Bonus
                                 //
