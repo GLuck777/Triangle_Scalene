@@ -1,4 +1,3 @@
-
 using System.Data;
 using System.Collections.Generic;
 using System;
@@ -64,13 +63,12 @@ namespace Triangle_Scalene{
 
             // bool Verifone = false;
             // bool Veriftwo = false;
-            Int16 Tour = 0;
-            string infoTour = "Gameplay::" + Tour.ToString();
+            Int16 Tour = -1;
             Console.WriteLine("here");
                 this.interfaceUI.WriteLog("Partie démarrée"); ////ici 1
             while (PlayerChoice == true){
                 Tour++;
-                
+                string infoTour = "Gameplay::" + Tour.ToString();
                 //interfaceUI.ShowGameLog(); // met joueur ne sert plus
                 foreach (Player player in dicoPlayers.Keys){
                     // Console.WriteLine(player._Player);
@@ -154,9 +152,7 @@ namespace Triangle_Scalene{
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejun.Add(garde);
                                 }
-                                // foreach (Triangle garde in ListeGardeCarte) {
-                                //     ListeGardeCarte.Remove(garde);
-                                // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
+                                    ListeGardeCarte.Clear();
                             }
                             
                             Listgagnejun.Add(CarteJoueurUn);
@@ -165,9 +161,12 @@ namespace Triangle_Scalene{
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("La liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
+                            interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             //
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejun.Count()+
-                            "\njoueur 2: "+ deux +""+ Listgagnejdeux.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+
+                            "\n\t\t\t\t\tJoueur 1"+ un+" "+Listgagnejun.Count()+
+                            "\n\t\t\t\t\tjoueur 2: "+ deux +""+ Listgagnejdeux.Count() +
+                            "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else if (WinCard == "P2"){
@@ -175,18 +174,20 @@ namespace Triangle_Scalene{
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejdeux.Add(garde);
                                 }
-                                // foreach (Triangle garde in ListeGardeCarte) {
-                                //     ListeGardeCarte.Remove(garde);
-                                // } //important mais ne marche pas retire de la liste Listegarde les cartes contenues
+                                ListeGardeCarte.Clear();
                             }
                             Listgagnejdeux.Add(CarteJoueurUn);
                             Listgagnejdeux.Add(CarteJoueurDeux);
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
+
                             interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
+                            interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             //
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1"+ un+" "+Listgagnejun.Count()+
-                            "\njoueur 2: "+ deux+" "+ Listgagnejdeux.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+
+                            "\n\t\t\t\t\tJoueur 1"+ un+" "+Listgagnejun.Count()+
+                            "\n\t\t\t\t\tjoueur 2: "+ deux+" "+ Listgagnejdeux.Count()+
+                            "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         } else {
@@ -209,8 +210,10 @@ namespace Triangle_Scalene{
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("Liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
                             //LOG//
-                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+"\nJoueur 1: "+ un+" "+Listgagnejun.Count()+
-                            "\njoueur 2: " + deux+" "+ Listgagnejdeux.Count()+"\nLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
+                            this.interfaceUI.WriteLog("Détail sur les cartes de joueurs : "+
+                            "\n\t\t\t\t\tJoueur 1: "+ un+" "+Listgagnejun.Count()+
+                            "\n\t\t\t\t\tjoueur 2: " + deux+" "+ Listgagnejdeux.Count()+
+                            "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
                             //
                             interfaceUI.WaitKeys();
                         }

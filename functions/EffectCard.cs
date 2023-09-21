@@ -37,6 +37,39 @@ namespace Triangle_Scalene{
             cela n'affecte pas la zone de confrontation
 
             */
+            int index = 0;
+            bool isFound = false;
+            foreach(Triangle rediscard1 in list1){
+                if (rediscard1.Set == joueur1.GetSet()) {
+                    joueur1.listPioche.Add(rediscard1);
+                    isFound = true;                    
+                } else {
+                    joueur2.listPioche.Add(rediscard1);
+                    isFound = true;
+                }
+                index += 1*Convert.ToInt32(!isFound);
+            }
+            Console.WriteLine("Removeateffectue", index);
+            list1.RemoveAt(index+1);
+
+
+            isFound = false;
+            index = 0;
+
+            foreach(Triangle rediscard2 in list2){
+                if (rediscard2.Set == joueur1.GetSet()) {
+                    joueur1.listPioche.Add(rediscard2);
+                    isFound = true;
+                } else {
+                    joueur2.listPioche.Add(rediscard2);
+                    isFound = true;
+                }
+                index += 1*Convert.ToInt32(!isFound);
+            }
+            Console.WriteLine("Removeateffectue", index);
+            list2.RemoveAt(index+1);
+
+            // joueur2.GetSet();
         }
         public void Hero_invincible(string card1,string card2){}
         public bool Roi(string card1,string card2){
