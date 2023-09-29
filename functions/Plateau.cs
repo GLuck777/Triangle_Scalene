@@ -195,28 +195,31 @@ namespace Triangle_Scalene{
                             interfaceUI.WaitKeys();
                         } else {
                             this.interfaceUI.WriteLog("Aucun joueur n'a remporté cette manche!");
+                            Console.WriteLine("Egalité entre les cartes");
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
                                 Listgagnejun.Add(Bonus); //p.cardBonus = Bonus
                                 //
-                                this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
+                                this.interfaceUI.WriteLog("[Grande Revolution]: Joueur 1: "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             if (CarteJoueurDeux._Effect == "Grande Revolution"){
                                 Listgagnejdeux.Add(Bonus); //p.cardBonus = Bonus
                                 //LOG//
-                                this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a obtenu la carte Bonus !", infoTour); // ici 6
+                                this.interfaceUI.WriteLog("[Grande Revolution]: Joueur 2: "+ deux +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             // Card effect Exil for players
                             if ((CarteJoueurUn._Effect == "Exil") || (CarteJoueurDeux._Effect == "Exil")){
                                 if (CarteJoueurUn._Effect == "Exil"){
                                     ListCimetiere.Add(CarteJoueurDeux);
+                                    ListeGardeCarte.Add(CarteJoueurUn);
                                     //
                                     this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a exilé la carte adverse !", infoTour); // ici 6
                                     //
                                 }
                                 if (CarteJoueurDeux._Effect == "Exil"){
                                     ListCimetiere.Add(CarteJoueurUn);
+                                    ListeGardeCarte.Add(CarteJoueurDeux);
                                     //LOG//
                                     this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a exilé la carte adverse !", infoTour); // ici 6
                                     //
@@ -226,7 +229,7 @@ namespace Triangle_Scalene{
                                 ListeGardeCarte.Add(CarteJoueurDeux);
                             }
                             
-                            Console.WriteLine("Egalité entre les cartes");
+                            
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("Liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());

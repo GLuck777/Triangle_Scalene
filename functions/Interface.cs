@@ -345,7 +345,7 @@ namespace Triangle_Scalene
             return inputSelection;
         }
         /*Une fois la carte choisie cette fonction permet 
-        de l'afficher dans le terminal*/
+        de d'afficher dans le terminal la carte choisie en detail*/
         public Triangle SelectionCard(Player player){
             Table t = new Table();
             InterfaceUI interfaceUI = new InterfaceUI();
@@ -360,7 +360,8 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
-                Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
+                //Matos de débugage
+                //Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
                 if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
                     if (player._Player == "Player 1") { //Player 1
                     Console.WriteLine("Cher "+player.Name);
