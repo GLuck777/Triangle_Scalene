@@ -59,6 +59,7 @@ namespace Triangle_Scalene{
             List<Triangle> Listgagnejun = new List<Triangle>() {};
             List<Triangle> Listgagnejdeux = new List<Triangle>() {};
             List<Triangle> ListeGardeCarte = new List<Triangle>() {};
+            List<Triangle> ListCimetiere = new List<Triangle>() {};
             List<Player> listPlayer = new List<Player>(dicoPlayers.Keys){};
 
             // bool Verifone = false;
@@ -206,8 +207,25 @@ namespace Triangle_Scalene{
                                 this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
-                            ListeGardeCarte.Add(CarteJoueurUn);
-                            ListeGardeCarte.Add(CarteJoueurDeux);
+                            // Card effect Exil for players
+                            if ((CarteJoueurUn._Effect == "Exil") || (CarteJoueurDeux._Effect == "Exil")){
+                                if (CarteJoueurUn._Effect == "Exil"){
+                                    ListCimetiere.Add(CarteJoueurDeux);
+                                    //
+                                    this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a exilé la carte adverse !", infoTour); // ici 6
+                                    //
+                                }
+                                if (CarteJoueurDeux._Effect == "Exil"){
+                                    ListCimetiere.Add(CarteJoueurUn);
+                                    //LOG//
+                                    this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a exilé la carte adverse !", infoTour); // ici 6
+                                    //
+                                }
+                            } else {
+                                ListeGardeCarte.Add(CarteJoueurUn);
+                                ListeGardeCarte.Add(CarteJoueurDeux);
+                            }
+                            
                             Console.WriteLine("Egalité entre les cartes");
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());
