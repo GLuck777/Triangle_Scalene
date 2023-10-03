@@ -17,19 +17,19 @@ namespace Triangle_Scalene{
                 joueur qui la remporte alors l'effet n'est pas activé)
             */
         }
-        public void Croissance_Explosive(string card1,string card2){
+        // public void Croissance_Explosive(string card1,string card2){
            /*
              gagne les cartes s'il ya qui se trouvent dans les cartes gagnaient
            */
-        }
+        // }
         // public void Grande_Revolution(string card){
         //     card.Add(p.cardBonus);
         // }
-        public void Exil(string card1,string card2){
+        // public void Exil(string card1,string card2){
             /*
             carte adverse est transférée vers le graveyards cependant la carte exil fait égalité
             */
-        }
+        // }
         public void Reinitialisation(Player joueur1, Player joueur2, List<Triangle> list1, List<Triangle> list2){
             /*
             une fois la carte activé dans la zone de confrontation les deux zones de carte gagnées

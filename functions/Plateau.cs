@@ -136,7 +136,26 @@ namespace Triangle_Scalene{
                         }
                         //interfaceUI.CenterText("Appuyez sur une touche");
                         //interfaceUI.WaitKeys();
-                }
+                } //fin for each Player list pioche
+                    if (dicoPlayers.Keys.Count()==0 ){ 
+                    // if (Listgagnejun.Count()+Listgagnejdeux.Count() > 19 && ListeGardeCarte.Count() == 0){ 
+                        Console.WriteLine("Attention Le jeu s'arrete !!!");
+                        PlayerChoice = false;
+                        Int32 ResultPlayer1 = Listgagnejun.Count();
+                        Int32 ResultPlayer2 = Listgagnejdeux.Count();
+                        interfaceUI.EndGame(ResultPlayer1, ResultPlayer2);
+                        this.interfaceUI.WriteLog("Fin de partie",infoTour); // ici 8
+                        //Console.WriteLine("Fin du programme");
+                        interfaceUI.WaitKeys();
+                        // Thread.Sleep(60*10);
+                        this.interfaceUI.WriteLog("fermeture du logiciel",infoTour); // ici 9
+                        Thread.Sleep(60*60);
+                        System.Environment.Exit(0);
+                    } else {
+                        // Console.WriteLine("Continue le programme");
+                        this.interfaceUI.WriteLog("Fin du tour\n", infoTour); // ici 7
+                        PlayerChoice = true;
+                    }
                 
                 /*Pour terminer la partie entière 
                 (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
@@ -177,7 +196,7 @@ namespace Triangle_Scalene{
                                 foreach (Triangle garde in ListeGardeCarte) {
                                     Listgagnejdeux.Add(garde);
                                 }
-                                ListeGardeCarte.Clear();
+                                    ListeGardeCarte.Clear();
                             }
                             Listgagnejdeux.Add(CarteJoueurUn);
                             Listgagnejdeux.Add(CarteJoueurDeux);
@@ -196,17 +215,52 @@ namespace Triangle_Scalene{
                         } else {
                             this.interfaceUI.WriteLog("Aucun joueur n'a remporté cette manche!");
                             Console.WriteLine("Egalité entre les cartes");
+                            // Effet de carte Grande Revoluton, Récupère la carte BONUS
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
-                                Listgagnejun.Add(Bonus); //p.cardBonus = Bonus
+                                // Si la carte Bonus existe alors Add.(Bonus)
+                                if (Bonus != null) {
+                                    Listgagnejun.Add(Bonus); //p.cardBonus = Bonus
+                                    Bonus = null; //
+                                }
                                 //
                                 this.interfaceUI.WriteLog("[Grande Revolution]: Joueur 1: "+ un +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
                             }
                             if (CarteJoueurDeux._Effect == "Grande Revolution"){
-                                Listgagnejdeux.Add(Bonus); //p.cardBonus = Bonus
+                                if (Bonus != null) {
+                                    Listgagnejdeux.Add(Bonus); //p.cardBonus = Bonus
+                                    Bonus = null; //
+                                }
                                 //LOG//
                                 this.interfaceUI.WriteLog("[Grande Revolution]: Joueur 2: "+ deux +" a obtenu la carte Bonus !", infoTour); // ici 6
                                 //
+                            }
+                            // Carte Croissance Explosive récupère toutes les cartes de la zone garde carte 
+                            //(les cartes en combat ne sont pas pris en compte)
+                            if (CarteJoueurUn._Effect == "Croissance Explosive"){
+                                //
+                                    this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a activé [Croissance Explosive] ! \n"+
+                                    "Il récupère les cartes gardées dans la zone garde carte !", infoTour); // ici 6
+                                //
+                                if (ListeGardeCarte.Count() > 0){
+                                foreach (Triangle garde in ListeGardeCarte) {
+                                    Listgagnejun.Add(garde);
+                                }
+                                ListeGardeCarte.Clear();
+                            }
+                            }
+                            if (CarteJoueurDeux._Effect == "Croissance Explosive"){
+                                //
+                                    this.interfaceUI.WriteLog(" Joueur 2: "+ un +" a activé [Croissance Explosive] ! \n"+
+                                    "Il récupère les cartes gardées dans la zone garde carte !", infoTour); // ici 6
+                                //
+                                if (ListeGardeCarte.Count() > 0){
+                                foreach (Triangle garde in ListeGardeCarte) {
+                                    Listgagnejdeux.Add(garde);
+                                }
+                                ListeGardeCarte.Clear();
+                            }
+
                             }
                             // Card effect Exil for players
                             if ((CarteJoueurUn._Effect == "Exil") || (CarteJoueurDeux._Effect == "Exil")){
@@ -214,21 +268,20 @@ namespace Triangle_Scalene{
                                     ListCimetiere.Add(CarteJoueurDeux);
                                     ListeGardeCarte.Add(CarteJoueurUn);
                                     //
-                                    this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a exilé la carte adverse !", infoTour); // ici 6
+                                    this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a utilsé [Exil] pour exiler la carte adverse !", infoTour); // ici 6
                                     //
                                 }
                                 if (CarteJoueurDeux._Effect == "Exil"){
                                     ListCimetiere.Add(CarteJoueurUn);
                                     ListeGardeCarte.Add(CarteJoueurDeux);
                                     //LOG//
-                                    this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a exilé la carte adverse !", infoTour); // ici 6
+                                    this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a utilsé [Exil] pour exiler la carte adverse !", infoTour); // ici 6
                                     //
                                 }
                             } else {
                                 ListeGardeCarte.Add(CarteJoueurUn);
                                 ListeGardeCarte.Add(CarteJoueurDeux);
                             }
-                            
                             
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());
@@ -248,24 +301,7 @@ namespace Triangle_Scalene{
                 } else {
                     PlayerChoice = true;
                 }
-                if (Listgagnejun.Count()+Listgagnejdeux.Count() > 19 && ListeGardeCarte.Count() == 0){ 
-                    Console.WriteLine("Attention Le jeu s'arrete !!!");
-                    PlayerChoice = false;
-                    Int32 ResultPlayer1 = Listgagnejun.Count();
-                    Int32 ResultPlayer2 = Listgagnejdeux.Count();
-                    interfaceUI.EndGame(ResultPlayer1, ResultPlayer2);
-                    this.interfaceUI.WriteLog("Fin de partie",infoTour); // ici 8
-                    //Console.WriteLine("Fin du programme");
-                    interfaceUI.WaitKeys();
-                    // Thread.Sleep(60*10);
-                    this.interfaceUI.WriteLog("fermeture du logiciel",infoTour); // ici 9
-                    Thread.Sleep(60*60);
-                    System.Environment.Exit(0);
-                } else {
-                    // Console.WriteLine("Continue le programme");
-                    this.interfaceUI.WriteLog("Fin du tour\n", infoTour); // ici 7
-                    PlayerChoice = true;
-                }
+                
             }
         }
         } //fin de fonction
