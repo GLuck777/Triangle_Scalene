@@ -137,6 +137,12 @@ namespace Triangle_Scalene{
                         //interfaceUI.CenterText("Appuyez sur une touche");
                         //interfaceUI.WaitKeys();
                 } //fin for each Player list pioche
+
+                Confrontation(CarteJoueurUn, CarteJoueurDeux, Bonus, listPlayer, Listgagnejun, Listgagnejdeux, ListeGardeCarte, ListCimetiere, infoTour, PlayerChoice);
+                
+                 /*Pour terminer la partie entière 
+                (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
+                Mis par defaul a 20 pour le moment*/
                 if (GetGameStatement()){
                     //return;
                     // if (Listgagnejun.Count()+Listgagnejdeux.Count() > 19 && ListeGardeCarte.Count() == 0){ 
@@ -158,11 +164,20 @@ namespace Triangle_Scalene{
                         PlayerChoice = true;
                     }
                 
-                /*Pour terminer la partie entière 
-                (situation ou les deux joueurs n'ont plus de carte dans leur main --> 
-                Mis par defaul a 20 pour le moment*/
-                // Console.WriteLine("card1 "+CarteJoueurUn.Utilise+"card2 "+CarteJoueurDeux.Utilise);
-                if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
+            }
+        }
+
+        void Confrontation(Triangle CarteJoueurUn, 
+        Triangle CarteJoueurDeux, 
+        Triangle Bonus, 
+        List<Player> listPlayer, 
+        List<Triangle> Listgagnejun, 
+        List<Triangle> Listgagnejdeux, 
+        List<Triangle> ListeGardeCarte, 
+        List<Triangle> ListCimetiere, 
+        string infoTour, 
+        bool PlayerChoice){
+            if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
                     string deux;
                     (un, deux) = interfaceUI.ShowPlayer(listPlayer);
@@ -302,10 +317,8 @@ namespace Triangle_Scalene{
                 } else {
                     PlayerChoice = true;
                 }
-                
-            }
         }
-
+        //Pour finir le jeu
         bool GetGameStatement(){
             bool isGameOver = false;
             foreach(Player player in this.DictPlayers.Keys){
