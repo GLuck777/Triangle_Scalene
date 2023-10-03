@@ -137,7 +137,8 @@ namespace Triangle_Scalene{
                         //interfaceUI.CenterText("Appuyez sur une touche");
                         //interfaceUI.WaitKeys();
                 } //fin for each Player list pioche
-                    if (dicoPlayers.Keys.Count()==0 ){ 
+                if (GetGameStatement()){
+                    //return;
                     // if (Listgagnejun.Count()+Listgagnejdeux.Count() > 19 && ListeGardeCarte.Count() == 0){ 
                         Console.WriteLine("Attention Le jeu s'arrete !!!");
                         PlayerChoice = false;
@@ -304,6 +305,17 @@ namespace Triangle_Scalene{
                 
             }
         }
-        } //fin de fonction
+
+        bool GetGameStatement(){
+            bool isGameOver = false;
+            foreach(Player player in this.DictPlayers.Keys){
+                if (player.listPioche.Count() == 0){
+                    isGameOver = true;
+                }
+            }
+            return isGameOver;
+        }
+
+    } //fin de classe
        
 } // Fin de namespace
