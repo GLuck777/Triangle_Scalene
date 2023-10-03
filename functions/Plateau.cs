@@ -177,6 +177,7 @@ namespace Triangle_Scalene{
         List<Triangle> ListCimetiere, 
         string infoTour, 
         bool PlayerChoice){
+             Program p = new Program();
             if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
                     string deux;
@@ -285,6 +286,7 @@ namespace Triangle_Scalene{
                                     ListeGardeCarte.Add(CarteJoueurUn);
                                     //
                                     this.interfaceUI.WriteLog(" Joueur 1: "+ un +" a utilsé [Exil] pour exiler la carte adverse !", infoTour); // ici 6
+                                    interfaceUI.CenterText("Carte Exilée: "+ CarteJoueurDeux + "nombre cartes: "  + ListCimetiere.Count());
                                     //
                                 }
                                 if (CarteJoueurDeux._Effect == "Exil"){
@@ -292,6 +294,8 @@ namespace Triangle_Scalene{
                                     ListeGardeCarte.Add(CarteJoueurDeux);
                                     //LOG//
                                     this.interfaceUI.WriteLog(" Joueur 2: "+ deux +" a utilsé [Exil] pour exiler la carte adverse !", infoTour); // ici 6
+                                    interfaceUI.CenterText("Carte Exilée: "+ CarteJoueurUn  + "nombre cartes: "+ ListCimetiere.Count());
+                                    
                                     //
                                 }
                             } else {
@@ -307,6 +311,10 @@ namespace Triangle_Scalene{
                             "\n\t\t\t\t\tJoueur 1: "+ un+" "+Listgagnejun.Count()+
                             "\n\t\t\t\t\tjoueur 2: " + deux+" "+ Listgagnejdeux.Count()+
                             "\n\t\t\t\t\tLa liste qui garde les cartes: " + ListeGardeCarte.Count(), infoTour); // ici 5
+                            if ((CarteJoueurUn._Effect == "Exil") || (CarteJoueurDeux._Effect == "Exil")){
+                                this.interfaceUI.WriteLog("\n\t\t\t\t\tCarte mise au cimtiere: "+ListCimetiere.Count(), infoTour);
+                            }
+                            
                             //
                             interfaceUI.WaitKeys();
                         }
