@@ -71,25 +71,25 @@ namespace Triangle_Scalene{
         }
 
 
-        public void DrawCase(InterfaceUI interfaceUI=null){
-            /*
-                Cette méthode est appelé pour dessiner le tableau de selection de carte.
-                
-                Pour afficher une carte (un élément de la liste), deux boucles for seront utilisé:
-                    Une première pour les colonnes; 
-                    Une seconde pour les cellules ou lignes,
-                        ATTENTION:Celle-ci affiche la ligne par lignes, c'est à dire qu'elle itère
-                        sur une hauteur données de la carte
+            
+        /*Cette méthode est appelé pour dessiner le tableau de selection de carte.
+        
+        Pour afficher une carte (un élément de la liste), deux boucles for seront utilisé:
+            Une première pour les colonnes; 
+            Une seconde pour les cellules ou lignes,
+                ATTENTION:Celle-ci affiche la ligne par lignes, c'est à dire qu'elle itère
+                sur une hauteur données de la carte
 
-                Pour l'affichage d'une ligne (boucle finale) à la fin de l'itération:
-                    Les espaces pour séparer chacune des cartes sont mis   
-            */
+        Pour l'affichage d'une ligne (boucle finale) à la fin de l'itération:
+            Les espaces pour séparer chacune des cartes sont mis   */
+        //Faut faire en sorte que cette itération se fasse sur plusieurs étages,
+        //Sans la première boucle les trois premières colonnes de la ligne 1 sont bien affiché
+        //Peut-être que la division (10/7) est (10/5)
+            
+        public void DrawCase(InterfaceUI interfaceUI=null){
             Console.Clear();
             ushort indexCard = 0;
             string line;
-            //Faut faire en sorte que cette itération se fasse sur plusieurs étages,
-            //Sans la première boucle les trois premières colonnes de la ligne 1 sont bien affiché
-            //Peut-être que la division (10/7) est (10/5)
             for (int etage =0; etage <  10*7; etage+=7){
                 line = this.GetLine(indexCard);
                 indexCard += 3;
@@ -100,9 +100,6 @@ namespace Triangle_Scalene{
         }
     
         public void UpdateCard(Triangle cartejoueur){
-            
-        
-            
             Console.WriteLine(cartejoueur._Name);
             //Aperçu de la carte choisie
             Console.WriteLine("________________________________");

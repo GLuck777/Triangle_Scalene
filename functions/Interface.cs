@@ -351,8 +351,9 @@ namespace Triangle_Scalene
             InterfaceUI interfaceUI = new InterfaceUI();
             Triangle CarteJoueurUn;
             Triangle CarteJoueurDeux;
-            String Newinput;
+            string Newinput;
             do {
+                // Console.Write("Newinput? ");
                Newinput = Console.ReadLine();
             } while (Newinput == null);
             
@@ -360,10 +361,13 @@ namespace Triangle_Scalene
             try {
                 Int32 PlayerCard; 
                 PlayerCard = Int16.Parse(Newinput);
+                // PlayerCard = Newinput;
+
                 //Matos de débugage
                 //Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
                 if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
                     if (player._Player == "Player 1") { //Player 1
+
                     Console.WriteLine("Cher "+player.Name);
                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
 
@@ -380,7 +384,7 @@ namespace Triangle_Scalene
                     Console.Clear(); //test
                     return CarteJoueurUn;
                     } else { //Player 2
-
+                
                     Console.WriteLine("Cher "+player.Name);
                     Console.WriteLine("vous avez choisi la carte "+PlayerCard);
 
@@ -397,9 +401,12 @@ namespace Triangle_Scalene
                     return CarteJoueurDeux;
                     }
                 } else {
-                    SelectionCard(player);
-                }
-            } catch {
+                    Console.WriteLine("Mauvaise touche, 0 n'esiste pas");
+                    Thread.Sleep(1*1000);
+                    Console.Clear(); //test
+                    //  SelectionCard(player);
+                 }
+            } catch { //pour des lettres ou autres informations arrive dans le catch
                 Console.WriteLine("Bad try!");
             }
             return SelectionCard(player);
