@@ -176,6 +176,27 @@ namespace Triangle_Scalene
                 return "P2"; 
             }
             if ((CarteJoueurUn._Number > CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
+                /*Idee future faire un analyse des carte remportées pour verifier si la carte.Effect "Cheval_de_troie" 
+                est presente dans lot des cartes gagné ce tour ou dans la liste Gardecarte*/
+                //#cadeau empoisonné
+                switch (CarteJoueurUn._Effect) {
+                    case "Cheval_de_troie": 
+                        ec.Cheval_de_troie(CarteJoueurUn, joueur1, joueur2);
+                        ActiveCardA = 3;
+                        Console.WriteLine(ActiveCardA);
+                        break;
+                    default:
+                        break;
+                }
+                switch (CarteJoueurDeux._Effect) {
+                    case "Cheval_de_troie": 
+                        ec.Cheval_de_troie(CarteJoueurDeux, joueur1, joueur2);
+                        ActiveCardB = 3;
+                        Console.WriteLine(ActiveCardB);
+                        break;
+                    default:
+                        break;
+                }
                 return "P1";
             } 
             if ((CarteJoueurUn._Number < CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
@@ -200,12 +221,6 @@ namespace Triangle_Scalene
                     Console.WriteLine("Activation Grande Revolution "+ActiveCardA);
                     return "P3";
                     // break;
-
-                    case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(joueur1, joueur2);
-                    ActiveCardA = 3;
-                    Console.WriteLine(ActiveCardA);
-                    break;
 
                     case "Exil": 
                     ec.Exil(CarteJoueurUn._Name, CarteJoueurDeux._Name);
@@ -257,11 +272,6 @@ namespace Triangle_Scalene
                     Console.WriteLine("Activation Grande Revolution "+ActiveCardB);
                     return "P3";
                     // break;
-                    case "Cheval_de_troie": 
-                    ec.Cheval_de_troie(joueur1, joueur2);
-                    ActiveCardB = 3;
-                    Console.WriteLine(ActiveCardB);
-                    break;
                     case "Exil": 
                     ec.Exil(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     ActiveCardB = 4;
