@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
+//using System.Security.Cryptography;
 
 namespace Triangle_Scalene{
     class Plateau{
@@ -177,7 +178,9 @@ namespace Triangle_Scalene{
         List<Triangle> ListCimetiere, 
         string infoTour, 
         bool PlayerChoice){
-             Program p = new Program();
+            Program p = new Program();
+            EffectCard ec = new EffectCard();
+
             if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
                     string deux;
@@ -188,11 +191,25 @@ namespace Triangle_Scalene{
                             this.interfaceUI.WriteLog("Le joueur 1 "+ un+" a gagné cette manche!");
                             if (ListeGardeCarte.Count() > 0){
                                 foreach (Triangle garde in ListeGardeCarte) {
+                                    if (garde._Effect == "cheval de troie"){
+                                        bool cheval = ec.Cheval_de_troie(garde, listPlayer[0], listPlayer[1]);
+                                        Listgagnejun.Add(garde);
+                                    } else {
                                     Listgagnejun.Add(garde);
+                                    }
                                 }
                                     ListeGardeCarte.Clear();
                             }
                             
+                            if (CarteJoueurUn._Effect == "Cheval de troie"){
+                                bool cheval = ec.Cheval_de_troie(CarteJoueurUn, listPlayer[0], listPlayer[1]);
+                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 1: "+ un+" la moitié de ses cartes ont été redistribué à "+ deux);
+                            }
+                            if (CarteJoueurDeux._Effect == "Cheval de troie"){
+                                bool cheval = ec.Cheval_de_troie(CarteJoueurDeux, listPlayer[0], listPlayer[1]);
+                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 2: "+ deux+" la moitié de ses cartes ont été redistribué à "+ un);
+
+                            }
                             Listgagnejun.Add(CarteJoueurUn);
                             Listgagnejun.Add(CarteJoueurDeux);
                             //Log (fin de confrontation)

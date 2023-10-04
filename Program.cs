@@ -180,7 +180,7 @@ namespace Triangle_Scalene
                 est presente dans lot des cartes gagné ce tour ou dans la liste Gardecarte*/
                 //#cadeau empoisonné
                 switch (CarteJoueurUn._Effect) {
-                    case "Cheval_de_troie": 
+                    case "Cheval de troie": 
                         ec.Cheval_de_troie(CarteJoueurUn, joueur1, joueur2);
                         ActiveCardA = 3;
                         Console.WriteLine(ActiveCardA);
@@ -189,7 +189,7 @@ namespace Triangle_Scalene
                         break;
                 }
                 switch (CarteJoueurDeux._Effect) {
-                    case "Cheval_de_troie": 
+                    case "Cheval de troie": 
                         ec.Cheval_de_troie(CarteJoueurDeux, joueur1, joueur2);
                         ActiveCardB = 3;
                         Console.WriteLine(ActiveCardB);
