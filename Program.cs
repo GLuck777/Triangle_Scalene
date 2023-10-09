@@ -178,7 +178,7 @@ namespace Triangle_Scalene
             if ((CarteJoueurUn._Number > CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
                 /*Idee future faire un analyse des carte remportées pour verifier si la carte.Effect "Cheval_de_troie" 
                 est presente dans lot des cartes gagné ce tour ou dans la liste Gardecarte*/
-                
+
                 return "P1";
             } 
             if ((CarteJoueurUn._Number < CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){

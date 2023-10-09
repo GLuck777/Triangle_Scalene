@@ -10,7 +10,7 @@ namespace Triangle_Scalene{
         //     this.plateau = p;
         // }
 
-        public bool Cheval_de_troie(Triangle carte, Player PossesseurCarte){
+        public bool Cheval_de_troie(Triangle carte, Player joueur1, Player joueur2){
             Console.WriteLine("Cette carte à activé son effet !", carte._Name, "Liste de carte visible", p.ListPlayers);
             return true;
             /*

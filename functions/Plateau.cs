@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
+//using System.Security.Cryptography;
 
 namespace Triangle_Scalene{
     class Plateau{
@@ -177,8 +178,8 @@ namespace Triangle_Scalene{
         List<Triangle> ListCimetiere, 
         string infoTour, 
         bool PlayerChoice){
-             Program p = new Program();
-             EffectCard ec = new EffectCard();
+            Program p = new Program();
+            EffectCard ec = new EffectCard();
             bool Cheval = false;
             if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
@@ -195,6 +196,15 @@ namespace Triangle_Scalene{
                                     ListeGardeCarte.Clear();
                             }
                             
+                            if (CarteJoueurUn._Effect == "Cheval de troie"){
+                                Cheval = ec.Cheval_de_troie(CarteJoueurUn, listPlayer[0], listPlayer[1]);
+                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 1: "+ un+" la moitié de ses cartes ont été redistribué à "+ deux);
+                            }
+                            if (CarteJoueurDeux._Effect == "Cheval de troie"){
+                                Cheval = ec.Cheval_de_troie(CarteJoueurDeux, listPlayer[0], listPlayer[1]);
+                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 2: "+ deux+" la moitié de ses cartes ont été redistribué à "+ un);
+
+                            }
                             Listgagnejun.Add(CarteJoueurUn);
                             Listgagnejun.Add(CarteJoueurDeux);
                             
