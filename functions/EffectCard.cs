@@ -61,9 +61,11 @@ namespace Triangle_Scalene{
                 index += 1*Convert.ToInt32(!isFound);
             }
             // Console.WriteLine("Removeateffectue", index);
-            for (int i = 0; i <= list1.Count; i++) {
-            list1.RemoveAt(0);
-            }
+            // Console.WriteLine("longueur de list1:", list1.Count().ToString());
+            // for (int i = 0; i <= list1.Count; i++) {
+            //     list1.RemoveAt(0);
+            // }
+            list1.Clear();
 
 
             isFound = false;
@@ -80,9 +82,11 @@ namespace Triangle_Scalene{
                 index += 1*Convert.ToInt32(!isFound);
             }
             // Console.WriteLine("Removeateffectue", index);
-            for (int i = 0; i <= list2.Count; i++) {
-            list2.RemoveAt(0);
-            }
+            // Console.WriteLine("longueur de list2:", list2.Count().ToString());
+            // for (int i = 0; i < list2.Count; i++) {
+            // list2.RemoveAt(0);
+            // }
+            list2.Clear();
 
             // joueur2.GetSet();
         }
