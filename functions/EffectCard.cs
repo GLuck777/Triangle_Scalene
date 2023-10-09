@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Triangle_Scalene{
@@ -10,8 +11,16 @@ namespace Triangle_Scalene{
         //     this.plateau = p;
         // }
 
-        public bool Cheval_de_troie(Triangle carteCheval, Player joueurTouche){
-            Console.WriteLine("Cette carte à activé son effet !", carteCheval._Name, "Liste de carte visible", p.ListPlayers);
+        public bool Cheval_de_troie(Triangle carteCheval, Player joueurTouche, List<Triangle> listquiperd, List<Triangle> listquigagne){
+            Console.WriteLine("Cette carte à activé son effet [Cheval de troie]!", carteCheval._Name, "Liste de carte visible", p.ListPlayers);
+            Console.WriteLine(listquiperd.Count);
+            for (int i = 0; i < listquiperd.Count/2; i++){
+                listquigagne.Add(listquiperd[i]);
+            }
+            for (int i = 0; i < listquiperd.Count/2; i++){
+                listquiperd.RemoveAt(0);
+            }
+            //faire un clear pour la carte donnee à l'adversaire (dans un for peut etre)
             return true;
             /*
                 La personne qui remporte cette carte perd la moitié de sa liste carte gagné et

@@ -48,6 +48,7 @@ namespace Triangle_Scalene
 
         public List<Triangle> listPioche = new List<Triangle>();
 
+        //public List<Triangle> listGagneCarte = new List<Triangle>(); --> Ajout possible pour le rendre optimisé
         // Triangle cardBonus;
 
         public  String GetSet(){

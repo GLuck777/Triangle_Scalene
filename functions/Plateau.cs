@@ -195,26 +195,19 @@ namespace Triangle_Scalene{
                                 }
                                     ListeGardeCarte.Clear();
                             }
-                            
-                            if (CarteJoueurUn._Effect == "Cheval de troie"){
-                                Cheval = ec.Cheval_de_troie(CarteJoueurUn, listPlayer[0], listPlayer[1]);
-                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 1: "+ un+" la moitié de ses cartes ont été redistribué à "+ deux);
-                            }
-                            if (CarteJoueurDeux._Effect == "Cheval de troie"){
-                                Cheval = ec.Cheval_de_troie(CarteJoueurDeux, listPlayer[0], listPlayer[1]);
-                            this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 2: "+ deux+" la moitié de ses cartes ont été redistribué à "+ un);
 
-                            }
+
+                            
                             Listgagnejun.Add(CarteJoueurUn);
                             Listgagnejun.Add(CarteJoueurDeux);
                             
                             ///////////////////////////////////////////////////////
                             // Cheval de troie en cours pour joueur 1
-                            if (CarteJoueurDeux._Effect == "Cheval de troie") { 
-                            //activation de l'effet cheval de troie
+                            // Listgagnejun qui va perdre la moitié de ses cartes 
+                            if (CarteJoueurDeux._Effect == "Cheval de troie"){
+                                ec.Cheval_de_troie(CarteJoueurUn, listPlayer[0], Listgagnejun, Listgagnejdeux); // première list est debité vers la deuxieme
                                 Cheval = true;
-                                ec.Cheval_de_troie(CarteJoueurDeux, listPlayer[0]);
-                                // Listgagnejun qui va perdre la moitié de ses cartes 
+                            // this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 2: "+ deux+" la moitié de ses cartes ont été redistribué à "+ un);
                             }
                             ///////////////////////////////////////////////////////
 
@@ -248,11 +241,11 @@ namespace Triangle_Scalene{
 
                             ///////////////////////////////////////////////////////
                             // Cheval de troie en cours pour joueur 2
-                            if (CarteJoueurUn._Effect == "Cheval de troie") { 
-                            //activation de l'effet cheval de troie
+                            // Listgagnejdeux qui va perdre la moitié de ses cartes 
+                            if (CarteJoueurUn._Effect == "Cheval de troie"){
+                                ec.Cheval_de_troie(CarteJoueurUn, listPlayer[1], Listgagnejdeux, Listgagnejun); // première list est debité vers la deuxieme
+                                // this.interfaceUI.CenterText("L'effet [Cheval de troie] a été activé pour le joueur 2: "+ deux+" la moitié de ses cartes ont été redistribué à "+ un);
                                 Cheval = true;
-                                ec.Cheval_de_troie(CarteJoueurUn, listPlayer[1]);
-                                // Listgagnejdeux qui va perdre la moitié de ses cartes 
                             }
                             ///////////////////////////////////////////////////////
 
