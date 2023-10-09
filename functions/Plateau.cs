@@ -222,8 +222,8 @@ namespace Triangle_Scalene{
                             //Log (fin de confrontation)
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
                             if (Cheval) {
-                                interfaceUI.CenterText("Oh non! le joueur 1"+un+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
-                                this.interfaceUI.WriteLog("Oh non! le joueur 1"+un+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
+                                interfaceUI.CenterText("Oh non! le joueur 1 "+un+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                this.interfaceUI.WriteLog("Oh non! le joueur 1 "+un+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
                             }
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("La liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
@@ -257,8 +257,8 @@ namespace Triangle_Scalene{
                             ///////////////////////////////////////////////////////
 
                             if (Cheval) {
-                                interfaceUI.CenterText("Oh non! le joueur 2"+deux+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
-                                this.interfaceUI.WriteLog("Oh non! le joueur 2"+deux+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
+                                interfaceUI.CenterText("Oh non! le joueur 2 "+deux+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                this.interfaceUI.WriteLog("Oh non! le joueur 2 "+deux+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
                             }
 
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
