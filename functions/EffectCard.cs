@@ -13,11 +13,11 @@ namespace Triangle_Scalene{
 
         public bool Cheval_de_troie(Triangle carteCheval, Player joueurTouche, List<Triangle> listquiperd, List<Triangle> listquigagne){
             Console.WriteLine("Cette carte à activé son effet [Cheval de troie]!", carteCheval._Name, "Liste de carte visible", p.ListPlayers);
-            Console.WriteLine(listquiperd.Count);
+            // Console.WriteLine(listquiperd.Count);
             for (int i = 0; i < listquiperd.Count/2; i++){
                 listquigagne.Add(listquiperd[i]);
             }
-            for (int i = 0; i < listquiperd.Count/2; i++){
+            for (int i = 0; i <= listquiperd.Count/2; i++){
                 listquiperd.RemoveAt(0);
             }
             //faire un clear pour la carte donnee à l'adversaire (dans un for peut etre)
@@ -60,8 +60,10 @@ namespace Triangle_Scalene{
                 }
                 index += 1*Convert.ToInt32(!isFound);
             }
-            Console.WriteLine("Removeateffectue", index);
-            list1.RemoveAt(index+1);
+            // Console.WriteLine("Removeateffectue", index);
+            for (int i = 0; i <= list1.Count; i++) {
+            list1.RemoveAt(0);
+            }
 
 
             isFound = false;
@@ -77,8 +79,10 @@ namespace Triangle_Scalene{
                 }
                 index += 1*Convert.ToInt32(!isFound);
             }
-            Console.WriteLine("Removeateffectue", index);
-            list2.RemoveAt(index+1);
+            // Console.WriteLine("Removeateffectue", index);
+            for (int i = 0; i <= list2.Count; i++) {
+            list2.RemoveAt(0);
+            }
 
             // joueur2.GetSet();
         }
