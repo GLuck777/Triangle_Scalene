@@ -178,6 +178,8 @@ namespace Triangle_Scalene{
         string infoTour, 
         bool PlayerChoice){
              Program p = new Program();
+             EffectCard ec = new EffectCard();
+            bool Cheval = false;
             if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
                     string deux;
@@ -195,8 +197,24 @@ namespace Triangle_Scalene{
                             
                             Listgagnejun.Add(CarteJoueurUn);
                             Listgagnejun.Add(CarteJoueurDeux);
+                            
+                            ///////////////////////////////////////////////////////
+                            // Cheval de troie en cours pour joueur 1
+                            if (CarteJoueurDeux._Effect == "Cheval de troie") { 
+                            //activation de l'effet cheval de troie
+                                Cheval = true;
+                                ec.Cheval_de_troie(CarteJoueurDeux, listPlayer[0]);
+                                // Listgagnejun qui va perdre la moitié de ses cartes 
+                            }
+                            ///////////////////////////////////////////////////////
+
+
                             //Log (fin de confrontation)
                             Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
+                            if (Cheval) {
+                                interfaceUI.CenterText("Oh non! le joueur 1"+un+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                this.interfaceUI.WriteLog("Oh non! le joueur 1"+un+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
+                            }
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("La liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
@@ -217,7 +235,24 @@ namespace Triangle_Scalene{
                             }
                             Listgagnejdeux.Add(CarteJoueurUn);
                             Listgagnejdeux.Add(CarteJoueurDeux);
+
+                            ///////////////////////////////////////////////////////
+                            // Cheval de troie en cours pour joueur 2
+                            if (CarteJoueurUn._Effect == "Cheval de troie") { 
+                            //activation de l'effet cheval de troie
+                                Cheval = true;
+                                ec.Cheval_de_troie(CarteJoueurUn, listPlayer[1]);
+                                // Listgagnejdeux qui va perdre la moitié de ses cartes 
+                            }
+                            ///////////////////////////////////////////////////////
+
+                            if (Cheval) {
+                                interfaceUI.CenterText("Oh non! le joueur 2"+deux+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                this.interfaceUI.WriteLog("Oh non! le joueur 2"+deux+ "s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
+                            }
+
                             Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
+
 
                             interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejun.Count());
                             interfaceUI.CenterText("La nouvelle liste du joueur 2: "+ deux+" " + Listgagnejdeux.Count());
@@ -302,6 +337,7 @@ namespace Triangle_Scalene{
                                 ListeGardeCarte.Add(CarteJoueurUn);
                                 ListeGardeCarte.Add(CarteJoueurDeux);
                             }
+                            
                             
                             interfaceUI.CenterText("La liste qui garde les cartes: " + ListeGardeCarte.Count());
                             interfaceUI.CenterText("Liste du joueur 1: "+ un+" " + Listgagnejun.Count());

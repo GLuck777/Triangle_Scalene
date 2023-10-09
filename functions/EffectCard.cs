@@ -10,8 +10,9 @@ namespace Triangle_Scalene{
         //     this.plateau = p;
         // }
 
-        public void Cheval_de_troie(Triangle carte, Player joueur1, Player joueur2){
+        public bool Cheval_de_troie(Triangle carte, Player PossesseurCarte){
             Console.WriteLine("Cette carte à activé son effet !", carte._Name, "Liste de carte visible", p.ListPlayers);
+            return true;
             /*
                 La personne qui remporte cette carte perd la moitié de sa liste carte gagné et
                 les cartes perdus sont transferée vers l'autre joueur (si cdt appartient au
