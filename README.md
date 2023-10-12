@@ -32,5 +32,13 @@ SetB appelée "la main faible"
     Les paysans peuvent prendre avantage dans le combat selon leurs effets !
     (À savoir que les effets ne peuvent être activés que dans une égalité de cartes, sauf exception de Hero Invincible et Cheval de Troie)
 
-
-
+**Effets de Carte**
+    Croissance Explosive = Accroît le nombre de Carte Gagnées
+    Grande Revolution = Récupère la carte Bonus
+    Cheval de Troie = Récupère la moitié des cartes gagnées de l'adversaire
+    Exil = Exil une carte de la main de l'adversaire
+    Réinitialisation = Prend les cartes gagnée de l'adversaire et le remets dans les mains correspondantes
+    Hero invincible = Peut vaincre toutes les cartes
+    Roi = Si contre Prince, gagne.
+    Reine = Si contre Roi, gagne.
+    Prince = Si contre Reine, gagne.
