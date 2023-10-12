@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using System.Reflection.Metadata;
 using System.Threading;
+using Triangle_Scalene.functions;
+using System.Drawing;
 //using System.Security.Cryptography;
 
 namespace Triangle_Scalene{
@@ -56,7 +58,6 @@ namespace Triangle_Scalene{
            
             //Listgagne<Triangle>
             Triangle Bonus = p.cardBonus;
-            Console.WriteLine("test2: "+ Bonus);
             List<Triangle> Listgagnejun = new List<Triangle>() {};
             List<Triangle> Listgagnejdeux = new List<Triangle>() {};
             List<Triangle> ListeGardeCarte = new List<Triangle>() {};
@@ -158,7 +159,9 @@ namespace Triangle_Scalene{
                         // Thread.Sleep(60*10);
                         this.interfaceUI.WriteLog("fermeture du logiciel",infoTour); // ici 9
                         Thread.Sleep(60*60);
-                        System.Environment.Exit(0);
+                        
+                        p.Run(p);
+                        // System.Environment.Exit(0);
                     } else {
                         // Console.WriteLine("Continue le programme");
                         this.interfaceUI.WriteLog("Fin du tour\n", infoTour); // ici 7
@@ -180,6 +183,7 @@ namespace Triangle_Scalene{
         bool PlayerChoice){
             Program p = new Program();
             EffectCard ec = new EffectCard();
+            // ColorLine cL = new ColorLine();
             bool Cheval = false;
             if (CarteJoueurUn.Utilise && CarteJoueurDeux.Utilise){    
                     string un;
@@ -213,9 +217,9 @@ namespace Triangle_Scalene{
 
 
                             //Log (fin de confrontation)
-                            Console.WriteLine("Le joueur1 a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !");
+                            interfaceUI.CenterText(ColorLine.Color_Orange+ColorLine.Text_Bold+"Le joueur 1 "+ un +" a gagné contre " +CarteJoueurDeux._Name + " grace à "+ CarteJoueurUn._Name+" !"+ColorLine.ResetBold+ColorLine.ResetAll);
                             if (Cheval) {
-                                interfaceUI.CenterText("Oh non! le joueur 1 "+un+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                interfaceUI.CenterText(ColorLine.Color_Yellow+ColorLine.ResetItalic+"Oh non! le joueur 1 "+un+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés"+ColorLine.ResetItalic+ColorLine.ResetAll);
                                 this.interfaceUI.WriteLog("Oh non! le joueur 1 "+un+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
                             }
                             interfaceUI.CenterText("La nouvelle liste du joueur 1: "+ un+" " + Listgagnejun.Count());
@@ -250,11 +254,11 @@ namespace Triangle_Scalene{
                             ///////////////////////////////////////////////////////
 
                             if (Cheval) {
-                                interfaceUI.CenterText("Oh non! le joueur 2 "+deux+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés");
+                                interfaceUI.CenterText(ColorLine.Color_Yellow+ColorLine.ResetItalic+"Oh non! le joueur 2 "+deux+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés"+ColorLine.ResetItalic+ColorLine.ResetAll);
                                 this.interfaceUI.WriteLog("Oh non! le joueur 2 "+deux+ " s'est fait avoir par un cheval de troie !, il va perdre la moitié des cartes gagnés", infoTour);
                             }
 
-                            Console.WriteLine("Le joueur2 a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !");
+                            interfaceUI.CenterText(ColorLine.Color_Cyan+ColorLine.Text_Bold+"Le joueur 2 "+ deux +" a gagné contre " +CarteJoueurUn._Name + " grace à "+ CarteJoueurDeux._Name+" !"+ColorLine.ResetBold+ColorLine.ResetAll);
 
 
                             interfaceUI.CenterText("La liste du joueur 1: "+ un+" " + Listgagnejun.Count());
@@ -269,7 +273,7 @@ namespace Triangle_Scalene{
                             interfaceUI.WaitKeys();
                         } else {
                             this.interfaceUI.WriteLog("Aucun joueur n'a remporté cette manche!");
-                            Console.WriteLine("Egalité entre les cartes");
+                            interfaceUI.CenterText(ColorLine.Color_Red+ColorLine.Text_Bold+"Egalité entre les cartes: "+ CarteJoueurUn._Name +" et "+ CarteJoueurDeux._Name+ColorLine.ResetBold+ColorLine.ResetAll);
                             // Effet de carte Grande Revoluton, Récupère la carte BONUS
                             if (CarteJoueurUn._Effect == "Grande Revolution"){
                                 // Si la carte Bonus existe alors Add.(Bonus)

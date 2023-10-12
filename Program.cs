@@ -31,7 +31,7 @@ namespace Triangle_Scalene
         // fonction utilisé pour débuter l'interface UI se trouvant dans Interface.cs
         // Début du code...
         // Avec cette fonction on obtient le 2 pour générer les personnages 
-        void Run(Program p){
+        public void Run(Program p){
             this.interfaceUI.IntroMessage();
             this.interfaceUI.WriteLog("Logiciel démarré");
             programObject = p;

@@ -14,4 +14,23 @@ Les Sets sont donnés au hazard en début de partie.
 SetA appelée "la main forte"
 SetB appelée "la main faible"
 
+**Puissance des Cartes :** 
+*Au sein de la Famille Royale:*
+    prince <-- roi  
+    Roi <-- Reine
+    reine <-- Prince
+
+    Famille royale <-- Assassin
+    Assassin <-- Chevalier
+    Chevalier <-- Famille Royale
+
+    Paysans <-- Famille royale
+    Paysans <-- Chevalier
+    Paysans /--\ Paysans
+    Paysans /--\ Assassin
+
+    Les paysans peuvent prendre avantage dans le combat selon leurs effets !
+    (À savoir que les effets ne peuvent être activés que dans une égalité de cartes, sauf exception de Hero Invincible et Cheval de Troie)
+
+
 
