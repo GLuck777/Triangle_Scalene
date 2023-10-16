@@ -5,6 +5,7 @@ using System.Threading;
 using System.Collections;
 using System.IO.Enumeration;
 using Microsoft.VisualBasic;
+using Triangle_Scalene.functions;
 
 
 /*
@@ -33,6 +34,8 @@ namespace Triangle_Scalene
                 Console.WriteLine();
                 this.CenterText("[2]-Démarrer une partie (2 joueurs obliger)", LeftPosMessage);
                 Console.WriteLine();
+                this.CenterText("[3]-Voir les relations entre les cartes (effets)", LeftPosMessage);
+                Console.WriteLine();
                 this.CenterText("[0]-Quitter", LeftPosMessage);
                 // String input = Console.ReadLine();
                 string input;
@@ -59,6 +62,11 @@ namespace Triangle_Scalene
                             return PlayerNumber;
                             // PlayerNumber = -1;
                             // break;
+                        case 3:
+                            Console.Clear();
+                            this.ShowCardsEffect();
+                            PlayerNumber = -1;
+                            break;
                         default:
                             Console.WriteLine("Invalid input...");
                             Thread.Sleep(60*10);
@@ -72,6 +80,68 @@ namespace Triangle_Scalene
                 }
             }
             return PlayerNumber;
+        }
+
+        public void ShowCardsEffect(){
+            /*
+                Montre les effets de carte
+            */
+            List<string> listLines = new List<string>(){
+                "**Puissance des Cartes :**\n",
+                "*Au sein de la Famille Royale:*",
+                    "prince <-- roi  ",
+                    "Roi <-- Reine",
+                    "reine <-- Prince\n",
+                    "Famille royale <-- Assassin",
+                    "Assassin <-- Chevalier",
+                    "Chevalier <-- Famille Royale\n",
+                    "Paysans <-- Famille royale",
+                    "Paysans <-- Chevalier",
+                    "Paysans /--\\ Paysans",
+                    "Paysans /--\\ Assassin\n",
+                    "Les paysans peuvent prendre avantage dans le combat selon leurs effets !",
+                    "(À savoir que les effets ne peuvent être activés que dans une égalité de cartes, sauf exception de Hero Invincible et Cheval de Troie)\n",
+                    "**Effets de Carte**\n",
+                    "Croissance Explosive = Accroît le nombre de Carte Gagnées",
+                    "Grande Revolution = Récupère la carte Bonus",
+                    "Cheval de Troie = Récupère la moitié des cartes gagnées de l'adversaire",
+                    "Exil = Exil une carte de la main de l'adversaire",
+                    "Réinitialisation = Prend les cartes gagnée de l'adversaire et le remets dans les mains correspondantes",
+                    "Hero invincible = Peut vaincre toutes les cartes",
+                    "Roi = Si contre Prince, gagne.",
+                    "Reine = Si contre Roi, gagne.",
+                    "Prince = Si contre Reine, gagne."
+            };
+
+            const int maximumFormtSpecial = 15; //15
+            int countLine = 0;
+
+            foreach(string line in listLines){
+                if (countLine < maximumFormtSpecial){
+                    if (countLine == 0){
+                        Console.Write(ColorLine.Color_Green);
+                        this.CenterText(line);
+                        Console.Write(ColorLine.ResetAll);
+
+                    } else if (countLine == 14) {
+                        Console.Write(ColorLine.Color_Green);
+                        this.CenterText(line);
+                        Console.Write(ColorLine.ResetAll);
+
+                    } else {
+                        this.CenterText(line, 40);
+                    }
+                }
+                countLine++;
+                /*
+                if (iLines != listLines.Count()){
+                    Console.WriteLine();
+                }*/
+            }
+            string s = "Appuyez sur n'importe quel touche pour retourner sur le menu";
+            Console.WriteLine();
+            this.CenterText(s);
+            this.WaitKeys();
         }
 
         public void ShowGameLog(){
