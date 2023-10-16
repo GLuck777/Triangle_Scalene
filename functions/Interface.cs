@@ -119,18 +119,21 @@ namespace Triangle_Scalene
             foreach(string line in listLines){
                 if (countLine < maximumFormtSpecial){
                     if (countLine == 0){
-                        Console.Write(ColorLine.Color_Green);
+
+                        Console.Write(ColorLine.Color_Green+ColorLine.Text_Bold);
                         this.CenterText(line);
-                        Console.Write(ColorLine.ResetAll);
+                        Console.Write(ColorLine.ResetBold+ColorLine.ResetAll);
 
                     } else if (countLine == 14) {
-                        Console.Write(ColorLine.Color_Green);
+                        Console.Write(ColorLine.Color_Green+ColorLine.Text_Bold);
                         this.CenterText(line);
-                        Console.Write(ColorLine.ResetAll);
+                        Console.Write(ColorLine.ResetBold+ColorLine.ResetAll);
 
                     } else {
-                        this.CenterText(line, 40);
+                        this.CenterText(line);
                     }
+                } else {
+                    this.CenterText(line, 40);
                 }
                 countLine++;
                 /*
