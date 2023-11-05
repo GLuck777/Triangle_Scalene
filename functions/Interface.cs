@@ -300,21 +300,32 @@ namespace Triangle_Scalene
 
         /*Parametrer le nom du Player*/
         public string NomJoueur(){
-            
-            Console.Write("Choisissez votre nom: ");
+            short Number = -1;
+
+            while (Number == -1){
             string NamePlayer;
-            do {
-                NamePlayer = Console.ReadLine();
-            } while (NamePlayer == null);
-            if ((NamePlayer == null) || (NamePlayer.Count() < 3))  {
-                Console.WriteLine("Vous devez inserer au moins 3 Caracteres");
-                Thread.Sleep(60*10);
-                Console.Clear();
-                NomJoueur();
-            }else {
-                return NamePlayer;
+            Console.Write("Choisissez votre nom: ");
+                do {
+                    NamePlayer = Console.ReadLine();
+                } while (NamePlayer == null);
+                try{
+                    switch (NamePlayer.Count()){
+                    case < 3:
+                    Console.WriteLine("Vous devez mettre au moins 3 caractères");
+                    Thread.Sleep(60*10);
+                    Console.Clear();
+                    Number = -1;
+                    break;
+                    default:
+                    Console.WriteLine("good input...");
+                    Console.Clear();
+                    return NamePlayer;
+                    }
+                }catch {
+                    this.OnError("Une erreur s'est produite");
+                }
             }
-            return NomJoueur();
+            return "Default";
         }
 
         public void IntroMessage(){
