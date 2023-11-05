@@ -110,13 +110,13 @@ namespace Triangle_Scalene{
                                 Console.Clear();
                                 PlayerChoice = false;
                                 if (!PlayerChoice ){
-                                    Table t = new Table();
-                                    t.CreateCase(player.listPioche);
-                                    t.DrawCase(interfaceUI);
+                                    // Table t = new Table();
+                                    // t.CreateCase(player.listPioche);
+                                    // t.DrawCase(interfaceUI);
 
                                         
-                                        interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
-                                        interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
+                                    //     interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
+                                    //     interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
                                         if (player._Player == "Player 1") {
                                             CarteJoueurUn = interfaceUI.SelectionCard(player);
                                             this.interfaceUI.WriteLog("Joueur1: "+ player.Name+" choisit sa carte : "+CarteJoueurUn._Name, infoTour); //ici 3

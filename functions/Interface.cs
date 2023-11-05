@@ -6,6 +6,7 @@ using System.Collections;
 using System.IO.Enumeration;
 using Microsoft.VisualBasic;
 using Triangle_Scalene.functions;
+using System.Globalization;
 
 
 /*
@@ -433,65 +434,75 @@ namespace Triangle_Scalene
         public Triangle SelectionCard(Player player){
             Table t = new Table();
             InterfaceUI interfaceUI = new InterfaceUI();
+            t.CreateCase(player.listPioche);
             Triangle CarteJoueurUn;
             Triangle CarteJoueurDeux;
             string Newinput;
-            do {
-                // Console.Write("Newinput? ");
-               Newinput = Console.ReadLine();
-            } while (Newinput == null);
-            
+            short Number = -1;
             Console.Clear();
-            try {
-                Int32 PlayerCard; 
-                PlayerCard = Int16.Parse(Newinput);
-                // PlayerCard = Newinput;
-
-                //Matos de débugage
-                //Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
-                if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
-                    if (player._Player == "Player 1") { //Player 1
-
-                    Console.WriteLine("Cher "+player.Name);
-                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
-
-                    CarteJoueurUn = player.listPioche[PlayerCard-1];
-                    CarteJoueurUn.Utilise = true;
-                    // if (!string.IsNullOrEmpty(CarteJoueurUn._Name)){
-                    //     Verifone = true;
-                    // }
-                    player.listPioche.Remove(CarteJoueurUn); // Fonctionne ?
-                    t.UpdateCard(CarteJoueurUn); //NEW
-                    //Fin d'aperçu
-                    Console.WriteLine("Appuyez pour continuer");
-                    interfaceUI.WaitKeys();
-                    Console.Clear(); //test
-                    return CarteJoueurUn;
-                    } else { //Player 2
+            while (Number == -1){
+                Console.Clear(); 
+                t.DrawCase(interfaceUI);                 
+                interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
+                interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
+                do {
+                    // Console.Write("Newinput? ");
+                Newinput = Console.ReadLine();
+                } while (Newinput == null);
                 
-                    Console.WriteLine("Cher "+player.Name);
-                    Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+                Console.Clear();
+                try {
+                    Int32 PlayerCard; 
+                    PlayerCard = Int16.Parse(Newinput);
+                    // PlayerCard = Newinput;
 
-                    CarteJoueurDeux = player.listPioche[PlayerCard-1];
-                    CarteJoueurDeux.Utilise = true;
+                    //Matos de débugage
+                    //Console.WriteLine("Aide à résolution de probleme, \nNom du player: "+ player.Name+" Nombre de carte à sa disposition: "+ player.listPioche.Count());
+                    if (PlayerCard > 0 && PlayerCard <= player.listPioche.Count()){
+                        if (player._Player == "Player 1") { //Player 1
 
-                    // player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
-                    player.listPioche.Remove(CarteJoueurDeux);
-                    t.UpdateCard(CarteJoueurDeux); //NEW
-                    //Fin d'aperçu
-                    Console.WriteLine("Appuyez pour continuer");
-                    interfaceUI.WaitKeys();
-                    Console.Clear(); //test
-                    return CarteJoueurDeux;
+                        Console.WriteLine("Cher "+player.Name);
+                        Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                        CarteJoueurUn = player.listPioche[PlayerCard-1];
+                        CarteJoueurUn.Utilise = true;
+                        // if (!string.IsNullOrEmpty(CarteJoueurUn._Name)){
+                        //     Verifone = true;
+                        // }
+                        player.listPioche.Remove(CarteJoueurUn); // Fonctionne ?
+                        t.UpdateCard(CarteJoueurUn); //NEW
+                        //Fin d'aperçu
+                        Console.WriteLine("Appuyez pour continuer");
+                        interfaceUI.WaitKeys();
+                        Console.Clear(); //test
+                        return CarteJoueurUn;
+                        } else { //Player 2
+                    
+                        Console.WriteLine("Cher "+player.Name);
+                        Console.WriteLine("vous avez choisi la carte "+PlayerCard);
+
+                        CarteJoueurDeux = player.listPioche[PlayerCard-1];
+                        CarteJoueurDeux.Utilise = true;
+
+                        // player.listPioche.Remove(player.listPioche[PlayerCard-1]); // Fonctionne ?
+                        player.listPioche.Remove(CarteJoueurDeux);
+                        t.UpdateCard(CarteJoueurDeux); //NEW
+                        //Fin d'aperçu
+                        Console.WriteLine("Appuyez pour continuer");
+                        interfaceUI.WaitKeys();
+                        Console.Clear(); //test
+                        return CarteJoueurDeux;
+                        }
+                    } else {
+                        Console.WriteLine("Mauvaise touche, 0 n'esiste pas");
+                        Thread.Sleep(1*1000);
+                        Console.Clear(); //test
+                        //  SelectionCard(player);
                     }
-                } else {
-                    Console.WriteLine("Mauvaise touche, 0 n'esiste pas");
-                    Thread.Sleep(1*1000);
-                    Console.Clear(); //test
-                    //  SelectionCard(player);
-                 }
-            } catch { //pour des lettres ou autres informations arrive dans le catch
-                Console.WriteLine("Bad try!");
+                } catch { //pour des lettres ou autres informations arrive dans le catch
+                    Console.WriteLine("Bad try!");
+                    Console.Clear();
+                }
             }
             return SelectionCard(player);
         } //fin de fonction selectionCard
