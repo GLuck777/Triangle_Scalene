@@ -1,5 +1,5 @@
-card_app.csproj
-card_app.sln
+# card_app.csproj
+# card_app.sln
 bin/Debug/net7.0/card_app.deps.json
 bin/Debug/net7.0/card_app.dll
 bin/Debug/net7.0/card_app.exe

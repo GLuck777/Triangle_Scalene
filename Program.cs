@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 // using Triangle_Scalene; // appel du package
 
@@ -29,8 +30,9 @@ namespace Triangle_Scalene
         // fonction utilisé pour débuter l'interface UI se trouvant dans Interface.cs
         // Début du code...
         // Avec cette fonction on obtient le 2 pour générer les personnages 
-        void Run(Program p){
+        public void Run(Program p){
             this.interfaceUI.IntroMessage();
+            this.interfaceUI.WriteLog("Logiciel démarré");
             programObject = p;
             programObject.LoadGameData();
             programObject.PlayGame(p.players);
@@ -44,11 +46,11 @@ namespace Triangle_Scalene
             players.AddPlayer(PLayerNumber, ListCards);
         }
 
-        /*la où fini actuellement notre code (ne comprte pas encore l'appel du Plateau car non-fonctionnel)
+        /*la où fini actuellement notre code (ne comporte pas encore l'appel du Plateau car non-fonctionnel)
         il comporte une fonction ayant pour objectif de montrer les cartes que chaque possède, 
         c'est un moyen de verifier le bon fonctionnement du code jusqu'à present*/
         private void PlayGame(Players players){
-            Plateau plateau = new Plateau();
+            Plateau plateau = new Plateau(this.interfaceUI);
             plateau.LoadPlayers(players.ListPlayers); 
         }
 
@@ -60,20 +62,20 @@ namespace Triangle_Scalene
             //SetA Main Forte
             //Section Famille Royale
             //Roi KILL Prince
-            this.ListCards.Add(new Triangle(nom:"Roi Art", couleur:"jaune", effect:"Roi", description:ExplainEffect("Roi"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Roi Art", couleur:"jaune", effect:"Roi", description:ExplainEffect("Roi"), number:3, set:"A"));
             //Reine KILL Roi
-            this.ListCards.Add(new Triangle(nom:"Reine Gen", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Reine Gen", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:3, set:"A"));
             //Prince Kill Reine
-            this.ListCards.Add(new Triangle(nom:"Prince Port", couleur:"jaune",effect:"Prince", description:ExplainEffect("Prince"), number:2, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Prince Port", couleur:"jaune",effect:"Prince", description:ExplainEffect("Prince"), number:3, set:"A"));
             //Section Chevalier
             //Chevalier #1
-            this.ListCards.Add(new Triangle(nom:"Chevalier Rev", couleur:"vert", effect:"", number:1, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Rev", couleur:"vert", effect:"", number:2, set:"A"));
             //Chevalier #2
-            this.ListCards.Add(new Triangle(nom:"Chevalier Norm", couleur:"vert", effect:"", number:1, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Norm", couleur:"vert", effect:"", number:2, set:"A"));
             //Section Assassin
-            this.ListCards.Add(new Triangle(nom:"Assassin J", couleur:"violet", number:0, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Assassin J", couleur:"violet", number:1, set:"A"));
             //Assassin
-            this.ListCards.Add(new Triangle(nom:"Assassin A", couleur:"violet", number:0, set:"A"));
+            this.ListCards.Add(new Triangle(nom:"Assassin A", couleur:"violet", number:1, set:"A"));
             //Section Paysan X3
             this.ListCards.Add(new Triangle(nom:"paysan Trol", couleur:"rouge", effect:"Exil", description:ExplainEffect("Exil"), number:0, set:"A"));
             this.ListCards.Add(new Triangle(nom:"paysan Rez", couleur:"rouge", effect:"Reinitialisation", description:ExplainEffect("Reinitialisation"), number:0, set:"A"));
@@ -82,17 +84,17 @@ namespace Triangle_Scalene
             //SetB Main Faible
             //Section Famille Royale
             //Roi KILL Prince
-            this.ListCards.Add(new Triangle(nom:"Roi Her", couleur:"jaune",effect:"Roi", description:ExplainEffect("Roi"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Roi Her", couleur:"jaune",effect:"Roi", description:ExplainEffect("Roi"), number:3, set:"B"));
             //Reine KILL Roi
-            this.ListCards.Add(new Triangle(nom:"Reine Tuil", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Reine Tuil", couleur:"jaune",effect:"Reine", description:ExplainEffect("Reine"), number:3, set:"B"));
             //Prince Kill Reine
-            this.ListCards.Add(new Triangle(nom:"Prince Or", couleur:"jaune", effect:"Prince", description:ExplainEffect("Prince"), number:2, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Prince Or", couleur:"jaune", effect:"Prince", description:ExplainEffect("Prince"), number:3, set:"B"));
             //Section Chevalier
             //Chevalier #1
-            this.ListCards.Add(new Triangle(nom:"Chevalier Mul", couleur:"vert", effect:"", set:"B", number:1));
+            this.ListCards.Add(new Triangle(nom:"Chevalier Mul", couleur:"vert", effect:"", set:"B", number:2));
             //Section Assassin
             //Assassin #1
-            this.ListCards.Add(new Triangle(nom:"Assassin T", couleur:"violet", number:0, set:"B"));
+            this.ListCards.Add(new Triangle(nom:"Assassin T", couleur:"violet", number:1, set:"B"));
             //Section Paysan X5
             this.ListCards.Add(new Triangle(nom:"paysan Gra", couleur:"rouge", effect:"Croissance Explosive", description:ExplainEffect("Croissance Explosive"), number:0, set:"B"));
             this.ListCards.Add(new Triangle(nom:"paysan Red", couleur:"rouge", effect:"Grande Revolution", description:ExplainEffect("Grande Revolution"), number:0, set:"B"));
@@ -151,99 +153,147 @@ namespace Triangle_Scalene
             }
             return text;
         }
-        public string ActiveEffect(string Name1, ushort Number1, string Name2, ushort Number2, string Effect1="", string Effect2="") {
+        public string ActiveEffect(Triangle CarteJoueurUn, Triangle CarteJoueurDeux, Player joueur1, Player joueur2, List<Triangle> list1, List<Triangle> list2) {
+            EffectCard ec = new EffectCard();
+            bool result;
+            //Recuperer cartechoisie par les deux joueurs --> <Triangle>?
             /*
                 Permet d'activer les effets d'une carte
             */
-            ushort ActiveCardA;
-            ushort ActiveCardB;
+            // ushort ActiveCardA;
+            // ushort ActiveCardB;
+            if (CarteJoueurUn._Effect == "Hero invincible") {
+                return "P1";
+            }
+            if (CarteJoueurUn._Effect == "Hero invincible") {
+                return "P2";
+            }
+            if (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number == 3){
+                return "P1";
+            }
+            if (CarteJoueurUn._Number == 3 && CarteJoueurDeux._Number == 1){
+                return "P2"; 
+            }
+            if ((CarteJoueurUn._Number > CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
+                /*Idee future faire un analyse des carte remportées pour verifier si la carte.Effect "Cheval_de_troie" 
+                est presente dans lot des cartes gagné ce tour ou dans la liste Gardecarte*/
 
-            if (Number1 > Number2){
-                return Name1;
+                return "P1";
             } 
-            if (Number1 < Number2){
-                return Name2;
+            if ((CarteJoueurUn._Number < CarteJoueurDeux._Number) && !((CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1))){
+                return "P2";
             } 
-            if (Number1 == Number2) {
-                if (Effect1 == "" && Effect2 == ""){
-                    return null; //_Name1 + _Name2;
+            
+            if ((CarteJoueurUn._Number == CarteJoueurDeux._Number) || (CarteJoueurUn._Number == 1 && CarteJoueurDeux._Number==0) || (CarteJoueurUn._Number == 0 && CarteJoueurDeux._Number == 1)){
+                if (CarteJoueurUn._Effect == "" && CarteJoueurDeux._Effect == ""){
+                    return "P3"; //_Name1 + _Name2;
                 }
-                if (Effect1 != "" ) {
-                    switch (Effect1) {
+                if (CarteJoueurUn._Effect != "" ) {
+                    switch (CarteJoueurUn._Effect) {
                     case "Croissance_Explosive":
-                    ActiveCardA = 1;
+                    ec.Croissance_Explosive(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    // ActiveCardA = 1;
+                    // Console.WriteLine(// ActiveCardA);
                     break;
-                    case "Grande_Revolution": 
-                    ActiveCardA = 2;
-                    break;
-                    case "Cheval_de_troie": 
-                    ActiveCardA = 3;
-                    break;
+
+                    case "Grande_Revolution":
+                    // ec.Grande_Revolution();
+                    // ActiveCardA = 2;
+                    Console.WriteLine("Activation Grande Revolution ");// +ActiveCardA);
+                    return "P3";
+                    // break;
+
                     case "Exil": 
-                    ActiveCardA = 4;
+                    ec.Exil(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    // ActiveCardA = 4;
+                    // Console.WriteLine(// ActiveCardA);
                     break;
+
                     case "Reinitialisation": 
-                    ActiveCardA = 5;
+                    ec.Reinitialisation(joueur1, joueur2, list1, list2);
+                    // ActiveCardA = 5;
+                    // Console.WriteLine(// ActiveCardA);
                     break;
-                    case "Hero_invincible": 
-                    ActiveCardA = 6;
-                    break;
+
                     case "Roi":
-                    ActiveCardA = 7;
+                    result = ec.Roi(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    if (result){
+                        return "P1";
+                    }
+                    //// ActiveCardA = 7;
                     break;
                     case "Reine":
-                    ActiveCardA = 8;
+                    result = ec.Reine(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    if (result){
+                        return "P1";
+                    }
+                    // // ActiveCardA = 8;
                     break;
                     case "Prince":
-                    ActiveCardA = 9;
+                    result = ec.Prince(CarteJoueurUn._Name, CarteJoueurDeux._Name);
+                    if (result){
+                        return "P1";
+                    }
+                    // // ActiveCardA = 9;
                     break;
                     }
                 } else {
-                    ActiveCardA = 0;
+                    // ActiveCardA = 0;
                 }
-                if (Effect2 != "" ) {
-                    switch (Effect2) {
+                if (CarteJoueurDeux._Effect != "" ) {
+                    switch (CarteJoueurDeux._Effect) {
                     case "Croissance_Explosive":
-                    ActiveCardB = 1;
+                    ec.Croissance_Explosive(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    // ActiveCardB = 1;
+                    // Console.WriteLine(// ActiveCardB);
                     break;
-                    case "Grande_Revolution": 
-                    ActiveCardB = 2;
-                    break;
-                    case "Cheval_de_troie": 
-                    ActiveCardB = 3;
-                    break;
+                    case "Grande_Revolution":
+                    // ec.Grande_Revolution(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    // ActiveCardB = 2;
+                    Console.WriteLine("Activation Grande Revolution ");// +ActiveCardB);
+                    return "P3";
+                    // break;
                     case "Exil": 
-                    ActiveCardB = 4;
+                    ec.Exil(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    // ActiveCardB = 4;
+                    // Console.WriteLine(// ActiveCardB);
                     break;
                     case "Reinitialisation": 
-                    ActiveCardB = 5;
-                    break;
-                    case "Hero_invincible": 
-                    ActiveCardB = 6;
+                    ec.Reinitialisation(joueur1, joueur2, list1, list2);
+                    // ActiveCardB = 5;
+                    // Console.WriteLine(// ActiveCardB);
                     break;
                     case "Roi":
-                    ActiveCardB = 7;
+                    result = ec.Roi(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    if (result){
+                        return "P2";
+                    }
+                    // // ActiveCardB = 7;
                     break;
                     case "Reine":
-                    ActiveCardB = 8;
+                    result = ec.Reine(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    if (result){
+                        return "P2";
+                    }
+                    //// ActiveCardB = 8;
                     break;
                     case "Prince":
-                    ActiveCardB = 9;
+                    result = ec.Prince(CarteJoueurDeux._Name, CarteJoueurUn._Name);
+                    if (result){
+                        return "P2";
+                    }
+                    //// ActiveCardB = 9;
                     break;
                     }
                 } else {
-                    ActiveCardB = 0;
+                    // ActiveCardB = 0;
+                    // Console.WriteLine(// ActiveCardB);
                 }
-                if (Effect1 == "Hero_invincible") {
-                    return Name1;
-                }
-                if (Effect2 == "Hero_invincible") {
-                    return Name2;
-                }
+                
                
             }
-            
-            return "si contre Reine, gagne.";
+            // Console.WriteLine("P0");
+            return "P3";
         }
         public Triangle GetCard(string name){
             /*

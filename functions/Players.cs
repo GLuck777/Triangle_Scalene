@@ -17,6 +17,7 @@ namespace Triangle_Scalene{
                 dont ce type ici est assigner de manière paire/impaire
                 voir fonction 'GetPlayerType'
             */
+            InterfaceUI interfaceUI = new InterfaceUI();
             Random rnd = new Random();
             List<string> Set = new List<string>(){"A","B"};
             int mIndex = rnd.Next(Set.Count);
@@ -26,7 +27,13 @@ namespace Triangle_Scalene{
             for(int i = 1; i <= playerNumber; i++){
                 type = this.GetPlayerType(type);
                 Console.WriteLine("Pour le player "+i.ToString()+" Voici votre set " + type);
-                Player player = new Player("Player "+i.ToString(), type);
+                
+                string NamePlayer = interfaceUI.NomJoueur(); /*Permet de mettre son nom comme Player*/
+                if (NamePlayer == "") {
+                    NamePlayer = "Player "+i.ToString();
+                }
+                // Player player = new Player("Player "+i.ToString(), type);
+                Player player = new Player("Player "+i.ToString(), NamePlayer, type);
                 player.GeneratePioche(listCards);
                 this.ListPlayers.Add(player);
             }

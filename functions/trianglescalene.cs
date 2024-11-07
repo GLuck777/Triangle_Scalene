@@ -14,13 +14,17 @@ namespace Triangle_Scalene
         public string _Effect;
         public string _Description;
         public ushort _Number;
-		public Triangle(string nom, string couleur, string effect = "",string description = "", ushort number=0, string set="default") //ushort de 0 à 65 535
+        public bool Utilise;
+        public string Set;
+		public Triangle(string nom, string couleur, string effect = "",string description = "", ushort number=0, bool utilise=false,string set="default") //ushort de 0 à 65 535
         {
             this._Name = nom;
             //this.SetColor(couleur);
             this._Effect = effect;
             this._Description = description;
             this._Number = number;
+            this.Utilise = utilise;
+            this.Set = set;
 
         }
         /*
@@ -44,11 +48,16 @@ namespace Triangle_Scalene
 
         public List<Triangle> listPioche = new List<Triangle>();
 
-        Triangle cardBonus;
+        //public List<Triangle> listGagneCarte = new List<Triangle>(); --> Ajout possible pour le rendre optimisé
+        // Triangle cardBonus;
 
+        public  String GetSet(){
+            return this.Set;
+        }
 
-        public Player(string name, string set)
+        public Player(string numplayer, string name, string set)
         {
+            _Player = numplayer;
             Name = name;
             Set = set;
             //this.GeneratePioche(ListCards);
