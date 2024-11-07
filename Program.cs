@@ -1,4 +1,3 @@
-
 using System;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
@@ -200,7 +199,7 @@ namespace Triangle_Scalene
                     case "Grande_Revolution":
                     // ec.Grande_Revolution();
                     // ActiveCardA = 2;
-                    Console.WriteLine("Activation Grande Revolution "+// ActiveCardA);
+                    Console.WriteLine("Activation Grande Revolution ");// +ActiveCardA);
                     return "P3";
                     // break;
 
@@ -251,7 +250,7 @@ namespace Triangle_Scalene
                     case "Grande_Revolution":
                     // ec.Grande_Revolution(CarteJoueurDeux._Name, CarteJoueurUn._Name);
                     // ActiveCardB = 2;
-                    Console.WriteLine("Activation Grande Revolution "+// ActiveCardB);
+                    Console.WriteLine("Activation Grande Revolution ");// +ActiveCardB);
                     return "P3";
                     // break;
                     case "Exil": 

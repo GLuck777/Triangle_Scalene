@@ -42,3 +42,61 @@ SetB appelée "la main faible"
     Roi = Si contre Prince, gagne.
     Reine = Si contre Roi, gagne.
     Prince = Si contre Reine, gagne.
+
+# Jeu en C# - Instructions de lancement
+
+## Prérequis
+
+Avant de lancer le jeu, vous devez avoir installé le SDK .NET sur votre machine.
+
+### 1. Installer le SDK .NET
+
+Si vous n'avez pas encore installé le SDK .NET, vous pouvez le faire avec la commande suivante :
+
+```bash
+sudo apt install dotnet-sdk-8.0
+
+```
+vous pouvez installer la dernière version de .NET disponible sur le site officiel de Microsoft : https://dotnet.microsoft.com/download/dotnet-core/8.0
+
+### 2. Vérifier la version de .NET
+
+Après l'installation, vérifiez que la version de .NET est correcte en exécutant la commande suivante
+
+```bash
+dotnet --version
+```
+*Vous devriez voir quelque chose comme 8.0.110.*
+
+### 3. Vérifier la version dans le fichier card_app.csproj
+
+Ouvrez le fichier card_app.csproj et assurez-vous que la version de .NET est correcte. Si votre version de .NET est différente, modifiez la ligne suivante :
+
+```bash
+    <TargetFramework>net8.0</TargetFramework>
+```
+
+## Lancer le jeu
+
+### Étape 1 : Assurez-vous que vous êtes dans le bon répertoire
+
+Naviguez dans le terminal vers le dossier où se trouve votre fichier `.csproj` (pour un projet) ou `.sln` (pour une solution). Vous pouvez utiliser la commande suivante pour vous déplacer dans le répertoire :
+
+### Étape 2 : Compiler le projet
+
+Si vous n'avez pas encore compilé votre projet, vous devez le faire avant de pouvoir l'exécuter. Utilisez la commande suivante pour compiler votre projet :
+
+```bash
+dotnet build
+```
+
+### Étape 3 : Lancer le projet
+
+Une fois le projet compilé avec succès, vous pouvez le lancer avec la commande suivante :
+
+```bash
+dotnet run
+```
+
+Cela démarrera votre jeu. Profitez-en !
+
