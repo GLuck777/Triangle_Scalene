@@ -330,15 +330,28 @@ namespace Triangle_Scalene
         }
 
         public void IntroMessage(){
+            //font https://patorjk.com/software/taag/#p=display&f=Big%20Money-ne&t=Triangle%20Scalene -> Big Money-ne
             List<string> listAsciiLines = new List<string>();
-            listAsciiLines.Add(" /$$$$$$$  /$$                                                                      ");
-            listAsciiLines.Add("| $$__  $$|__/                                                                      ");
-            listAsciiLines.Add("| $$  \\ $$ /$$  /$$$$$$  /$$$$$$$  /$$    /$$ /$$$$$$  /$$$$$$$  /$$   /$$  /$$$$$$ ");
-            listAsciiLines.Add("| $$$$$$$ | $$ /$$__  $$| $$__  $$|  $$  /$$//$$__  $$| $$__  $$| $$  | $$ /$$__  $$");
-            listAsciiLines.Add("| $$__  $$| $$| $$$$$$$$| $$  \\ $$ \\  $$/$$/| $$$$$$$$| $$  \\ $$| $$  | $$| $$$$$$$$");
-            listAsciiLines.Add("| $$  \\ $$| $$| $$_____/| $$  | $$  \\  $$$/ | $$_____/| $$  | $$| $$  | $$| $$_____/");
-            listAsciiLines.Add("| $$$$$$$/| $$|  $$$$$$$| $$  | $$   \\  $/  |  $$$$$$$| $$  | $$|  $$$$$$/|  $$$$$$$");
-            listAsciiLines.Add("|_______/ |__/ \\_______/|__/  |__/    \\_/    \\_______/|__/  |__/ \\______/  \\_______/");
+            listAsciiLines.Add("");
+            listAsciiLines.Add(" /$$$$$$$$        /$$                               /$$                  /$$$$$$                      /$$                              ");
+            listAsciiLines.Add("|__  $$__/       |__/                              | $$                 /$$__  $$                    | $$                              ");
+            listAsciiLines.Add("   | $$  /$$$$$$  /$$  /$$$$$$  /$$$$$$$   /$$$$$$ | $$  /$$$$$$       | $$  \\__/  /$$$$$$$  /$$$$$$ | $$  /$$$$$$  /$$$$$$$   /$$$$$$ ");
+            listAsciiLines.Add("   | $$ /$$__  $$| $$ |____  $$| $$__  $$ /$$__  $$| $$ /$$__  $$      |  $$$$$$  /$$_____/ |____  $$| $$ /$$__  $$| $$__  $$ /$$__  $$");
+            listAsciiLines.Add("   | $$| $$  \\__/| $$  /$$$$$$$| $$  \\ $$| $$  \\ $$| $$| $$$$$$$$       \\____  $$| $$        /$$$$$$$| $$| $$$$$$$$| $$  \\ $$| $$$$$$$$");
+            listAsciiLines.Add("   | $$| $$      | $$ /$$__  $$| $$  | $$| $$  | $$| $$| $$_____/       /$$  \\ $$| $$       /$$__  $$| $$| $$_____/| $$  | $$| $$_____/");
+            listAsciiLines.Add("   | $$| $$      | $$|  $$$$$$$| $$  | $$|  $$$$$$$| $$|  $$$$$$$      |  $$$$$$/|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$| $$  | $$|  $$$$$$$");
+            listAsciiLines.Add("   |__/|__/      |__/ \\_______/|__/  |__/ \\____  $$|__/ \\_______/       \\______/  \\_______/ \\_______/|__/ \\_______/|__/  |__/ \\_______/");
+            listAsciiLines.Add("                                          /$$  \\ $$                                                                                    ");
+            listAsciiLines.Add("                                         |  $$$$$$/                                                                                    ");
+            listAsciiLines.Add("                                          \\______/                                                                                     ");
+            // listAsciiLines.Add(" /$$$$$$$  /$$                                                                      ");
+            // listAsciiLines.Add("| $$__  $$|__/                                                                      ");
+            // listAsciiLines.Add("| $$  \\ $$ /$$  /$$$$$$  /$$$$$$$  /$$    /$$ /$$$$$$  /$$$$$$$  /$$   /$$  /$$$$$$ ");
+            // listAsciiLines.Add("| $$$$$$$ | $$ /$$__  $$| $$__  $$|  $$  /$$//$$__  $$| $$__  $$| $$  | $$ /$$__  $$");
+            // listAsciiLines.Add("| $$__  $$| $$| $$$$$$$$| $$  \\ $$ \\  $$/$$/| $$$$$$$$| $$  \\ $$| $$  | $$| $$$$$$$$");
+            // listAsciiLines.Add("| $$  \\ $$| $$| $$_____/| $$  | $$  \\  $$$/ | $$_____/| $$  | $$| $$  | $$| $$_____/");
+            // listAsciiLines.Add("| $$$$$$$/| $$|  $$$$$$$| $$  | $$   \\  $/  |  $$$$$$$| $$  | $$|  $$$$$$/|  $$$$$$$");
+            // listAsciiLines.Add("|_______/ |__/ \\_______/|__/  |__/    \\_/    \\_______/|__/  |__/ \\______/  \\_______/");
 
             foreach(string line in listAsciiLines){
                 this.CenterText(line);
@@ -394,6 +407,7 @@ namespace Triangle_Scalene
             Console.WriteLine();
             this.CenterText("[1]-Choisir une carte",8);
             Console.WriteLine();
+            this.CenterText("[2]-Voir les relations entre les cartes",8);
             int inputSelection = -1;
             string inputString;
             do {
@@ -416,6 +430,10 @@ namespace Triangle_Scalene
                     
                     case 1:
                     return inputSelection;
+
+                    case 2:
+                    ShowCardsEffect();
+                    return Askinput(player);
                     
                     default:
                     Console.Clear();
@@ -444,7 +462,8 @@ namespace Triangle_Scalene
                 Console.Clear(); 
                 t.DrawCase(interfaceUI);                 
                 interfaceUI.CenterText("Quelle carte choississez-vous pour ce tour ?");
-                interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+":");
+                interfaceUI.CenterText("Taper 0 pour revoir les relations entre les cartes");
+                interfaceUI.CenterText("Taper une commande entre 1 à "+ player.listPioche.Count()+"");
                 do {
                     // Console.Write("Newinput? ");
                 Newinput = Console.ReadLine();
@@ -494,9 +513,13 @@ namespace Triangle_Scalene
                         return CarteJoueurDeux;
                         }
                     } else {
-                        Console.WriteLine("Mauvaise touche, 0 n'esiste pas");
-                        Thread.Sleep(1*1000);
-                        Console.Clear(); //test
+                        if(PlayerCard != 0){
+                            Console.WriteLine("Mauvaise touche, ce nombre n'est pas disponible...");
+                            Thread.Sleep(1*1000);
+                            Console.Clear(); //test
+                        } else {
+                            ShowCardsEffect();
+                        }
                         //  SelectionCard(player);
                     }
                 } catch { //pour des lettres ou autres informations arrive dans le catch
