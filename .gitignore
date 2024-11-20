@@ -24,3 +24,16 @@ obj/Debug/net7.0/card_app.GlobalUsings.g.cs
 obj/Debug/net7.0/card_app.pdb
 obj/Debug/net7.0/ref/card_app.dll
 obj/Debug/net7.0/refint/card_app.dll
+card_app
+*.json
+*.lock.json
+*.dll
+*.pdb
+*.log
+*.cs
+*.cache
+*.txt
+*.editorconfig
+net8.0
+net7.0
+
